@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "update stock code (twstockanalyzer -U)",
+      "type": "python",
+      "request": "launch",
+      "module": "twstockanalyzer",
+      "args": ["-U"],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "stock price history (twstockanalyzer -h)",
+      "type": "python",
+      "request": "launch",
+      "module": "twstockanalyzer",
+      "args": ["-H"],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+  ]
+}
