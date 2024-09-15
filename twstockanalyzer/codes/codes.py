@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # Usage: Load all Taiwan stock code info from csv file
@@ -31,6 +31,8 @@ def read_csv(path, types):
         csvfile.readline()
         for row in reader:
             row = ROW(*(item.strip() for item in row))
+            if row.type != "股票":
+                continue
             codes[row.code] = row
             if types == "tpex":
                 tpex[row.code] = row

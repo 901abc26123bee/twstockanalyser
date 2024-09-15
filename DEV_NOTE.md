@@ -73,10 +73,11 @@ pipenv --rm
 ```sh
 $ pipenv install requests
 $ pipenv install beautifulsoup4
+$ pipenv install yfinance pandas
 ```
 
 [pipenv-stuck-locking](https://stackoverflow.com/questions/56440090/pipenv-stuck-locking)
-
+[Pipenv lock hangs #2681](https://github.com/pypa/pipenv/issues/2681)
 
 ### Vscode
 https://stackoverflow.com/questions/64255834/no-definition-found-for-function-vscode-python
@@ -84,7 +85,21 @@ https://stackoverflow.com/questions/68637153/python-error-in-vscode-sorry-someth
 
 
 ### python module
-https://www.freecodecamp.org/chinese/news/module-not-found-error-in-python-solved/
+[ModuleNotFoundError：如何解决 no module named Python 错误？](https://www.freecodecamp.org/chinese/news/module-not-found-error-in-python-solved/)
+[Execution of Python code with -m option or not [duplicate]](https://stackoverflow.com/questions/22241420/execution-of-python-code-with-m-option-or-not)
+[What is __main__.py?](https://stackoverflow.com/questions/4042905/what-is-main-py)
+
+```py
+if __name__=='__main__':
+    test()
+```
+當我們在命令列運行模組檔案時，Python解釋器把一個特殊變數__name__置為__main__，而如果在其他地方導入該該模組時，if判斷將失敗，因此，這種if測試可以讓一個模組透過命令列運行時執行一些額外的程式碼，最常見的就是執行測試。
+
+```sh
+# after download twstockanalyzer
+cd twstockanalyzer/
+python -m twstockanalyzer -H
+```
 
 
 ### stock url
@@ -136,22 +151,3 @@ def add_end(L=None):
 ['END']
 ```
 為什麼要設計str、None這樣的不變物件呢？因為不變物件一旦創建，物件內部的資料就不能修改，這樣就減少了因為修改資料而導致的錯誤。此外，由於物件不變，多任務環境下同時讀取物件不需要加鎖，同時讀一點問題都沒有。我們在寫程式時，如果可以設計一個不變對象，那就盡量設計成不變對象。
-
-
-
-[[source]]
-url = "https://pypi.org/simple"
-verify_ssl = true
-name = "pypi"
-
-[packages]
-requests = "*"
-argparse = "*"
-lxml = "*"
-yfinance = "*"
-
-[dev-packages]
-
-[requires]
-python_version = "3.11"
-python_full_version = "3.11.6"

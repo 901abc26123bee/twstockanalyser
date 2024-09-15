@@ -8,6 +8,7 @@ requests = "*"
 argparse = "*"
 lxml = "*"
 yfinance = "*"
+pandas = "*"
 
 [dev-packages]
 

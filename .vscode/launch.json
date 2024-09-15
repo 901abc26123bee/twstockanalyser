@@ -11,11 +11,11 @@
       "justMyCode": true
     },
     {
-      "name": "stock price history (twstockanalyzer -h)",
+      "name": "stock price history (twstockanalyzer -A)",
       "type": "python",
       "request": "launch",
       "module": "twstockanalyzer",
-      "args": ["-H"],
+      "args": ["-A"],
       "console": "integratedTerminal",
       "justMyCode": true
     },
