@@ -1,6 +1,6 @@
 // Function to convert CSV text to 2D array
 function csvToArray(csvText) {
-  const rows = csvText.trim().split('\n'); // Split by rows
+  let rows = csvText.trim().split('\n'); // Split by rows
   return rows.map(row => row.split(',')); // Split each row by comma
 }
 
@@ -11,7 +11,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const stockCode = document.getElementById('stockCodeInput').value;
     if (stockCode) {
-      loadChart(stockCode);
+      loadChartWithMonthData(stockCode);
+      loadChartWithWeekData(stockCode);
+      loadChartWithDayData(stockCode);
+      loadChartWith60MinuteData(stockCode);
+      loadChartWith30MinuteData(stockCode);
+      loadChartWith15MinuteData(stockCode);
     } else {
       alert('Please enter a valid stock code.');
     }

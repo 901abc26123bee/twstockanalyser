@@ -131,6 +131,10 @@ python -m twstock
 ```
 Python executes `twstock/__main__.py` as the entry point, and the twstock package should be properly imported. However, the context of the `__main__.py` execution is crucial.
 
+```sh
+python -m twstockanalyzer -A
+python -m twstockanalyzer -U
+```
 
 ### func 定義預設參數
 定義預設參數要牢記一點：預設參數必須指向不變物件！
@@ -151,3 +155,22 @@ def add_end(L=None):
 ['END']
 ```
 為什麼要設計str、None這樣的不變物件呢？因為不變物件一旦創建，物件內部的資料就不能修改，這樣就減少了因為修改資料而導致的錯誤。此外，由於物件不變，多任務環境下同時讀取物件不需要加鎖，同時讀一點問題都沒有。我們在寫程式時，如果可以設計一個不變對象，那就盡量設計成不變對象。
+
+
+
+
+## Stock holder Info
+https://www.twse.com.tw/rwd/zh/fund/T86?date=20240916&selectType=ALL&response=csv
+
+
+## Formatter for py
+```sh
+pip install black
+black .
+
+pip install yapf
+yapf -i -r .
+```
+
+## docker 
+docker compose up --build

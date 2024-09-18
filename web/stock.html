@@ -21,28 +21,49 @@
   <link href="./tools/anychart-8.12.1/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
   <style type="text/css">
     html, body {
-      width: 200%; 
+      width: 160%; 
       height: 100%; 
       margin: 0; 
       padding: 0;
       background-color: #343434;
     }
-    #container {
-      width: 10%; 
-      height: 100%; 
-      margin: 0; 
-      padding: 0;
+
+    #container_wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch; /* Ensure children stretch to container height */
+      height: 100vh; /* Set container height to full viewport height */
+      padding: 10px;
+      box-sizing: border-box; /* Include padding in container width */
     }
+
+    .box {
+      flex: 1; /* Allow boxes to grow and fill available space */
+      margin: 0 10px; /* Horizontal spacing between boxes */
+      background-color: #f0f0f0; /* Default background color */
+      border: 1px solid #ccc;
+      box-sizing: border-box; /* Include padding and border in box width and height */
+      background-color: #343434;
+    }
+
   </style>
 </head>
 <body>
   <script src="./js/tool.js"></script>
-  <script src="./js/formatcsv.js"></script>
   <script src="./js/chart.js"></script>
+  <script src="./js/views.js"></script>
 
-  <input type="text" id="stockCodeInput" placeholder="Enter stock code" value="2330">
+  <input type="text" id="stockCodeInput" placeholder="Enter stock code" value="4540">
   <button id="stockCodeButton">Stock Code</button>
 
-  <div id="container"></div>
+  <div id="container_wrapper">
+    <div id="container_month" class="box"></div>
+    <div id="container_week" class="box"></div>
+    <div id="container_day" class="box"></div>
+    <div id="container_60m" class="box"></div>
+    <div id="container_30m" class="box"></div>
+    <div id="container_15m" class="box"></div>
+  </div>
+
 </body>
 </html>

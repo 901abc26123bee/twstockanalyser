@@ -19,5 +19,14 @@
       "console": "integratedTerminal",
       "justMyCode": true
     },
+    {
+      "name": "stock holders (twstockanalyzer -H)",
+      "type": "python",
+      "request": "launch",
+      "module": "twstockanalyzer",
+      "args": ["-H"],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
   ]
 }

@@ -1,0 +1,12 @@
+services:
+  postgres:
+    build:
+      context: .
+      dockerfile: ./dockerfile/twstockanalyzer.Dockerfile
+    container_name: twstockanalyzer
+    volumes:
+      - ./web/stock_data:/app/web/stock_data
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONDONTWRITEBYTECODE=1
+    command: ["python", "-m", "twstockanalyzer", -A]

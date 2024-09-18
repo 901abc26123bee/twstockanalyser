@@ -25,10 +25,11 @@ ROW = namedtuple(
 
 # Configure logging
 logging.basicConfig(
-    filename='stock_data_downloader.log',
+    filename="stock_data_downloader.log",
     level=logging.DEBUG,
-    format='%(asctime)s - %(levelname)s - %(message)s'
+    format="%(asctime)s - %(levelname)s - %(message)s",
 )
+
 
 def make_row_tuple(typ, row):
     code, name = row[1].split("\u3000")
