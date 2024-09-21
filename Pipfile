@@ -9,6 +9,7 @@ argparse = "*"
 lxml = "*"
 yfinance = "*"
 pandas = "*"
+matplotlib = "*"
 
 [dev-packages]
 

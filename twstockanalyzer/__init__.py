@@ -1,2 +1,2 @@
 from twstockanalyzer import cli
-from twstockanalyzer.codes import __update_codes, twse, tpex, codes
+from twstockanalyzer.codes import update_codes, twse, tpex, codes

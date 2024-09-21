@@ -174,3 +174,10 @@ yapf -i -r .
 
 ## docker 
 docker compose up --build
+
+
+Summary
+- Use pandas.DataFrame when you need to handle complex data analysis, work with large datasets, or perform operations on entire columns.
+- Use namedtuple when you need a lightweight, immutable way to group related data together without the overhead of a full DataFrame.
+
+If you're working with structured data that requires frequent manipulation, go with DataFrame. For simpler, more static data structures, namedtuple is a great choice!

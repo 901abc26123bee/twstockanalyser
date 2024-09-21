@@ -25,7 +25,7 @@ function loadChart(fileData, stockName, container) {
           close: 4,
         });
         var closeMapping = dataTable.mapAs({ value: 4 });
-        var volumeMapping = dataTable.mapAs({ volume: 6 });
+        var volumeMapping = dataTable.mapAs({ volume: 5 });
   
         // Create stock chart
         var chart = anychart.stock();

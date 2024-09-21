@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import argparse
-from twstockanalyzer.codes import __update_codes
+from twstockanalyzer.codes import update_codes
 from twstockanalyzer.cli import holders, scrapers
 
 
@@ -27,7 +27,7 @@ def run():
         print("Done!")
     elif args.upgrade_codes:
         print("Start to update codes")
-        __update_codes()
+        update_codes()
         print("Done!")
     else:
         parser.print_help()

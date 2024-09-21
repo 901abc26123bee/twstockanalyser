@@ -4,7 +4,7 @@
 # Usage: fetch stock prices history to cev files
 #
 
-from twstockanalyzer.scrapers.history import PriceHistoryFetcher
+from twstockanalyzer.scrapers.stock import Stock
 
 try:
     from twstockanalyzer.codes import codes
@@ -16,17 +16,18 @@ except ImportError as e:
 
 class BaseFetcher:
     def __init__(self):
-        self.price_fetcher = PriceHistoryFetcher()
         self.raw_data = []
         self.data = []
 
-    def download_csv(self):
+    def download_stocks_prices_history_csv(self):
         for code in codes:
             if code == "4540":
-                self.price_fetcher.download_data_csv_with_all_period(code)
+                stock = Stock(code)
+                stock.download_prices_history_csv()
 
     def troubleshot(self):
-        data = self.price_fetcher.troubleshot("4540")
-        print(data)
-        purify = self.price_fetcher._make_datatuple(data)
-        print(purify)
+        stock = Stock("4540")
+        stock.troubleshot()
+
+    def load_prices_history(self):
+        pass

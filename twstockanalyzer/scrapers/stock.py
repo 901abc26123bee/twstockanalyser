@@ -4,39 +4,24 @@
 # Usage:
 #
 
+from twstockanalyzer.scrapers.history import PriceHistoryFetcher
+from twstockanalyzer.scrapers.analytics import Analysis
 
-class Stock():
-    def __init__(self, code: str, data: any):
+
+class Stock:
+    def __init__(self, code: str):
         self.code = code
-        self.data = data
+        self.fetcher = PriceHistoryFetcher(code)
+        self.analysis = Analysis(self.fetcher.fetch_month_max())
 
-    def _calculate_ma(self, header: str, window: int):
-        self.data[header] = self.data['Close'].rolling(window=window).mean()
+    def calculate_ma(self, header: str, window: int):
+        self.analysis.moving_average("5MA", 5)
 
-    @property
-    def date(self):
-        return [d.date for d in self.data]
+    def download_prices_history_csv(self):
+        self.fetcher.download_csv_with_all_period()
 
-    @property
-    def high(self):
-        return [d.high for d in self.data]
-
-    @property
-    def low(self):
-        return [d.low for d in self.data]
-
-    @property
-    def open(self):
-        return [d.open for d in self.data]
-
-    @property
-    def close(self):
-        return [d.close for d in self.data]
-
-    @property
-    def volume(self):
-        return [d.volume for d in self.data]
-
-    @property
-    def volume(self):
-        return [d.volume for d in self.data]
+    def troubleshot(self):
+        self.analysis.macd()
+        self.analysis.kdj()
+        self.analysis.bbands()
+        self.analysis.moving_average("MA5", 5)

@@ -5,9 +5,10 @@
 #
 
 import os
-import yfinance as yf
-import pandas as pd
-from collections import namedtuple
+import yfinance as _yf
+import pandas as _pd
+from typing import Optional
+from collections import namedtuple as _namedtuple
 from twstockanalyzer.scrapers.const import (
     TW_STOCK_SUFFIX,
     STOCK_DATA_FOLDER,
@@ -22,7 +23,7 @@ STOCK_DATA_30_M_SUFFIX = "_30m"
 STOCK_DATA_15_M_SUFFIX = "_15m"
 
 
-DATA_TUPLE = namedtuple(
+DATA_TUPLE = _namedtuple(
     "Data",
     [
         "Datetime",
@@ -34,22 +35,21 @@ DATA_TUPLE = namedtuple(
     ],
 )
 
-class PriceHistoryFetcher:
-    def __init__(self):
-        self._rounding = True
 
-    def troubleshot(self, code: str):
+class PriceHistoryFetcher:
+    def __init__(self, code: str, rounding: bool = True):
+        self._rounding = rounding
         self.code = code
         # defines the taiwan stock symbol ex: '2330.TW'
         self._symbol = code + TW_STOCK_SUFFIX
+
+    def troubleshot(self) -> Optional[_pd.DataFrame]:
         monthData = self.fetch_month_max()
-        print(monthData.columns)
+        # print(monthData.columns)
+        # print(self._make_datatuple(monthData))
         return monthData
 
-    def download_data_csv_with_all_period(self, code: str):
-        self.code = code
-        # defines the taiwan stock symbol ex: '2330.TW'
-        self._symbol = code + TW_STOCK_SUFFIX
+    def download_csv_with_all_period(self):
         monthData = self.fetch_month_max()
         weekData = self.fetch_week_max()
         dayData = self.fetch_day_max()
@@ -65,47 +65,59 @@ class PriceHistoryFetcher:
             fifteenMData=fifteenMData,
         )
 
-    def fetch_month_max(self):
-        data = yf.download(self._symbol, rounding=self._rounding, interval="1mo", period="max")
+    def fetch_month_max(self) -> Optional[_pd.DataFrame]:
+        data = _yf.download(
+            self._symbol, rounding=self._rounding, interval="1mo", period="max"
+        )
         if data.empty:
             print("No data returned for the given {self._symbol} and interval 60m")
             return None
-        return data
+        return _pd.DataFrame(data)
 
-    def fetch_week_max(self):
-        data = yf.download(self._symbol, rounding=self._rounding, interval="1wk", period="5y")
+    def fetch_week_max(self) -> Optional[_pd.DataFrame]:
+        data = _yf.download(
+            self._symbol, rounding=self._rounding, interval="1wk", period="5y"
+        )
         if data.empty:
             print("No data returned for the given {self._symbol} and interval 60m")
             return None
-        return data
+        return _pd.DataFrame(data)
 
-    def fetch_day_max(self):
-        data = yf.download(self._symbol, rounding=self._rounding, interval="1d", period="2y")
+    def fetch_day_max(self) -> Optional[_pd.DataFrame]:
+        data = _yf.download(
+            self._symbol, rounding=self._rounding, interval="1d", period="2y"
+        )
         if data.empty:
             print("No data returned for the given {self._symbol} and interval 60m")
             return None
-        return data
+        return _pd.DataFrame(data)
 
-    def fetch_60_min_series_max(self):
-        data = yf.download(self._symbol, rounding=self._rounding, interval="60m", period="3mo")
+    def fetch_60_min_series_max(self) -> Optional[_pd.DataFrame]:
+        data = _yf.download(
+            self._symbol, rounding=self._rounding, interval="60m", period="3mo"
+        )
         if data.empty:
             print("No data returned for the given {self._symbol} and interval 60m")
             return None
-        return data
+        return _pd.DataFrame(data)
 
-    def fetch_30_min_series_max(self):
-        data = yf.download(self._symbol, rounding=self._rounding, interval="30m", period="1mo")
+    def fetch_30_min_series_max(self) -> Optional[_pd.DataFrame]:
+        data = _yf.download(
+            self._symbol, rounding=self._rounding, interval="30m", period="1mo"
+        )
         if data.empty:
             print("No data returned for the given {self._symbol} and interval 30m")
             return None
-        return data
+        return _pd.DataFrame(data)
 
-    def fetch_15_min_series_max(self):
-        data = yf.download(self._symbol, rounding=self._rounding, interval="15m", period="1mo")
+    def fetch_15_min_series_max(self) -> Optional[_pd.DataFrame]:
+        data = _yf.download(
+            self._symbol, rounding=self._rounding, interval="15m", period="1mo"
+        )
         if data.empty:
             print("No data returned for the given {self._symbol} and interval 15m")
             return None
-        return data
+        return _pd.DataFrame(data)
 
     def download_csv(
         self,
@@ -132,7 +144,7 @@ class PriceHistoryFetcher:
             print("Empty data for the given {self._symbol} and interval day")
         else:
             fileName = "%s%s%s" % (self.code, STOCK_DATA_DAYS_SUFFIX, CSV_EXTENSION)
-            self._download_csv(weekData, fileName)
+            self._download_csv(dayData, fileName)
 
         if sixtyMData.empty:
             print("Empty data for the given {self._symbol} and interval 60m")
@@ -153,13 +165,22 @@ class PriceHistoryFetcher:
             self._download_csv(fifteenMData, fileName)
 
     def _download_csv(self, data, fileName):
-        df_list = []
-        df_list.append(data)
-        df = pd.concat(df_list)
+        purifiedData = self._make_datatuple(data)
+        # convert the list of tuples to a DataFrame
+        df = _pd.DataFrame(purifiedData)
         outputFolder = os.path.join(STOCK_DATA_FOLDER, self.code)
         # create the directory if it doesn't exist
         os.makedirs(outputFolder, exist_ok=True)
-        df.to_csv(os.path.join(outputFolder, fileName))
+        df.to_csv(os.path.join(outputFolder, fileName), index=False)
+
+    # def _download_csv(self, data, fileName):
+    #     df_list = []
+    #     df_list.append(data)
+    #     df = _pd.concat(df_list)
+    #     outputFolder = os.path.join(STOCK_DATA_FOLDER, self.code)
+    #     # create the directory if it doesn't exist
+    #     os.makedirs(outputFolder, exist_ok=True)
+    #     df.to_csv(os.path.join(outputFolder, fileName))
 
     # def _make_datatuple(self, data):
     #     return [
@@ -175,11 +196,18 @@ class PriceHistoryFetcher:
     #     ]
 
     def _make_datatuple(self, data):
-        return data.apply(lambda row: DATA_TUPLE(
-            Datetime=row.name,
-            Open=row[0],
-            High=row[1],
-            Low=row[2],
-            Close=row[3],
-            Volume=row[5]
-        ), axis=1).tolist()
+        return (
+            _pd.DataFrame(data)
+            .apply(
+                lambda row: DATA_TUPLE(
+                    Datetime=row.name,
+                    Open=row["Open"],
+                    High=row["High"],
+                    Low=row["Low"],
+                    Close=row["Close"],
+                    Volume=row["Volume"],
+                ),
+                axis=1,
+            )
+            .tolist()
+        )

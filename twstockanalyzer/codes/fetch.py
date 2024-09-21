@@ -71,7 +71,7 @@ def to_csv(url, path):
         raise
 
 
-def __update_codes():
+def update_codes():
     def get_directory():
         return os.path.dirname(os.path.abspath(__file__))
 

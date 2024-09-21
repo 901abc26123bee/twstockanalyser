@@ -6,5 +6,5 @@ from twstockanalyzer.scrapers.base import BaseFetcher
 
 def run():
     fetcher = BaseFetcher()
-    # fetcher.download_csv()
+    # fetcher.download_stocks_prices_history_csv()
     fetcher.troubleshot()
