@@ -43,7 +43,7 @@ class PriceHistoryFetcher:
         # defines the taiwan stock symbol ex: '2330.TW'
         self._symbol = code + TW_STOCK_SUFFIX
 
-    def troubleshot(self) -> Optional[_pd.DataFrame]:
+    def cal_statistic(self) -> Optional[_pd.DataFrame]:
         monthData = self.fetch_month_max()
         # print(monthData.columns)
         # print(self._make_datatuple(monthData))
@@ -72,6 +72,7 @@ class PriceHistoryFetcher:
         if data.empty:
             print("No data returned for the given {self._symbol} and interval 60m")
             return None
+        self._purify(data)
         return _pd.DataFrame(data)
 
     def fetch_week_max(self) -> Optional[_pd.DataFrame]:
@@ -81,6 +82,7 @@ class PriceHistoryFetcher:
         if data.empty:
             print("No data returned for the given {self._symbol} and interval 60m")
             return None
+        self._purify(data)
         return _pd.DataFrame(data)
 
     def fetch_day_max(self) -> Optional[_pd.DataFrame]:
@@ -90,6 +92,7 @@ class PriceHistoryFetcher:
         if data.empty:
             print("No data returned for the given {self._symbol} and interval 60m")
             return None
+        self._purify(data)
         return _pd.DataFrame(data)
 
     def fetch_60_min_series_max(self) -> Optional[_pd.DataFrame]:
@@ -211,3 +214,11 @@ class PriceHistoryFetcher:
             )
             .tolist()
         )
+
+    def _purify(self, df: _pd.DataFrame):
+        if df.index.name == "Date":
+            df.reset_index(inplace=True)
+            df.rename(columns={"Date": "Datetime"}, inplace=True)
+            df.set_index("Datetime", inplace=True)
+        else:
+            df.rename(columns={"Date": "Datetime"}, inplace=True)

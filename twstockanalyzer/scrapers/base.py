@@ -25,9 +25,12 @@ class BaseFetcher:
                 stock = Stock(code)
                 stock.download_prices_history_csv()
 
-    def troubleshot(self):
+    def cal_statistic(self):
         stock = Stock("4540")
-        stock.troubleshot()
+        stock._test()
 
-    def load_prices_history(self):
-        pass
+    def filter_stock_show_buy_point(self):
+        for code in codes:
+            if 6000 <= int(code) <= 8000:
+                stock = Stock(code)
+                print()
