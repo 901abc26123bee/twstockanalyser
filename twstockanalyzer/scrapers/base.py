@@ -5,6 +5,7 @@
 #
 
 from twstockanalyzer.scrapers.stock import Stock
+from twstockanalyzer.scrapers.history import PriceHistoryLoader
 
 try:
     from twstockanalyzer.codes import codes
@@ -25,7 +26,7 @@ class BaseFetcher:
                 stock = Stock(code)
                 stock.download_prices_history_csv()
 
-    def cal_statistic(self):
+    def _test(self):
         stock = Stock("4540")
         stock._test()
 
@@ -34,3 +35,8 @@ class BaseFetcher:
             if 6000 <= int(code) <= 8000:
                 stock = Stock(code)
                 print()
+
+    def load_stocks_prices_from_csv_files(self):
+        loader = PriceHistoryLoader()
+        stock_prices_dict = loader.load_from_downloaded_csv()
+        print(stock_prices_dict.keys)

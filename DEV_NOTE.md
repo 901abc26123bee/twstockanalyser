@@ -80,9 +80,22 @@ $ pipenv install yfinance pandas
 [Pipenv lock hangs #2681](https://github.com/pypa/pipenv/issues/2681)
 
 ### Vscode
-https://stackoverflow.com/questions/64255834/no-definition-found-for-function-vscode-python
-https://stackoverflow.com/questions/68637153/python-error-in-vscode-sorry-something-went-wrong-activating-intellicode-suppo
+problem: Go to definition not working
+solution:
+    https://stackoverflow.com/questions/64255834/no-definition-found-for-function-vscode-python
+    https://stackoverflow.com/questions/68637153/python-error-in-vscode-sorry-something-went-wrong-activating-intellicode-suppo
 
+
+problem: vscode integrated terminal is black screen and unable to stdin (for python project only)
+    https://stackoverflow.com/questions/74156960/vs-code-terminal-not-running-at-all
+solution:
+    https://stackoverflow.com/questions/54582361/vscode-terminal-shows-incorrect-python-version-and-path-launching-terminal-from
+    ```json
+    "terminal.integrated.inheritEnv": false,
+    ```
+
+vscode debug test for python:
+    https://stackoverflow.com/questions/52462599/visual-studio-code-with-python-timeout-waiting-for-debugger-connection
 
 ### python module
 [ModuleNotFoundError：如何解决 no module named Python 错误？](https://www.freecodecamp.org/chinese/news/module-not-found-error-in-python-solved/)
@@ -181,3 +194,8 @@ Summary
 - Use namedtuple when you need a lightweight, immutable way to group related data together without the overhead of a full DataFrame.
 
 If you're working with structured data that requires frequent manipulation, go with DataFrame. For simpler, more static data structures, namedtuple is a great choice!
+
+
+
+
+python -m twstockanalyzer -A 

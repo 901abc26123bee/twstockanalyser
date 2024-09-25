@@ -7,7 +7,12 @@ from twstockanalyzer.cli import holders, scrapers
 def run():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "-A", "--fetch-prices", action="store_true", help="Fetch stock prices history"
+        "-A",
+        "--fetch-prices",
+        type=str,
+        nargs="?",
+        const="default",
+        help="Fetch stock prices history, requires one argument",
     )
     parser.add_argument(
         "-H", "--fetch-holders", action="store_true", help="Patch stock holder infos"
@@ -19,7 +24,7 @@ def run():
 
     if args.fetch_prices:
         print("Start to fetch stock prices history")
-        scrapers.run()
+        scrapers.run(args.fetch_prices)
         print("Done!")
     elif args.fetch_holders:
         print("Start to fetch stock holder infos")

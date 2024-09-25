@@ -5,6 +5,7 @@
 #
 
 import os
+import glob
 import yfinance as _yf
 import pandas as _pd
 from typing import Optional
@@ -15,9 +16,9 @@ from twstockanalyzer.scrapers.const import (
     CSV_EXTENSION,
 )
 
-STOCK_DATA_MONTHS_SUFFIX = "_months"
-STOCK_DATA_WEEKS_SUFFIX = "_weeks"
-STOCK_DATA_DAYS_SUFFIX = "_days"
+STOCK_DATA_MONTH_SUFFIX = "_month"
+STOCK_DATA_WEEK_SUFFIX = "_week"
+STOCK_DATA_DAY_SUFFIX = "_day"
 STOCK_DATA_60_M_SUFFIX = "_60m"
 STOCK_DATA_30_M_SUFFIX = "_30m"
 STOCK_DATA_15_M_SUFFIX = "_15m"
@@ -134,19 +135,19 @@ class PriceHistoryFetcher:
         if monthData.empty:
             print("Empty data for the given {self._symbol} and interval month")
         else:
-            fileName = "%s%s%s" % (self.code, STOCK_DATA_MONTHS_SUFFIX, CSV_EXTENSION)
+            fileName = "%s%s%s" % (self.code, STOCK_DATA_MONTH_SUFFIX, CSV_EXTENSION)
             self._download_csv(monthData, fileName)
 
         if weekData.empty:
             print("Empty data for the given {self._symbol} and interval week")
         else:
-            fileName = "%s%s%s" % (self.code, STOCK_DATA_WEEKS_SUFFIX, CSV_EXTENSION)
+            fileName = "%s%s%s" % (self.code, STOCK_DATA_WEEK_SUFFIX, CSV_EXTENSION)
             self._download_csv(weekData, fileName)
 
         if dayData.empty:
             print("Empty data for the given {self._symbol} and interval day")
         else:
-            fileName = "%s%s%s" % (self.code, STOCK_DATA_DAYS_SUFFIX, CSV_EXTENSION)
+            fileName = "%s%s%s" % (self.code, STOCK_DATA_DAY_SUFFIX, CSV_EXTENSION)
             self._download_csv(dayData, fileName)
 
         if sixtyMData.empty:
@@ -222,3 +223,34 @@ class PriceHistoryFetcher:
             df.set_index("Datetime", inplace=True)
         else:
             df.rename(columns={"Date": "Datetime"}, inplace=True)
+
+
+class PriceHistoryLoader:
+    def __init__(self):
+        pass
+
+    def load_from_downloaded_csv(
+        self, root_dir: str = STOCK_DATA_FOLDER
+    ) -> dict[str, _pd.DataFrame]:
+        # create an empty dictionary to store DataFrames
+        dataframes = {}
+
+        # traverse through each subfolder and find CSV files
+        for folder in os.listdir(root_dir):
+            folder_path = os.path.join(root_dir, folder)
+            if os.path.isdir(folder_path):
+                # find all CSV files in the subfolder
+                csv_files = glob.glob(os.path.join(folder_path, "*.csv"))
+                # load each CSV file into a DataFrame
+                for csv_file in csv_files:
+                    # ensure correct column names and parse 'Datetime' as a datetime object
+                    df = _pd.read_csv(
+                        csv_file,
+                        parse_dates=["Datetime"],
+                        usecols=["Datetime", "Open", "High", "Low", "Close", "Volume"],
+                    )
+
+                    # use the filename (without path and extension) as the key for the dictionary
+                    key = os.path.splitext(os.path.basename(csv_file))[0]
+                    dataframes[key] = df
+        return dataframes

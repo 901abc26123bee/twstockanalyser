@@ -4,7 +4,11 @@
 from twstockanalyzer.scrapers.base import BaseFetcher
 
 
-def run():
+def run(argv: str):
     fetcher = BaseFetcher()
-    # fetcher.download_stocks_prices_history_csv()
-    fetcher.cal_statistic()
+    if argv == "d":
+        fetcher.download_stocks_prices_history_csv()
+    elif argv == "l":
+        fetcher.load_stocks_prices_from_csv_files()
+    elif argv == "t":
+        fetcher._test()

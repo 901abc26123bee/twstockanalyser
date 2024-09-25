@@ -5,6 +5,7 @@
 #
 
 from twstockanalyzer.scrapers.history import PriceHistoryFetcher
+from twstockanalyzer.scrapers.history import PriceHistoryLoader
 from twstockanalyzer.scrapers.analytics import Analysis
 from twstockanalyzer.scrapers.strategy import Strategy
 import pandas as _pd
@@ -41,7 +42,10 @@ class Stock:
         self.analysis.moving_average(df, "MA138", 138)
 
     def _test(self):
-        day_df = self.fetcher.fetch_day_max()
+        # day_df = self.fetcher.fetch_day_max()
+        loader = PriceHistoryLoader()
+        stock_prices_dict = loader.load_from_downloaded_csv()
+        day_df = stock_prices_dict["4540_day"]
         self.analysis.macd(df=day_df)
         print(day_df["MACD"])
 

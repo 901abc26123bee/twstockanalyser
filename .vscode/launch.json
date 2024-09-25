@@ -3,7 +3,7 @@
   "configurations": [
     {
       "name": "update stock code (twstockanalyzer -U)",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "module": "twstockanalyzer",
       "args": ["-U"],
@@ -11,8 +11,26 @@
       "justMyCode": true
     },
     {
-      "name": "stock price history (twstockanalyzer -A)",
-      "type": "python",
+      "name": "download stock price history csv (twstockanalyzer -A d)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "twstockanalyzer",
+      "args": ["-A"],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "load stock price history from csv (twstockanalyzer -A l)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "twstockanalyzer",
+      "args": ["-A"],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "test (twstockanalyzer -A t)",
+      "type": "debugpy",
       "request": "launch",
       "module": "twstockanalyzer",
       "args": ["-A"],
@@ -21,7 +39,7 @@
     },
     {
       "name": "stock holders (twstockanalyzer -H)",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "module": "twstockanalyzer",
       "args": ["-H"],
