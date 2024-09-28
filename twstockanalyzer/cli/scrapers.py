@@ -11,4 +11,4 @@ def run(argv: str):
     elif argv == "l":
         fetcher.load_stocks_prices_from_csv_files()
     elif argv == "t":
-        fetcher._test()
+        fetcher._test("4540")

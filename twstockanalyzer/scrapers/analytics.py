@@ -44,33 +44,39 @@ class Analysis:
         df["MACD"] = df["DIF"].ewm(span=signal_window, adjust=False).mean()
         df["OSI"] = df["MACD"] - df["DIF"]
 
+        # # returns a view (or a slice) of the same underlying DataFrame with only the specified columns
+        # return df[['DIF', 'MACD', 'OSI']]
+
     def stochastic(
-        self, df: _pd.DataFrame, n: int = 9, k_period: int = 3, d_period: int = 3
+        self, df: _pd.DataFrame, window: int = 9, k_period: int = 9, d_period: int = 3
     ):
         """
         Calculate the Stochastic Oscillator values (RSV, K9, D9) for a given DataFrame.
 
         Parameters:
-        df : DataFrame
-            A pandas DataFrame containing stock df with 'Close', 'High', and 'Low' columns.
-        n : int, optional
-            The number of periods to consider for calculating the Lowest Low and Highest High (default is 14).
-        k_period : int, optional
-            The number of periods for the K9 smoothed average of the RSV (default is 3).
-        d_period : int, optional
-            The number of periods for the D9 smoothed average of K9 (default is 3).
+        df (pd.DataFrame): DataFrame containing price data with 'close', 'low', and 'high' columns.
+        window (int): The period to calculate the highest high and lowest low for RSV. Default is 9.
+        k_period (int): The period for the moving average of RSV to get the K value. Default is 3.
+        d_period (int): The period for the moving average of K to get the D value. Default is 3.
 
         Returns:
         DataFrame
             A DataFrame containing the Close price, Lowest Low, Highest High, RSV, K9, and D9.
         """
-        df["Lowest Low"] = df["Low"].rolling(window=n).min()
-        df["Highest High"] = df["High"].rolling(window=n).max()
+        df["Lowest Low"] = df["Low"].rolling(window=window).min()
+        df["Highest High"] = df["High"].rolling(window=window).max()
 
+        # Calculate RSV (Raw Stochastic Value)
         df["RSV"] = (
-            (df["Close"] - df["Lowest Low"]) / (df["Highest High"] - df["Lowest Low"])
-        ) * 100
+            100
+            * (df["Close"] - df["Lowest Low"])
+            / (df["Highest High"] - df["Lowest Low"])
+        )
+
+        # K9 is the same as RSV (common in some definitions)
         df["K9"] = df["RSV"].rolling(window=k_period).mean()
+
+        # D9 is the 3-period moving average of K9
         df["D9"] = df["K9"].rolling(window=d_period).mean()
 
     def bbands(self, df: _pd.DataFrame, window: int = 16, num_std_dev: int = 2):
@@ -82,8 +88,11 @@ class Analysis:
         :param num_std_dev: The number of standard deviations for the upper and lower bands.
         """
         # Calculate moving average
-        self.moving_average(df, "BBAND_MA", window)
+        self.moving_average(df, "BB_Middle", window)
 
-        df["StdDev"] = df["Close"].rolling(window=window).std()
-        df["BBAND_UpperBand"] = df["BBAND_MA"] + (df["StdDev"] * num_std_dev)
-        df["BBAND_LowerBand"] = df["BBAND_MA"] - (df["StdDev"] * num_std_dev)
+        df["BB_StdDev"] = df["Close"].rolling(window=window).std()
+        df["BB_Upper"] = df["BB_Middle"] + (df["BB_StdDev"] * num_std_dev)
+        df["BB_Lower"] = df["BB_Middle"] - (df["BB_StdDev"] * num_std_dev)
+
+        # # returns a view (or a slice) of the same underlying DataFrame with only the specified columns
+        # return df[['BB_Middle', 'BB_Upper', 'BB_Lower']]

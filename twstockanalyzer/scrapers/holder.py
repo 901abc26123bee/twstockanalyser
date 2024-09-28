@@ -14,4 +14,4 @@ class StockHolderFetcher:
     def fetch_holders(self, code: str):
         self.code = code
         # defines the taiwan stock symbol ex: '2330.TW'
-        self._symbol = code + scraperConst.TW_STOCK_SUFFIX
+        self._symbol = code + scraperConst.TWSE_STOCK_SUFFIX_TW

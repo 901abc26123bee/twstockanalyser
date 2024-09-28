@@ -20,8 +20,8 @@ TPEX_EQUITIES_CSV_PATH = os.path.join(PACKAGE_DIRECTORY, "tpex_equities.csv")
 TWSE_EQUITIES_CSV_PATH = os.path.join(PACKAGE_DIRECTORY, "twse_equities.csv")
 
 codes = {}
-tpex = {}
-twse = {}
+tpex = {}  # 上櫃
+twse = {}  # 上市
 
 
 def read_csv(path, types):

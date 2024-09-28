@@ -15,7 +15,7 @@
       "type": "debugpy",
       "request": "launch",
       "module": "twstockanalyzer",
-      "args": ["-A"],
+      "args": ["-A", "d"],
       "console": "integratedTerminal",
       "justMyCode": true
     },
@@ -24,7 +24,7 @@
       "type": "debugpy",
       "request": "launch",
       "module": "twstockanalyzer",
-      "args": ["-A"],
+      "args": ["-A", "l"],
       "console": "integratedTerminal",
       "justMyCode": true
     },
@@ -33,7 +33,7 @@
       "type": "debugpy",
       "request": "launch",
       "module": "twstockanalyzer",
-      "args": ["-A"],
+      "args": ["-A", "t"],
       "console": "integratedTerminal",
       "justMyCode": true
     },
