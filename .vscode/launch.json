@@ -29,11 +29,20 @@
       "justMyCode": true
     },
     {
-      "name": "test (twstockanalyzer -A t)",
+      "name": "test macd (twstockanalyzer -A td)",
       "type": "debugpy",
       "request": "launch",
       "module": "twstockanalyzer",
-      "args": ["-A", "t"],
+      "args": ["-A", "td"],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "test price ma(twstockanalyzer -A tp)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "twstockanalyzer",
+      "args": ["-A", "tp"],
       "console": "integratedTerminal",
       "justMyCode": true
     },

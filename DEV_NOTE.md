@@ -196,6 +196,16 @@ Summary
 If you're working with structured data that requires frequent manipulation, go with DataFrame. For simpler, more static data structures, namedtuple is a great choice!
 
 
+## Git
+```sh
+git fetch origin: This retrieves the latest changes from the remote repository but does not merge them into your local branches.
+
+git checkout master: This switches to your local master branch.
+
+git reset --hard origin/master: This forcefully resets your local master branch to match the state of origin/master. Any local commits or changes in the master branch will be lost.
+```
 
 
-python -m twstockanalyzer -A 
+python -m twstockanalyzer -A d
+python -m twstockanalyzer -A tm
+python -m twstockanalyzer -A tp

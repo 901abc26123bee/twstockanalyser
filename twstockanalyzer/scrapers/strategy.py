@@ -8,7 +8,11 @@ import pandas as _pd
 import numpy as _np
 import matplotlib.pyplot as _plt
 from typing import List
-from scipy.signal import find_peaks
+from scipy.signal import find_peaks, butter, filtfilt
+from fastdtw import fastdtw
+from scipy.spatial.distance import euclidean
+import warnings
+from numpy.exceptions import RankWarning
 
 
 class Strategy:
@@ -27,17 +31,40 @@ class Strategy:
         pass
 
     #  MACD 呈上升趨勢
-    def uptrend_macd(self, df: _pd.DataFrame):
+    def check_uptrend_macd(self, df: _pd.DataFrame) -> tuple[bool, str]:
         if not self.check_statistic_column(df):
-            print(f"Error: Missing columns when uptrend_macd")
-            return
+            return False, f"Error: Missing columns when check_uptrend_macd"
 
-        x_datetime, y_macd_line, gradient = self.smooth_to_line(
-            df, "Datetime", "MACD", 0.5
-        )
-        if gradient[-1:] > 0.2 and x_datetime:
-            return True
-        return False
+        # convert line to curve
+        x_index, y_macd_line, gradient = None, None, None
+        if df["MACD"].dropna().count() < 3:
+            return False, f"not enough data for check_uptrend_macd"
+        elif df["MACD"].dropna().count() > 10:
+            x_index, y_macd_line, gradient = self.smooth_with_polyfit(
+                df=df, column_name="MACD"
+            )
+        else:
+            x_index, y_macd_line, gradient = self.smooth_to_line(df, "MACD", 0.5)
+
+        # check return res
+        if x_index is None or y_macd_line is None or gradient is None:
+            return False, f"One of the variables is None."
+        elif (isinstance(x_index, _np.ndarray) and x_index.size == 0) or (
+            isinstance(y_macd_line, _np.ndarray) and y_macd_line.size == 0
+        ):
+            return False, f"One of the arrays is empty."
+
+        # TODO: refine verification
+        if gradient[-1] > 0:
+            return True, "MACD 呈上升趨勢"
+        elif (
+            gradient[-1] < 0
+            and gradient[-2] > 0
+            and x_index[-1] - x_index[-2] > x_index[-2] - x_index[-3]
+        ):
+            return True, "MACD 呈上升趨勢中回測"
+        else:
+            return False, "MACD 趨勢不明"
 
     #  MACD 穿過軸線
     def uptrend_macd_cross_middle_line(self, df: _pd.DataFrame):
@@ -68,22 +95,16 @@ class Strategy:
         if not self.check_statistic_column(df):
             print(f"Error: Missing columns when is_pullback_in_a_uptrend_stock_day")
 
-    # 向下趨勢股票[MA5向下 + 收盤<MA5 + 黑k + 5d volume sum < 500]
-    def do_not_touch(self, df: _pd.DataFrame) -> tuple:
+    # 向下趨勢股票[MA5向下 + 收盤<MA5 + 黑k]
+    def do_not_touch(self, df: _pd.DataFrame) -> tuple[bool, str]:
         if not self.check_statistic_column(df):
             return True, "Error: Missing columns when do_not_touch"
 
-        # check valid volume
-        if df["Volume"].notna().count() < 5:
-            return True, "prices data < 5"
-        elif df["Volume"].tail(5).sum() < 800:
-            return True, "sum latest 5 volume < 800"
-
         #  check if stock is too new
         if (
-            df["MA5"].notna().count() < 3
-            or df["MA10"].notna().count() < 3
-            or df["MA20"].notna().count() < 3
+            df["MA5"].dropna().count() < 3
+            or df["MA10"].dropna().count() < 3
+            or df["MA20"].dropna().count() < 3
         ):
             return True, "not enough data: MA5, MA10, MA20"
 
@@ -104,7 +125,7 @@ class Strategy:
 
     def find_latest_w_pattern(
         self, line_x: _np.ndarray, line_y: _np.ndarray, threshold: int = 0.2
-    ) -> tuple:
+    ) -> list[tuple[int, int]]:
         w_pattern = []
 
         # Iterate over the turning points and look for a W pattern
@@ -143,27 +164,66 @@ class Strategy:
         pass
 
     def trend_closer_to_golden_cross(
+        self,
         src_array: _np.ndarray,
         target_array: _np.ndarray,
-        window: int = 3,
-        latest_count: int = 60,
-    ) -> float:
-        # get latest_count of diff among src and target array
-        difference = target_array - src_array
-        mean_difference = _pd.Series(difference).rolling(window=window).mean()
-        latest_diff = mean_difference[-latest_count:]
+        window: int = 150,
+    ) -> bool:
+        # Ensure arrays are 1-D
+        src_array = _np.asarray(src_array).flatten()
+        target_array = _np.asarray(target_array).flatten()
 
-        # calculate the count of points where a decreasing trend is observed
-        decreasing_count = sum(
-            latest_diff.iloc[i] >= latest_diff.iloc[i + 1]
-            for i in range(len(latest_diff) - 1)
-            if _pd.notna(latest_diff.iloc[i + 1])  # Ensure the next point is not NaN
+        min_len = min(len(src_array), len(target_array))
+        if min_len <= window:
+            return False
+
+        src_array, target_array = src_array[-window:], target_array[-window:]
+
+        # compare DTW distance for all window and half segments
+        initial_distance, _ = fastdtw(src_array, target_array, dist=euclidean)
+        midpoint = window // 2
+        first_half_distance, _ = fastdtw(
+            src_array[:midpoint], target_array[:midpoint], dist=euclidean
+        )
+        second_half_distance, _ = fastdtw(
+            src_array[midpoint:], target_array[midpoint:], dist=euclidean
         )
 
-        # calculate the percentage of points showing a closing trend
-        closing_trend_percentage = (decreasing_count / (len(latest_diff) - 1)) * 100
-        diff_percentage = latest_diff.iloc[-1] / src_array[-1:]
-        return closing_trend_percentage, diff_percentage
+        # Calculate DTW distance for last 1/3 and last 2/3 segments
+        seg_2_3 = window * 2 // 3
+        seg_1_3 = window // 3
+
+        # Calculate DTW distance for last 1/4 and last 2/4 segments
+        seg_2_4 = window // 2  # equivalent to 2/4
+        seg_1_4 = window // 4
+
+        # Compute DTW distances for the defined segments
+        dist_last_2_3, _ = fastdtw(
+            src_array[-seg_2_3:], target_array[-seg_2_3:], dist=euclidean
+        )
+        dist_last_1_3, _ = fastdtw(
+            src_array[-seg_1_3:], target_array[-seg_1_3:], dist=euclidean
+        )
+
+        dist_last_2_4, _ = fastdtw(
+            src_array[-seg_2_4:], target_array[-seg_2_4:], dist=euclidean
+        )
+        dist_last_1_4, _ = fastdtw(
+            src_array[-seg_1_4:], target_array[-seg_1_4:], dist=euclidean
+        )
+
+        # Check if the last 1/3 is closer than the last 2/3
+        is_closing_1_3_vs_2_3 = dist_last_1_3 < dist_last_2_3
+        # Check if the last 1/4 is closer than the last 2/4
+        is_closing_1_4_vs_2_4 = dist_last_1_4 < dist_last_2_4
+
+        # Return True if both conditions are satisfied, indicating closing intent
+        is_closer_1 = (
+            first_half_distance > second_half_distance
+            and second_half_distance < initial_distance
+        )
+        is_closer_2 = is_closing_1_3_vs_2_3 and is_closing_1_4_vs_2_4
+        return is_closer_1 or is_closer_2
 
     # 旗型，三角收斂，雙底，平台塗破
     def pattern_matcher(self, df: _pd.DataFrame):
@@ -173,10 +233,25 @@ class Strategy:
     def zero_line_breakout_backtest(self, df: _pd.DataFrame):
         pass
 
+    def low_pass_filter(
+        self, y: _np.ndarray, cutoff: float = 0.1, order: int = 3
+    ) -> _np.ndarray:
+        nyquist = 0.5  # Nyquist frequency
+        normal_cutoff = cutoff / nyquist  # Normalize cutoff frequency
+        b, a = butter(order, normal_cutoff, btype="low", analog=False)
+        y_filtered = filtfilt(b, a, y)
+        return y_filtered
+
     def smooth_to_line(
-        self, df: _pd.DataFrame, column_name: str, tolerance: int = 0.3
+        self, df: _pd.DataFrame, column_name: str, tolerance: int = 0.5
     ) -> tuple[_np.ndarray, _np.ndarray, _np.ndarray]:
         x, y = df.index, df[column_name]
+
+        # Step 1: Apply smoothing method (e.g., moving average)
+        # y_smooth = _np.convolve(y, _np.ones(3) / 3, mode='same')
+        # Step 2: Optionally apply a low-pass filter for additional smoothing
+        y_smooth = self.low_pass_filter(y, cutoff=0.1)
+        y = y_smooth
 
         # Find the peaks and valleys using the find_peaks function from scipy
         peaks, _ = find_peaks(y)
@@ -188,7 +263,7 @@ class Strategy:
 
         # Initialize the simplified x and y for the line graph
         line_x = [x[0]]  # Start with the first point
-        line_y = [y.iloc[0]]
+        line_y = [y[0]]
 
         # Simplify the curve based on tolerance
         for i in range(1, len(turning_points)):
@@ -196,27 +271,94 @@ class Strategy:
             curr_idx = turning_points[i]
 
             # Calculate the difference in y to check if it's significant
-            if abs(y.iloc[curr_idx] - y.iloc[prev_idx]) > tolerance * y.iloc[curr_idx]:
+            if abs(y[curr_idx] - y[prev_idx]) > tolerance * y[curr_idx]:
                 line_x.append(x[curr_idx])
-                line_y.append(y.iloc[curr_idx])
+                line_y.append(y[curr_idx])
 
         # Append the last point
         line_x.append(x[-1])
-        line_y.append(y.iloc[-1])
+        line_y.append(y[-1])
         # Compute the gradient (slope) for each line segment
         gradients = _np.diff(line_y) / _np.diff(line_x)
 
         return _np.array(line_x), _np.array(line_y), gradients
 
-    def _draw_curve_to_line(self, df: _pd.DataFrame, column_name: str):
+    def smooth_with_polyfit(
+        self,
+        df: _pd.DataFrame,
+        column_name: str,
+        degree: int = 50,
+        tolerance: float = 0.2,
+    ) -> tuple[_np.ndarray, _np.ndarray, _np.ndarray]:
+        if not isinstance(df, _pd.DataFrame):
+            raise ValueError(
+                f"Expected df to be a pandas DataFrame, got {type(df)} instead."
+            )
+
+        x = _np.array(df.index.values)
+        y = _np.array(df[column_name])
+
+        # Step 1: Fit a polynomial to the data
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", RankWarning)  # Suppress RankWarning
+            poly_coefficients = _np.polyfit(
+                x, y, degree
+            )  # Fit a polynomial of the specified degree
+
+        # poly_coefficients = _np.polyfit(x, y, degree)  # Fit a polynomial of the specified degree
+        y_smooth = _np.polyval(
+            poly_coefficients, x
+        )  # Calculate y values based on the polynomial fit
+
+        # Step 2: Find peaks and valleys using the smoothed data
+        peaks, _ = find_peaks(y_smooth)
+        valleys, _ = find_peaks(-y_smooth)
+
+        # Step 3: Combine peaks and valleys to get turning points
+        turning_points = _np.sort(_np.concatenate((peaks, valleys)))
+
+        # Step 4: Initialize the simplified x and y for the line graph
+        line_x = [x[0]]  # Start with the first point
+        line_y = [y_smooth[0]]
+
+        # Step 5: Simplify the curve based on tolerance
+        for i in range(1, len(turning_points)):
+            prev_idx = turning_points[i - 1]
+            curr_idx = turning_points[i]
+
+            # Calculate the difference in y to check if it's significant
+            if (
+                abs(y_smooth[curr_idx] - y_smooth[prev_idx])
+                > tolerance * y_smooth[curr_idx]
+            ):
+                line_x.append(x[curr_idx])
+                line_y.append(y_smooth[curr_idx])
+
+        # Append the last point
+        line_x.append(x[-1])
+        line_y.append(y_smooth[-1])
+
+        # Step 6: Compute the gradient (slope) for each line segment
+        gradients = _np.diff(line_y) / _np.diff(line_x)
+
+        return _np.array(line_x), _np.array(line_y), gradients
+
+    def _draw_macd_curve_to_line(self, df: _pd.DataFrame, column_name: str):
         x, y = df.index, df[column_name]
         #  Convert the curve to line with a certain tolerance and get gradients
-        line_x, line_y, gradients = self.smooth_to_line(df, column_name, tolerance=0.3)
-        # print(line_x)
-        # print(line_y)
-        # print(gradients)
+        line_x_1, line_y_1, gradients = self.smooth_to_line(
+            df, column_name, tolerance=0.5
+        )
+        line_x, line_y, gradients = self.smooth_with_polyfit(
+            df, column_name, degree=60, tolerance=0.5
+        )
+        print(line_x)
+        print(line_y)
+        print(gradients)
+        b, s = self.check_uptrend_macd(df)
+        print(b, s)
 
-        angles_deg = _np.degrees(_np.arctan(gradients))
+        # angles_deg = _np.degrees(_np.arctan(gradients))
         # print(angles_deg)
 
         # Plot the original curve and the simplified line
@@ -230,9 +372,10 @@ class Strategy:
             _plt.text(mid_x, mid_y, f"{gradients[i]:.2f}", color="red", fontsize=10)
 
         # Find the latest W pattern
-        w_pattern = self.find_latest_w_pattern(line_x, line_y, threshold=0.2)
-        pattern_last_pos_before = w_pattern[-1]
-        print(len(df.index) - pattern_last_pos_before[0] - 1)
+        w_pattern = self.find_latest_w_pattern(line_x_1, line_y_1, threshold=0.2)
+        if len(w_pattern) > 0:
+            pattern_last_pos_before = w_pattern[-1]
+            print(len(df.index) - pattern_last_pos_before[0] - 1)
         # Mark the W pattern
         if w_pattern:
             for point in w_pattern:
@@ -246,10 +389,10 @@ class Strategy:
                     fontweight="bold",
                 )
 
-        # Display the datetime values on the x-axis
+        # Display the datetime values on the x-axis(replace x)
         # Set x-ticks to use the index, but use `df["Datetime"]` for labels
         x_ticks = _np.arange(
-            0, len(df), max(1, len(df) // 10)
+            0, len(df), max(1, len(df) // 15)
         )  # Adjust frequency of ticks
         _plt.xticks(
             ticks=x_ticks,
@@ -258,10 +401,35 @@ class Strategy:
             ha="right",
         )
 
+        # Draw a horizontal line at y = 0 (black)
+        _plt.axhline(y=0, color="k", linestyle="--", label="y = 0")
+
         _plt.legend()
         _plt.xlabel("Index")  # Set x-axis label to show that it's using index values
         _plt.ylabel(column_name)  # Set y-axis label to the column name
         _plt.title(f"Curve to Line for {column_name}")  # Optional title
+        _plt.show()
+
+    def _draw_two_line_closing_to_cross(self, df: _pd.DataFrame):
+        # Plotting
+        _plt.figure(figsize=(10, 6))  # Set the figure size
+
+        # Plot each column
+        for column in ["MA5", "MA10", "MA20", "MA40", "MA60", "MA138"]:
+            _plt.plot(df.index, df[column], label=column)
+
+        # compute line trend cross
+        res = self.trend_closer_to_golden_cross(
+            df["MA40"].dropna().to_numpy(), df["MA138"].dropna().to_numpy()
+        )
+        print(res)
+
+        # Customize the plot
+        _plt.title("Multi-Column Plot")
+        _plt.xlabel("Index")
+        _plt.ylabel("Values")
+        _plt.legend()  # Show the legend
+        _plt.grid()  # Show grid
         _plt.show()
 
     def check_statistic_column(self, df: _pd.DataFrame) -> bool:

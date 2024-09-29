@@ -35,19 +35,29 @@ class Stock:
         if not filter_on:
             self.fetcher.download_csv_with_all_period()
 
-        # filter stock before download
         day_df = self.fetcher.fetch_day_max()
+        # check valid volume
+        if day_df is None:
+            print("day_df is None")
+            return
+        if day_df["Volume"].count() < 5:
+            print("prices data < 5")
+            return
+        elif day_df["Volume"].tail(5).sum() < 800:
+            print("sum latest 5 volume < 800")
+            return
+        # check price affordable
+        if not self.is_in_price_range(day_df["Close"].iloc[-1]):
+            close_price = day_df["Close"].iloc[-1]
+            print(f"Stock {self.code} ot of price range: {close_price}")
+            return
+
+        # filter stock before download
         week_df = self.fetcher.fetch_week_max()
         month_df = self.fetcher.fetch_month_max()
         if week_df is None or month_df is None or day_df is None:
             print(f"Something wrong when fetch data for stock {self.code}")
             return
-
-        if not self.is_in_price_range(week_df["Close"].iloc[-1]):
-            close_price = day_df["Close"].iloc[-1]
-            print(f"Stock {self.code} ot of price range: {close_price}")
-            return
-
         self.cal_statistic(day_df)
         self.cal_statistic(week_df)
         self.cal_statistic(month_df)
@@ -83,58 +93,66 @@ class Stock:
 
     def check_day_week_month_safe_to_buy(
         self, day_df: _pd.DataFrame, week_df: _pd.DataFrame, month_df: _pd.DataFrame
-    ) -> tuple:
+    ) -> tuple[bool, str]:
         n1, reason_day = self.strategy.do_not_touch(day_df)
         n2, reason_week = self.strategy.do_not_touch(week_df)
         n3, reason_month = self.strategy.do_not_touch(month_df)
         if n1 and n2 and n3:
-            return (
+            return False, (
                 f"do_not_touch: day{reason_day}, "
                 f"week{reason_week}, "
                 f"month{reason_month}"
             )
 
-        if month_df["K9"].iloc[-1] > 85:
+        if month_df["K9"].iloc[-1] > 86:
             return False, "K9 too high in month"
-        if week_df["K9"].iloc[-1] > 85:
+        if week_df["K9"].iloc[-1] > 86:
             return False, "K9 too high in week"
-        elif day_df["K9"].iloc[-1] > 85:
+        elif day_df["K9"].iloc[-1] > 86:
             return False, "K9 too high in day"
         else:
             return True, ""
 
     def check_minute_exist_buy_point(
         self, m15_df: _pd.DataFrame, m30_df: _pd.DataFrame, m60_df: _pd.DataFrame
-    ) -> tuple:
+    ) -> tuple[bool, str]:
         if (
-            m60_df["K9"].notna().count() <= 0
-            or m30_df["K9"].notna().count() <= 0
-            or m15_df["K9"].notna().count() <= 0
+            m60_df["K9"].dropna().count() <= 0
+            or m30_df["K9"].dropna().count() <= 0
+            or m15_df["K9"].dropna().count() <= 0
         ):
             return False, "not enough data to check_minute_exist_buy_point"
 
         if m60_df["K9"].iloc[-1] > 90:
             return False, "K9 too high in 60 min"
-        elif m30_df["K9"].iloc[-1] > 85:
+        elif m30_df["K9"].iloc[-1] > 86:
             return False, "K9 too high in 30 min"
-        elif m15_df["K9"].iloc[-1] > 85:
+        elif m15_df["K9"].iloc[-1] > 86:
             return False, "K9 too high in 15 min"
         else:
             return True, ""
 
-    def _test(self, period: str):
+    def _test_macd(self, period: str):
         # day_df = self.fetcher.fetch_day_max()
         loader = PriceHistoryLoader()
         stock_prices_dict = loader.load_from_downloaded_csv()
         file_name = f"{self.code}_{period}"
         period_df = stock_prices_dict[file_name]
-        self.analysis.macd(df=period_df)
+        self.cal_statistic(period_df)
         # print(period_df["MACD"])
 
         # Filter for rows where 'col1' has values
         # creates a new DataFrame df_filtered that contains only the rows from df where the value in column 'col1' is not null.
         filtered_copy = period_df[period_df["MACD"].notnull()].copy()
-        self.strategy._draw_curve_to_line(filtered_copy, "MACD")
+        self.strategy._draw_macd_curve_to_line(filtered_copy, "MACD")
+
+    def _test_price_line(self, period: str):
+        loader = PriceHistoryLoader()
+        stock_prices_dict = loader.load_from_downloaded_csv()
+        file_name = f"{self.code}_{period}"
+        period_60mdf = stock_prices_dict[file_name]
+        self.cal_statistic(period_60mdf)
+        self.strategy._draw_two_line_closing_to_cross(period_60mdf)
 
     def is_in_price_range(self, value: int, top: int = 300, bottom: int = 10) -> bool:
         return bottom <= value < top
