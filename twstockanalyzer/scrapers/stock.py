@@ -8,6 +8,7 @@ from twstockanalyzer.scrapers.history import PriceHistoryFetcher
 from twstockanalyzer.scrapers.history import PriceHistoryLoader
 from twstockanalyzer.scrapers.analytics import Analysis
 from twstockanalyzer.scrapers.strategy import Strategy
+from twstockanalyzer.scrapers.plot import StrategyPlot
 import pandas as _pd
 
 
@@ -17,6 +18,7 @@ class Stock:
         self.fetcher = PriceHistoryFetcher(code, suffix)
         self.analysis = Analysis()
         self.strategy = Strategy()
+        self._strategy_plot = StrategyPlot()
 
     def cal_statistic(self, df: _pd.DataFrame):
         self.analysis.macd(df=df)
@@ -24,7 +26,6 @@ class Stock:
         self.analysis.bbands(df=df)
         self.analysis.moving_average(df, "MA5", 5)
         self.analysis.moving_average(df, "MA10", 10)
-        self.analysis.moving_average(df, "MA20", 20)
         self.analysis.moving_average(df, "MA40", 40)
         self.analysis.moving_average(df, "MA60", 60)
         self.analysis.moving_average(df, "MA138", 138)
@@ -94,6 +95,7 @@ class Stock:
     def check_day_week_month_safe_to_buy(
         self, day_df: _pd.DataFrame, week_df: _pd.DataFrame, month_df: _pd.DataFrame
     ) -> tuple[bool, str]:
+        # step1: filter out stocks with down trend prices(日週月日落)
         n1, reason_day = self.strategy.do_not_touch(day_df)
         n2, reason_week = self.strategy.do_not_touch(week_df)
         n3, reason_month = self.strategy.do_not_touch(month_df)
@@ -104,33 +106,36 @@ class Stock:
                 f"month{reason_month}"
             )
 
-        if month_df["K9"].iloc[-1] > 86:
-            return False, "K9 too high in month"
-        if week_df["K9"].iloc[-1] > 86:
-            return False, "K9 too high in week"
-        elif day_df["K9"].iloc[-1] > 86:
-            return False, "K9 too high in day"
-        else:
-            return True, ""
+        # step2: filter out stocks with excessively high KDs
+        if (
+            month_df["K9"].dropna().count() <= 0
+            or week_df["K9"].dropna().count() <= 0
+            or day_df["K9"].dropna().count() <= 0
+        ):
+            return False, "not enough data to check_minute_exist_buy_point"
+        for period, df in zip(["month", "week", "day"], [month_df, week_df, day_df]):
+            last_k9 = df["K9"].iloc[-1]
+            if last_k9 > 90:
+                return False, f"K9 too high in {period}: {last_k9}"
+        return True, ""
+
+        # step3: tag stocks with buy point
 
     def check_minute_exist_buy_point(
         self, m15_df: _pd.DataFrame, m30_df: _pd.DataFrame, m60_df: _pd.DataFrame
     ) -> tuple[bool, str]:
+        # filter out stocks with excessively high KDs
         if (
             m60_df["K9"].dropna().count() <= 0
             or m30_df["K9"].dropna().count() <= 0
             or m15_df["K9"].dropna().count() <= 0
         ):
             return False, "not enough data to check_minute_exist_buy_point"
-
-        if m60_df["K9"].iloc[-1] > 90:
-            return False, "K9 too high in 60 min"
-        elif m30_df["K9"].iloc[-1] > 86:
-            return False, "K9 too high in 30 min"
-        elif m15_df["K9"].iloc[-1] > 86:
-            return False, "K9 too high in 15 min"
-        else:
-            return True, ""
+        for period, df in zip(["60m", "30m", "15m"], [m60_df, m30_df, m15_df]):
+            last_k9 = df["K9"].iloc[-1]
+            if last_k9 > 90:
+                return False, f"K9 too high in {period}: {last_k9}"
+        return True, ""
 
     def _test_macd(self, period: str):
         # day_df = self.fetcher.fetch_day_max()
@@ -144,7 +149,7 @@ class Stock:
         # Filter for rows where 'col1' has values
         # creates a new DataFrame df_filtered that contains only the rows from df where the value in column 'col1' is not null.
         filtered_copy = period_df[period_df["MACD"].notnull()].copy()
-        self.strategy._draw_macd_curve_to_line(filtered_copy, "MACD")
+        self._strategy_plot._draw_macd_curve_to_line(filtered_copy, "MACD")
 
     def _test_price_line(self, period: str):
         loader = PriceHistoryLoader()
@@ -152,7 +157,7 @@ class Stock:
         file_name = f"{self.code}_{period}"
         period_60mdf = stock_prices_dict[file_name]
         self.cal_statistic(period_60mdf)
-        self.strategy._draw_two_line_closing_to_cross(period_60mdf)
+        self._strategy_plot._draw_two_line_closing_to_cross(period_60mdf)
 
     def is_in_price_range(self, value: int, top: int = 300, bottom: int = 10) -> bool:
         return bottom <= value < top

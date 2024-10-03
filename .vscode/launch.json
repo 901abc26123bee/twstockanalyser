@@ -55,5 +55,18 @@
       "console": "integratedTerminal",
       "justMyCode": true
     },
+    {
+      "name": "Python: Unittest",
+      "type": "debugpy",
+      "request": "launch",
+      "justMyCode": false, // Set to false if you want to debug external libraries too
+      "console": "integratedTerminal",
+      "module": "unittest",
+      "args": [
+          "discover",
+          "-s",
+          "tests" // Change to your tests directory
+      ]
+    }
   ]
 }

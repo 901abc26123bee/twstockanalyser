@@ -144,10 +144,6 @@ python -m twstock
 ```
 Python executes `twstock/__main__.py` as the entry point, and the twstock package should be properly imported. However, the context of the `__main__.py` execution is crucial.
 
-```sh
-python -m twstockanalyzer -A
-python -m twstockanalyzer -U
-```
 
 ### func 定義預設參數
 定義預設參數要牢記一點：預設參數必須指向不變物件！
@@ -205,6 +201,47 @@ git checkout master: This switches to your local master branch.
 git reset --hard origin/master: This forcefully resets your local master branch to match the state of origin/master. Any local commits or changes in the master branch will be lost.
 ```
 
+### fastdtw, scipy
+[Error in calculating Dynamic Time Warping](https://stackoverflow.com/questions/77277096/error-in-calculating-dynamic-time-warping)
+
+
+### unit test
+[Python Unit test module throws "ModuleNotFoundError: No module named 'tests.test_file'"](https://stackoverflow.com/questions/56780892/python-unit-test-module-throws-modulenotfounderror-no-module-named-tests-test)
+
+
+```sh
+
+your_project/
+    ├── twstockanalyzer/
+    │   └── __init__.py
+    │   └── __main__.py
+    │   └── strategy.py
+    │   └── sub_strategy.py
+    └── tests/
+        ├── __init__.py
+        ├── test_strategy.py
+        └── subtests/
+            ├── __init__.py
+            └── test_sub_strategy.py
+
+
+# run all unittest in a dictionary
+# (for first folder layer in module only, ex: strategy.py)
+python -m unittest twstockanalyzer
+
+# run all unittest in a file
+# (for first folder layer in module only, ex: strategy.py)
+python -m unittest test_strategy.py
+
+# run all unittest in a dictionary, including submodule
+# (ex: strategy.py and sub_strategy.py)
+python -m unittest discover -s tests
+
+# directly run the test file
+python -m unittest tests.test_strategy
+```
+
+### command
 
 python -m twstockanalyzer -A d
 python -m twstockanalyzer -A tm

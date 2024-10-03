@@ -27,9 +27,9 @@ class BaseFetcher:
 
     def download_stocks_prices_history_csv(self):
         for code in tpex:
-            if int(code) > 6203:
-                stock = Stock(code, TPEX_STOCK_SUFFIX_TWO)
-                stock.download_prices_history_csv(filter_on=True, download_csv=True)
+            # if int(code) > 3169:
+            stock = Stock(code, TPEX_STOCK_SUFFIX_TWO)
+            stock.download_prices_history_csv(filter_on=True, download_csv=True)
         for code in twse:
             # if 1000 <= int(code) <= 1200:
             stock = Stock(code, TWSE_STOCK_SUFFIX_TW)

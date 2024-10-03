@@ -1,0 +1,1953 @@
+Start to fetch stock prices history
+finish download 1240
+finish download 1259
+Stock 1264 ot of price range: 315.0
+finish download 1268
+finish download 1336
+finish download 1565
+finish download 1569
+finish download 1570
+finish download 1580
+finish download 1584
+finish download 1586
+finish download 1591
+finish download 1593
+Stock 1595 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 1595
+finish download 1599
+Stock 1742 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 1742
+finish download 1777
+finish download 1781
+finish download 1784
+finish download 1785
+finish download 1788
+finish download 1796
+finish download 1799
+finish download 1813
+finish download 1815
+finish download 2035
+finish download 2061
+finish download 2063
+finish download 2064
+finish download 2065
+finish download 2066
+finish download 2067
+finish download 2070
+finish download 2073
+finish download 2221
+finish download 2230
+finish download 2235
+finish download 2596
+finish download 2640
+finish download 2641
+finish download 2643
+finish download 2718
+finish download 2719
+finish download 2724
+finish download 2726
+finish download 2729
+finish download 2732
+finish download 2734
+finish download 2736
+finish download 2740
+finish download 2743
+finish download 2745
+No data returned for the given 2751.TWO with interval week
+Something wrong when fetch data for stock 2751
+Stock 2752 is unsafe to buy in 60m, 30m, 15m: K9 too high in 60 min
+finish download 2752
+finish download 2754
+finish download 2755
+finish download 2756
+finish download 2916
+finish download 2924
+finish download 2926
+Stock 2937 is unsafe to buy in day, week, month: K9 too high in day
+Stock 2941 is unsafe to buy in 60m, 30m, 15m: not enough data to check_minute_exist_buy_point
+finish download 2941
+Stock 2947 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 2947
+finish download 2948
+No data returned for the given 2949.TWO with interval week
+Something wrong when fetch data for stock 2949
+finish download 3064
+finish download 3066
+finish download 3067
+finish download 3071
+finish download 3073
+finish download 3078
+Stock 3081 ot of price range: 325.0
+finish download 3083
+finish download 3085
+finish download 3086
+finish download 3088
+finish download 3093
+finish download 3095
+finish download 3105
+finish download 3114
+Stock 3115 ot of price range: 9.09
+finish download 3118
+finish download 3122
+finish download 3128
+Stock 3131 ot of price range: 1755.0
+finish download 3141
+finish download 3147
+finish download 3152
+finish download 3162
+finish download 3163
+finish download 3169
+No data returned for the given 3171.TWO with interval 60 min
+Start to fetch stock prices history
+finish download 3171
+finish download 3176
+finish download 3178
+finish download 3188
+finish download 3191
+finish download 3202
+finish download 3205
+finish download 3206
+finish download 3207
+finish download 3211
+finish download 3213
+finish download 3217
+finish download 3218
+Stock 3219 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 3219
+finish download 3221
+finish download 3224
+finish download 3226
+finish download 3227
+finish download 3228
+finish download 3230
+Stock 3232 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 3232
+finish download 3234
+finish download 3236
+Stock 3252 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 3252
+finish download 3259
+finish download 3260
+finish download 3264
+finish download 3265
+finish download 3268
+finish download 3272
+finish download 3276
+finish download 3284
+finish download 3285
+finish download 3287
+finish download 3288
+finish download 3289
+Stock 3290 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 3290
+Stock 3293 ot of price range: 1015.0
+finish download 3294
+finish download 3297
+finish download 3303
+finish download 3306
+finish download 3310
+finish download 3313
+finish download 3317
+finish download 3322
+finish download 3323
+Stock 3324 ot of price range: 687.0
+finish download 3325
+finish download 3332
+finish download 3339
+finish download 3349
+finish download 3354
+finish download 3357
+finish download 3360
+finish download 3362
+finish download 3363
+finish download 3372
+finish download 3373
+finish download 3374
+finish download 3379
+finish download 3388
+finish download 3390
+finish download 3402
+finish download 3426
+finish download 3430
+finish download 3434
+finish download 3438
+finish download 3441
+finish download 3444
+Stock 3455 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 3455
+finish download 3465
+finish download 3466
+finish download 3479
+finish download 3483
+finish download 3484
+finish download 3489
+finish download 3490
+Stock 3491 ot of price range: 324.0
+finish download 3492
+finish download 3498
+finish download 3499
+Stock 3508 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 3508
+finish download 3511
+finish download 3512
+finish download 3516
+finish download 3520
+finish download 3521
+finish download 3522
+finish download 3523
+finish download 3526
+finish download 3527
+Stock 3529 ot of price range: 2750.0
+finish download 3531
+finish download 3537
+finish download 3540
+finish download 3541
+finish download 3546
+finish download 3548
+Stock 3551 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 3551
+finish download 3552
+finish download 3555
+finish download 3556
+finish download 3558
+finish download 3564
+finish download 3567
+Stock 3570 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 3570
+finish download 3577
+finish download 3580
+finish download 3581
+finish download 3587
+finish download 3594
+finish download 3597
+Stock 3609 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 3609
+finish download 3611
+finish download 3615
+finish download 3623
+finish download 3624
+finish download 3625
+finish download 3628
+Stock 3629 is unsafe to buy in 60m, 30m, 15m: not enough data to check_minute_exist_buy_point
+finish download 3629
+finish download 3630
+finish download 3631
+finish download 3632
+finish download 3646
+finish download 3663
+finish download 3664
+finish download 3666
+finish download 3672
+finish download 3675
+Stock 3680 ot of price range: 589.0
+finish download 3684
+finish download 3685
+finish download 3687
+finish download 3689
+finish download 3691
+Stock 3693 ot of price range: 342.0
+Stock 3707 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 3707
+finish download 3709
+finish download 3710
+finish download 3713
+Stock 4102 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 4102
+finish download 4105
+finish download 4107
+finish download 4109
+finish download 4111
+finish download 4113
+finish download 4114
+finish download 4116
+finish download 4120
+finish download 4121
+finish download 4123
+finish download 4126
+finish download 4127
+Stock 4128 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 4128
+Stock 4129 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 4129
+finish download 4130
+finish download 4131
+finish download 4138
+finish download 4139
+finish download 4147
+finish download 4153
+finish download 4154
+Stock 4157 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 4157
+finish download 4160
+finish download 4161
+finish download 4162
+finish download 4163
+finish download 4167
+finish download 4168
+finish download 4171
+finish download 4173
+finish download 4174
+finish download 4175
+finish download 4183
+finish download 4188
+finish download 4192
+finish download 4198
+finish download 4205
+finish download 4207
+Stock 4303 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 4303
+finish download 4304
+finish download 4305
+finish download 4401
+finish download 4402
+finish download 4406
+finish download 4413
+finish download 4416
+finish download 4417
+Stock 4419 is unsafe to buy in day, week, month: K9 too high in day
+finish download 4420
+finish download 4430
+finish download 4432
+finish download 4433
+No data returned for the given 4442.TWO with interval day
+day_df is None
+finish download 4502
+finish download 4503
+finish download 4506
+finish download 4510
+finish download 4513
+finish download 4523
+Stock 4527 is unsafe to buy in day, week, month: K9 too high in day
+finish download 4528
+Stock 4529 ot of price range: 8.79
+finish download 4530
+finish download 4533
+finish download 4534
+finish download 4535
+finish download 4538
+finish download 4541
+finish download 4542
+finish download 4543
+finish download 4549
+finish download 4550
+finish download 4554
+finish download 4556
+finish download 4558
+finish download 4561
+Stock 4563 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 4563
+finish download 4568
+finish download 4577
+finish download 4580
+finish download 4584
+Stock 4609 ot of price range: 8.84
+finish download 4702
+finish download 4706
+finish download 4707
+finish download 4711
+sum latest 5 volume < 800
+finish download 4714
+finish download 4716
+finish download 4721
+finish download 4726
+finish download 4728
+finish download 4729
+finish download 4735
+finish download 4741
+finish download 4743
+finish download 4744
+finish download 4745
+finish download 4747
+finish download 4754
+finish download 4760
+finish download 4767
+finish download 4768
+sum latest 5 volume < 800
+finish download 4806
+Stock 4903 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 4903
+finish download 4905
+finish download 4907
+finish download 4908
+finish download 4909
+Stock 4911 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 4911
+finish download 4923
+finish download 4924
+finish download 4931
+finish download 4933
+finish download 4939
+finish download 4945
+finish download 4946
+finish download 4950
+finish download 4951
+finish download 4953
+Stock 4966 ot of price range: 749.0
+finish download 4971
+finish download 4972
+finish download 4973
+finish download 4974
+finish download 4979
+finish download 4987
+finish download 4991
+finish download 4995
+finish download 5009
+finish download 5011
+finish download 5013
+finish download 5014
+finish download 5015
+Stock 5016 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 5016
+finish download 5201
+finish download 5202
+finish download 5205
+finish download 5206
+finish download 5209
+finish download 5210
+finish download 5211
+Stock 5212 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 5212
+finish download 5213
+finish download 5220
+finish download 5223
+finish download 5227
+finish download 5228
+finish download 5230
+finish download 5236
+finish download 5245
+finish download 5251
+finish download 5263
+finish download 5272
+Stock 5274 ot of price range: 4375.0
+finish download 5276
+finish download 5278
+finish download 5287
+finish download 5289
+finish download 5291
+finish download 5299
+Stock 5301 ot of price range: 8.77
+finish download 5302
+finish download 5309
+finish download 5310
+Stock 5312 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 5312
+finish download 5314
+finish download 5315
+finish download 5321
+finish download 5324
+finish download 5328
+finish download 5340
+Stock 5344 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 5344
+finish download 5345
+finish download 5347
+finish download 5348
+finish download 5351
+finish download 5353
+finish download 5355
+finish download 5356
+finish download 5364
+finish download 5371
+finish download 5381
+finish download 5386
+finish download 5392
+finish download 5398
+finish download 5403
+finish download 5410
+finish download 5425
+finish download 5426
+finish download 5432
+finish download 5438
+finish download 5439
+Stock 5443 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 5443
+finish download 5450
+finish download 5452
+finish download 5455
+finish download 5457
+finish download 5460
+finish download 5464
+finish download 5465
+finish download 5468
+finish download 5474
+finish download 5475
+finish download 5478
+finish download 5481
+finish download 5483
+finish download 5487
+finish download 5488
+finish download 5489
+Stock 5490 is unsafe to buy in day, week, month: do_not_touch: day向下趨勢股票[MA5向下 + 最高價<MA5 + 黑k], week向下趨勢股票[MA5向下 + 最高價<MA5 + 黑k], month向下趨勢股票[MA5向下 + 最高價<MA5 + 黑k]
+finish download 5493
+finish download 5498
+finish download 5508
+finish download 5511
+finish download 5512
+finish download 5514
+finish download 5516
+finish download 5520
+Stock 5523 is unsafe to buy in day, week, month: K9 too high in week
+finish download 5529
+finish download 5530
+Stock 5536 ot of price range: 307.0
+finish download 5543
+No data returned for the given 5548.TWO with interval week
+Something wrong when fetch data for stock 5548
+finish download 5601
+Stock 5603 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 5603
+finish download 5604
+finish download 5609
+Stock 5701 ot of price range: 4.97
+finish download 5703
+finish download 5704
+Stock 5864 is unsafe to buy in day, week, month: K9 too high in day
+finish download 5878
+finish download 5902
+finish download 5903
+Stock 5904 ot of price range: 529.0
+finish download 5905
+finish download 6015
+finish download 6016
+finish download 6020
+finish download 6021
+Stock 6023 is unsafe to buy in day, week, month: K9 too high in day
+finish download 6026
+finish download 6101
+finish download 6103
+finish download 6104
+finish download 6109
+finish download 6111
+finish download 6113
+finish download 6114
+Stock 6118 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 6118
+Stock 6121 ot of price range: 355.0
+finish download 6122
+finish download 6123
+finish download 6124
+finish download 6125
+Stock 6126 is unsafe to buy in day, week, month: do_not_touch: day向下趨勢股票[MA5向下 + 最高價<MA5 + 黑k], week向下趨勢股票[MA5向下 + 最高價<MA5 + 黑k], month向下趨勢股票[MA5向下 + 最高價<MA5 + 黑k]
+finish download 6127
+finish download 6129
+finish download 6130
+finish download 6134
+finish download 6138
+finish download 6140
+finish download 6143
+Stock 6144 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 6144
+finish download 6146
+finish download 6147
+finish download 6148
+finish download 6150
+finish download 6151
+finish download 6154
+finish download 6156
+finish download 6158
+finish download 6160
+finish download 6161
+finish download 6163
+finish download 6167
+finish download 6169
+finish download 6170
+finish download 6171
+finish download 6173
+finish download 6174
+finish download 6175
+finish download 6179
+finish download 6180
+finish download 6182
+finish download 6185
+finish download 6186
+Stock 6187 ot of price range: 486.5
+finish download 6188
+finish download 6190
+Stock 6194 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 6194
+finish download 6195
+finish download 6198
+finish download 6199
+Stock 6203 is unsafe to buy in day, week, month: K9 too high in day
+Stock 6204 is unsafe to buy in day, week, month: do_not_touch: day向下趨勢股票[MA5向下 + 最高價<MA5 + 黑k], week向下趨勢股票[MA5向下 + 最高價<MA5 + 黑k], month向下趨勢股票[MA5向下 + 最高價<MA5 + 黑k]
+finish download 6207
+finish download 6208
+finish download 6210
+finish download 6212
+finish download 6217
+finish download 6218
+finish download 6219
+finish download 6220
+finish download 6221
+finish download 6222
+Stock 6223 ot of price range: 764.0
+finish download 6227
+finish download 6228
+finish download 6229
+Stock 6231 ot of price range: 511.0
+finish download 6233
+finish download 6234
+Stock 6236 is unsafe to buy in 60m, 30m, 15m: not enough data to check_minute_exist_buy_point
+finish download 6236
+finish download 6237
+finish download 6240
+finish download 6241
+finish download 6242
+finish download 6244
+finish download 6245
+Stock 6246 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 6246
+finish download 6248
+finish download 6259
+finish download 6261
+finish download 6263
+finish download 6264
+finish download 6265
+finish download 6266
+finish download 6270
+finish download 6274
+finish download 6275
+finish download 6276
+finish download 6279
+finish download 6284
+Stock 6287 is unsafe to buy in 60m, 30m, 15m: K9 too high in 60 min
+finish download 6287
+finish download 6290
+finish download 6291
+finish download 6292
+finish download 6294
+finish download 6411
+finish download 6417
+finish download 6418
+finish download 6419
+Stock 6425 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 6425
+finish download 6432
+finish download 6435
+finish download 6441
+finish download 6457
+finish download 6461
+finish download 6462
+finish download 6465
+finish download 6469
+finish download 6470
+finish download 6482
+finish download 6485
+finish download 6486
+Stock 6488 ot of price range: 452.5
+finish download 6492
+finish download 6494
+finish download 6496
+finish download 6499
+finish download 6506
+finish download 6508
+finish download 6509
+Stock 6510 ot of price range: 522.0
+finish download 6512
+finish download 6514
+finish download 6516
+finish download 6517
+finish download 6523
+finish download 6527
+Stock 6530 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 6530
+finish download 6532
+Stock 6535 ot of price range: 323.0
+finish download 6538
+finish download 6542
+finish download 6546
+finish download 6547
+finish download 6548
+finish download 6556
+finish download 6560
+Stock 6561 ot of price range: 466.5
+finish download 6568
+finish download 6569
+finish download 6570
+Stock 6574 is unsafe to buy in day, week, month: K9 too high in week
+finish download 6576
+finish download 6577
+finish download 6578
+finish download 6584
+finish download 6588
+finish download 6589
+finish download 6590
+finish download 6593
+finish download 6596
+finish download 6603
+finish download 6609
+finish download 6612
+finish download 6613
+finish download 6615
+finish download 6616
+finish download 6617
+finish download 6624
+finish download 6629
+finish download 6637
+Stock 6640 ot of price range: 907.0
+finish download 6642
+Stock 6643 ot of price range: 832.0
+finish download 6649
+finish download 6651
+finish download 6654
+finish download 6661
+finish download 6662
+Stock 6664 ot of price range: 308.5
+finish download 6667
+Stock 6679 ot of price range: 337.0
+finish download 6680
+Stock 6683 ot of price range: 350.0
+finish download 6684
+finish download 6690
+finish download 6692
+finish download 6693
+finish download 6697
+finish download 6703
+finish download 6708
+finish download 6712
+finish download 6716
+finish download 6721
+finish download 6727
+finish download 6728
+finish download 6732
+finish download 6733
+finish download 6735
+finish download 6739
+finish download 6741
+finish download 6747
+finish download 6751
+finish download 6752
+finish download 6761
+Stock 6762 is unsafe to buy in day, week, month: K9 too high in week
+finish download 6763
+finish download 6767
+finish download 6785
+Stock 6788 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 6788
+finish download 6791
+finish download 6803
+finish download 6804
+finish download 6811
+finish download 6821
+finish download 6823
+finish download 6829
+finish download 6840
+finish download 6841
+finish download 6843
+Stock 6844 is unsafe to buy in day, week, month: K9 too high in day
+finish download 6846
+finish download 6855
+finish download 6856
+finish download 6859
+finish download 6865
+finish download 6870
+finish download 6874
+finish download 6875
+finish download 6877
+finish download 6881
+finish download 6894
+finish download 6895
+finish download 6899
+finish download 6903
+finish download 6904
+No data returned for the given 6922.TWO with interval week
+Something wrong when fetch data for stock 6922
+No data returned for the given 6929.TWO with interval week
+Something wrong when fetch data for stock 6929
+No data returned for the given 6953.TWO with interval week
+Something wrong when fetch data for stock 6953
+No data returned for the given 6968.TWO with interval week
+Something wrong when fetch data for stock 6968
+finish download 7402
+finish download 7556
+finish download 7584
+finish download 8024
+finish download 8027
+finish download 8032
+Stock 8034 is unsafe to buy in day, week, month: do_not_touch: day向下趨勢股票[MA5向下 + 最高價<MA5 + 黑k], week向下趨勢股票[MA5向下 + 最高價<MA5 + 黑k], month向下趨勢股票[MA5向下 + 最高價<MA5 + 黑k]
+finish download 8038
+finish download 8040
+finish download 8042
+finish download 8043
+finish download 8044
+finish download 8047
+finish download 8048
+finish download 8049
+finish download 8050
+finish download 8054
+finish download 8059
+finish download 8064
+finish download 8066
+finish download 8067
+Stock 8068 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 8068
+finish download 8069
+finish download 8071
+finish download 8074
+finish download 8076
+finish download 8077
+finish download 8080
+finish download 8083
+finish download 8084
+finish download 8085
+finish download 8086
+finish download 8087
+finish download 8088
+finish download 8089
+finish download 8091
+finish download 8092
+finish download 8093
+finish download 8096
+finish download 8097
+finish download 8099
+finish download 8107
+finish download 8109
+finish download 8111
+finish download 8121
+finish download 8147
+finish download 8155
+finish download 8171
+finish download 8176
+finish download 8182
+finish download 8183
+finish download 8227
+finish download 8234
+finish download 8240
+finish download 8255
+finish download 8277
+finish download 8279
+finish download 8284
+finish download 8289
+Stock 8291 ot of price range: 8.17
+Stock 8299 ot of price range: 484.5
+finish download 8342
+finish download 8349
+finish download 8354
+finish download 8358
+finish download 8383
+finish download 8390
+finish download 8401
+finish download 8403
+finish download 8409
+finish download 8410
+finish download 8415
+finish download 8416
+finish download 8420
+finish download 8421
+finish download 8423
+finish download 8424
+finish download 8426
+finish download 8431
+finish download 8432
+finish download 8433
+finish download 8435
+finish download 8436
+finish download 8437
+finish download 8440
+finish download 8444
+finish download 8446
+finish download 8450
+finish download 8455
+finish download 8472
+finish download 8477
+finish download 8489
+finish download 8905
+finish download 8906
+finish download 8908
+finish download 8916
+finish download 8917
+Stock 8921 is unsafe to buy in day, week, month: K9 too high in day
+Stock 8923 is unsafe to buy in day, week, month: K9 too high in day
+finish download 8924
+finish download 8927
+finish download 8928
+finish download 8929
+Stock 8930 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 8930
+finish download 8931
+finish download 8932
+Stock 8933 ot of price range: 9.19
+finish download 8935
+finish download 8936
+finish download 8937
+finish download 8938
+Stock 8941 is unsafe to buy in day, week, month: K9 too high in day
+finish download 8942
+finish download 9949
+finish download 9950
+finish download 9951
+finish download 9960
+finish download 9962
+finish download 1101
+finish download 1102
+finish download 1103
+finish download 1104
+finish download 1108
+finish download 1109
+finish download 1110
+finish download 1201
+finish download 1203
+finish download 1210
+finish download 1213
+finish download 1215
+Stock 1216 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 1216
+finish download 1217
+finish download 1218
+finish download 1219
+finish download 1220
+finish download 1225
+finish download 1227
+finish download 1229
+finish download 1231
+Stock 1232 is unsafe to buy in day, week, month: K9 too high in day
+finish download 1233
+finish download 1234
+Stock 1235 is unsafe to buy in day, week, month: K9 too high in week
+finish download 1236
+finish download 1256
+finish download 1301
+Stock 1303 is unsafe to buy in day, week, month: K9 too high in day
+Stock 1304 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 1304
+finish download 1305
+finish download 1307
+finish download 1308
+finish download 1309
+finish download 1310
+finish download 1312
+finish download 1313
+Stock 1314 ot of price range: 9.41
+finish download 1315
+finish download 1316
+finish download 1319
+finish download 1321
+Stock 1323 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 1323
+finish download 1324
+finish download 1325
+finish download 1326
+Stock 1337 ot of price range: 7.63
+finish download 1338
+finish download 1339
+finish download 1340
+finish download 1341
+finish download 1342
+Stock 1402 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 1402
+finish download 1409
+finish download 1410
+Stock 1413 ot of price range: 9.98
+finish download 1414
+finish download 1416
+finish download 1417
+finish download 1418
+finish download 1419
+finish download 1423
+Stock 1432 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 1432
+finish download 1434
+Stock 1435 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 1435
+finish download 1436
+finish download 1437
+finish download 1438
+finish download 1439
+finish download 1440
+finish download 1441
+finish download 1442
+finish download 1443
+Stock 1444 ot of price range: 9.44
+finish download 1445
+finish download 1446
+Stock 1447 ot of price range: 8.47
+finish download 1449
+finish download 1451
+Stock 1452 is unsafe to buy in day, week, month: K9 too high in day
+finish download 1453
+finish download 1454
+finish download 1455
+finish download 1456
+finish download 1457
+finish download 1459
+Stock 1460 ot of price range: 7.33
+finish download 1463
+finish download 1464
+finish download 1465
+Stock 1466 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 1466
+finish download 1467
+Stock 1468 is unsafe to buy in day, week, month: K9 too high in day
+finish download 1470
+finish download 1471
+finish download 1472
+finish download 1473
+finish download 1474
+finish download 1475
+Stock 1476 ot of price range: 544.0
+Stock 1477 ot of price range: 361.0
+Stock 1503 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 1503
+finish download 1504
+finish download 1506
+Stock 1512 ot of price range: 7.2
+finish download 1513
+finish download 1514
+finish download 1515
+finish download 1516
+finish download 1517
+Stock 1519 ot of price range: 649.0
+finish download 1521
+finish download 1522
+finish download 1524
+finish download 1525
+finish download 1526
+finish download 1527
+finish download 1528
+finish download 1529
+finish download 1530
+finish download 1531
+finish download 1532
+finish download 1533
+finish download 1535
+finish download 1536
+Stock 1537 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 1537
+finish download 1538
+finish download 1539
+finish download 1540
+finish download 1541
+Stock 1558 is unsafe to buy in day, week, month: K9 too high in week
+Stock 1560 ot of price range: 311.0
+No data returned for the given 1563.TW with interval day
+day_df is None
+finish download 1568
+finish download 1582
+finish download 1583
+finish download 1587
+finish download 1589
+Stock 1590 ot of price range: 915.0
+finish download 1597
+finish download 1598
+finish download 1603
+finish download 1604
+finish download 1605
+finish download 1608
+finish download 1609
+finish download 1611
+finish download 1612
+finish download 1614
+finish download 1615
+finish download 1616
+finish download 1617
+finish download 1618
+finish download 1626
+finish download 1702
+finish download 1707
+finish download 1708
+finish download 1709
+Stock 1710 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 1710
+finish download 1711
+finish download 1712
+finish download 1713
+Stock 1714 ot of price range: 8.96
+finish download 1717
+Stock 1718 ot of price range: 8.45
+finish download 1720
+finish download 1721
+finish download 1722
+finish download 1723
+finish download 1725
+finish download 1726
+finish download 1727
+Stock 1730 is unsafe to buy in 60m, 30m, 15m: K9 too high in 60 min
+finish download 1730
+finish download 1731
+finish download 1732
+finish download 1733
+finish download 1734
+finish download 1735
+finish download 1736
+finish download 1737
+finish download 1752
+finish download 1760
+finish download 1762
+finish download 1773
+finish download 1776
+finish download 1783
+finish download 1786
+finish download 1789
+finish download 1795
+finish download 1802
+finish download 1805
+finish download 1806
+finish download 1808
+finish download 1809
+finish download 1810
+finish download 1817
+finish download 1903
+finish download 1904
+finish download 1905
+Stock 1906 is unsafe to buy in day, week, month: K9 too high in day
+Stock 1907 is unsafe to buy in day, week, month: K9 too high in day
+finish download 1909
+finish download 2002
+finish download 2006
+finish download 2007
+finish download 2008
+finish download 2009
+finish download 2010
+finish download 2012
+finish download 2013
+finish download 2014
+finish download 2015
+finish download 2017
+finish download 2020
+finish download 2022
+finish download 2023
+finish download 2024
+finish download 2025
+finish download 2027
+finish download 2028
+Stock 2029 is unsafe to buy in 60m, 30m, 15m: K9 too high in 60 min
+finish download 2029
+finish download 2030
+finish download 2031
+finish download 2032
+finish download 2033
+finish download 2034
+finish download 2038
+finish download 2049
+Stock 2059 ot of price range: 1090.0
+finish download 2062
+finish download 2069
+finish download 2101
+finish download 2102
+finish download 2103
+finish download 2104
+finish download 2105
+finish download 2106
+finish download 2107
+finish download 2108
+finish download 2109
+finish download 2114
+finish download 2115
+finish download 2201
+finish download 2204
+finish download 2206
+Stock 2207 ot of price range: 695.0
+finish download 2208
+finish download 2211
+finish download 2227
+finish download 2228
+finish download 2231
+finish download 2233
+finish download 2236
+finish download 2239
+finish download 2241
+finish download 2243
+finish download 2247
+finish download 2250
+Stock 2301 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 2301
+finish download 2302
+finish download 2303
+finish download 2305
+Stock 2308 ot of price range: 384.5
+finish download 2312
+finish download 2313
+finish download 2314
+finish download 2316
+finish download 2317
+finish download 2321
+finish download 2323
+finish download 2324
+Stock 2327 ot of price range: 620.0
+finish download 2328
+finish download 2329
+Stock 2330 ot of price range: 972.0
+finish download 2331
+finish download 2332
+finish download 2337
+finish download 2338
+finish download 2340
+finish download 2342
+finish download 2344
+Stock 2345 ot of price range: 524.0
+finish download 2347
+finish download 2348
+finish download 2349
+finish download 2351
+finish download 2352
+finish download 2353
+finish download 2354
+finish download 2355
+finish download 2356
+Stock 2357 ot of price range: 572.0
+sum latest 5 volume < 800
+finish download 2359
+Stock 2360 ot of price range: 378.0
+finish download 2362
+finish download 2363
+finish download 2364
+finish download 2365
+finish download 2367
+finish download 2368
+finish download 2369
+finish download 2371
+Stock 2373 is unsafe to buy in day, week, month: K9 too high in day
+finish download 2374
+finish download 2375
+finish download 2376
+finish download 2377
+Stock 2379 ot of price range: 473.5
+Stock 2380 ot of price range: 6.46
+finish download 2382
+Stock 2383 ot of price range: 442.0
+finish download 2385
+finish download 2387
+finish download 2388
+finish download 2390
+finish download 2392
+finish download 2393
+Stock 2395 ot of price range: 319.0
+finish download 2397
+finish download 2399
+finish download 2401
+finish download 2402
+Stock 2404 ot of price range: 312.0
+finish download 2405
+finish download 2406
+finish download 2408
+finish download 2409
+finish download 2412
+finish download 2413
+finish download 2414
+finish download 2415
+finish download 2417
+finish download 2419
+finish download 2420
+finish download 2421
+Stock 2423 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 2423
+Stock 2424 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 2424
+finish download 2425
+finish download 2426
+finish download 2427
+finish download 2428
+finish download 2429
+finish download 2430
+finish download 2431
+finish download 2433
+Stock 2434 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 2434
+finish download 2436
+finish download 2438
+finish download 2439
+finish download 2440
+finish download 2441
+finish download 2442
+sum latest 5 volume < 800
+finish download 2444
+finish download 2449
+finish download 2450
+finish download 2451
+finish download 2453
+Stock 2454 ot of price range: 1210.0
+finish download 2455
+finish download 2457
+finish download 2458
+finish download 2459
+finish download 2460
+finish download 2461
+finish download 2462
+finish download 2464
+finish download 2465
+finish download 2466
+finish download 2467
+finish download 2468
+finish download 2471
+finish download 2472
+Stock 2474 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 2474
+finish download 2476
+finish download 2477
+finish download 2478
+finish download 2480
+finish download 2481
+finish download 2482
+finish download 2483
+finish download 2484
+finish download 2485
+finish download 2486
+finish download 2488
+finish download 2489
+finish download 2491
+finish download 2492
+finish download 2493
+finish download 2495
+finish download 2496
+finish download 2497
+Stock 2498 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 2498
+finish download 2501
+Stock 2504 is unsafe to buy in day, week, month: K9 too high in month
+finish download 2505
+finish download 2506
+finish download 2509
+finish download 2511
+finish download 2514
+finish download 2515
+finish download 2516
+finish download 2520
+finish download 2524
+finish download 2527
+finish download 2528
+finish download 2530
+finish download 2534
+finish download 2535
+finish download 2536
+finish download 2537
+finish download 2538
+finish download 2539
+finish download 2540
+finish download 2542
+Stock 2543 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 2543
+finish download 2545
+finish download 2546
+finish download 2547
+Stock 2548 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 2548
+finish download 2597
+Stock 2601 ot of price range: 8.11
+finish download 2603
+finish download 2605
+finish download 2606
+finish download 2607
+finish download 2608
+finish download 2609
+finish download 2610
+finish download 2611
+finish download 2612
+finish download 2613
+finish download 2614
+finish download 2615
+finish download 2616
+finish download 2617
+finish download 2618
+finish download 2630
+finish download 2633
+finish download 2634
+finish download 2636
+finish download 2637
+Stock 2642 is unsafe to buy in 60m, 30m, 15m: K9 too high in 60 min
+finish download 2642
+finish download 2645
+finish download 2701
+finish download 2702
+finish download 2704
+finish download 2705
+finish download 2706
+finish download 2707
+finish download 2712
+finish download 2722
+finish download 2723
+finish download 2727
+finish download 2731
+finish download 2739
+finish download 2748
+finish download 2753
+No data returned for the given 2762.TW with interval day
+day_df is None
+finish download 2801
+finish download 2809
+finish download 2812
+finish download 2816
+finish download 2820
+finish download 2832
+finish download 2834
+finish download 2836
+Stock 2838 is unsafe to buy in day, week, month: K9 too high in day
+finish download 2845
+Stock 2849 is unsafe to buy in day, week, month: K9 too high in day
+finish download 2850
+finish download 2851
+finish download 2852
+Stock 2855 is unsafe to buy in day, week, month: K9 too high in day
+Stock 2867 ot of price range: 7.47
+finish download 2880
+Stock 2881 is unsafe to buy in day, week, month: K9 too high in month
+finish download 2882
+finish download 2883
+Stock 2884 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 2884
+finish download 2885
+finish download 2886
+finish download 2887
+finish download 2888
+finish download 2889
+finish download 2890
+Stock 2891 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 2891
+finish download 2892
+finish download 2897
+finish download 2901
+finish download 2903
+finish download 2904
+finish download 2905
+finish download 2906
+finish download 2908
+finish download 2910
+Stock 2911 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 2911
+finish download 2912
+finish download 2913
+finish download 2915
+Stock 2923 is unsafe to buy in day, week, month: K9 too high in day
+finish download 2929
+finish download 2939
+finish download 2945
+finish download 3002
+finish download 3003
+finish download 3004
+finish download 3005
+finish download 3006
+Stock 3008 ot of price range: 2625.0
+finish download 3010
+finish download 3011
+finish download 3013
+finish download 3014
+finish download 3015
+finish download 3016
+Stock 3017 ot of price range: 585.0
+finish download 3018
+finish download 3019
+finish download 3021
+finish download 3022
+finish download 3023
+finish download 3024
+Stock 3025 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 3025
+finish download 3026
+finish download 3027
+finish download 3028
+finish download 3029
+finish download 3030
+finish download 3031
+finish download 3032
+finish download 3033
+Stock 3034 ot of price range: 517.0
+finish download 3035
+finish download 3036
+finish download 3037
+finish download 3038
+finish download 3040
+finish download 3041
+finish download 3042
+finish download 3043
+finish download 3044
+finish download 3045
+finish download 3046
+finish download 3047
+finish download 3048
+finish download 3049
+finish download 3050
+finish download 3051
+finish download 3052
+finish download 3054
+finish download 3055
+finish download 3056
+finish download 3057
+finish download 3058
+finish download 3059
+finish download 3060
+finish download 3062
+finish download 3090
+finish download 3092
+finish download 3094
+finish download 3130
+finish download 3138
+finish download 3149
+finish download 3164
+Stock 3167 is unsafe to buy in day, week, month: K9 too high in day
+finish download 3168
+finish download 3189
+finish download 3209
+finish download 3229
+finish download 3231
+finish download 3257
+finish download 3266
+finish download 3296
+finish download 3305
+finish download 3308
+finish download 3311
+finish download 3312
+Stock 3321 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 3321
+finish download 3338
+finish download 3346
+finish download 3356
+finish download 3376
+finish download 3380
+Stock 3406 ot of price range: 485.0
+Stock 3413 ot of price range: 351.5
+finish download 3416
+finish download 3419
+finish download 3432
+finish download 3437
+Stock 3443 ot of price range: 1060.0
+finish download 3447
+finish download 3450
+finish download 3454
+finish download 3481
+Stock 3494 ot of price range: 7.79
+finish download 3501
+finish download 3504
+finish download 3515
+finish download 3518
+finish download 3528
+finish download 3530
+finish download 3532
+Stock 3533 ot of price range: 1435.0
+finish download 3535
+finish download 3543
+Stock 3545 is unsafe to buy in day, week, month: K9 too high in day
+finish download 3550
+finish download 3557
+Stock 3563 ot of price range: 363.0
+finish download 3576
+Stock 3583 ot of price range: 435.5
+finish download 3588
+finish download 3591
+Stock 3592 ot of price range: 344.0
+finish download 3593
+finish download 3596
+finish download 3605
+finish download 3607
+Stock 3617 ot of price range: 328.5
+finish download 3622
+finish download 3645
+finish download 3652
+Stock 3653 ot of price range: 1350.0
+Stock 3661 ot of price range: 1925.0
+Stock 3665 ot of price range: 479.0
+finish download 3669
+finish download 3673
+finish download 3679
+finish download 3686
+finish download 3694
+finish download 3701
+finish download 3702
+finish download 3703
+finish download 3704
+finish download 3705
+finish download 3706
+Stock 3708 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 3708
+finish download 3711
+finish download 3712
+finish download 3714
+finish download 3715
+No data returned for the given 3716.TW with interval day
+day_df is None
+finish download 4104
+finish download 4106
+finish download 4108
+Stock 4119 is unsafe to buy in day, week, month: K9 too high in day
+finish download 4133
+finish download 4137
+finish download 4142
+finish download 4148
+finish download 4155
+finish download 4164
+finish download 4190
+finish download 4306
+Stock 4414 ot of price range: 3.14
+finish download 4426
+finish download 4438
+finish download 4439
+finish download 4440
+finish download 4526
+Stock 4532 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 4532
+finish download 4536
+finish download 4540
+finish download 4545
+finish download 4551
+finish download 4552
+finish download 4555
+finish download 4557
+finish download 4560
+finish download 4562
+finish download 4564
+finish download 4566
+No data returned for the given 4569.TW with interval week
+Something wrong when fetch data for stock 4569
+finish download 4571
+finish download 4572
+finish download 4576
+finish download 4581
+Stock 4583 ot of price range: 694.0
+No data returned for the given 4588.TW with interval week
+Something wrong when fetch data for stock 4588
+finish download 4720
+finish download 4722
+No data returned for the given 4736.TW with interval day
+day_df is None
+finish download 4737
+finish download 4739
+finish download 4746
+finish download 4755
+Stock 4763 ot of price range: 874.0
+finish download 4764
+Stock 4766 ot of price range: 307.0
+Stock 4770 ot of price range: 335.0
+No data returned for the given 4771.TW with interval day
+day_df is None
+finish download 4807
+finish download 4904
+finish download 4906
+finish download 4912
+Stock 4915 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 4915
+finish download 4916
+finish download 4919
+finish download 4927
+finish download 4930
+finish download 4934
+finish download 4935
+finish download 4938
+finish download 4942
+finish download 4943
+No data returned for the given 4949.TW with interval day
+day_df is None
+finish download 4952
+finish download 4956
+finish download 4958
+finish download 4960
+finish download 4961
+finish download 4967
+finish download 4968
+Stock 4976 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 4976
+finish download 4977
+finish download 4989
+finish download 4994
+finish download 4999
+finish download 5007
+finish download 5203
+finish download 5215
+finish download 5222
+finish download 5225
+finish download 5234
+finish download 5243
+finish download 5244
+finish download 5258
+Stock 5269 ot of price range: 1580.0
+finish download 5283
+finish download 5284
+finish download 5285
+Stock 5288 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 5288
+finish download 5292
+finish download 5306
+finish download 5388
+finish download 5434
+finish download 5469
+finish download 5471
+finish download 5484
+finish download 5515
+finish download 5519
+finish download 5521
+finish download 5522
+finish download 5525
+finish download 5531
+finish download 5533
+finish download 5534
+finish download 5538
+finish download 5546
+finish download 5607
+finish download 5608
+finish download 5706
+finish download 5871
+finish download 5876
+finish download 5880
+finish download 5906
+Stock 5907 is unsafe to buy in 60m, 30m, 15m: K9 too high in 60 min
+finish download 5907
+finish download 6005
+finish download 6024
+finish download 6108
+finish download 6112
+finish download 6115
+Stock 6116 ot of price range: 9.29
+finish download 6117
+Stock 6120 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 6120
+finish download 6128
+finish download 6133
+finish download 6136
+Stock 6139 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 6139
+finish download 6141
+finish download 6142
+finish download 6152
+finish download 6153
+finish download 6155
+finish download 6164
+finish download 6165
+finish download 6166
+finish download 6168
+finish download 6176
+finish download 6177
+finish download 6183
+finish download 6184
+finish download 6189
+finish download 6191
+finish download 6192
+finish download 6196
+finish download 6197
+finish download 6201
+finish download 6202
+finish download 6205
+finish download 6206
+finish download 6209
+finish download 6213
+finish download 6214
+finish download 6215
+finish download 6216
+finish download 6224
+Stock 6225 is unsafe to buy in 60m, 30m, 15m: not enough data to check_minute_exist_buy_point
+finish download 6225
+Stock 6226 ot of price range: 9.69
+finish download 6230
+finish download 6235
+finish download 6239
+finish download 6243
+finish download 6257
+finish download 6269
+finish download 6271
+finish download 6277
+finish download 6278
+finish download 6281
+finish download 6282
+finish download 6283
+finish download 6285
+finish download 6288
+finish download 6405
+Stock 6409 ot of price range: 2175.0
+finish download 6412
+finish download 6414
+Stock 6415 ot of price range: 480.0
+finish download 6416
+finish download 6426
+finish download 6431
+Stock 6438 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 6438
+Stock 6442 ot of price range: 369.0
+finish download 6443
+Stock 6446 ot of price range: 643.0
+finish download 6449
+finish download 6451
+finish download 6456
+finish download 6464
+No data returned for the given 6472.TW with interval day
+day_df is None
+finish download 6477
+Stock 6491 ot of price range: 439.0
+finish download 6504
+finish download 6505
+Stock 6515 ot of price range: 1225.0
+finish download 6525
+No data returned for the given 6526.TW with interval day
+day_df is None
+finish download 6531
+Stock 6533 ot of price range: 367.5
+finish download 6541
+finish download 6550
+finish download 6552
+finish download 6558
+finish download 6573
+finish download 6579
+finish download 6581
+finish download 6582
+finish download 6585
+finish download 6591
+finish download 6592
+finish download 6598
+finish download 6605
+finish download 6606
+finish download 6625
+Stock 6641 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 6641
+finish download 6655
+No data returned for the given 6657.TW with interval week
+Something wrong when fetch data for stock 6657
+No data returned for the given 6658.TW with interval day
+day_df is None
+finish download 6666
+finish download 6668
+Stock 6669 ot of price range: 1755.0
+finish download 6670
+finish download 6671
+finish download 6672
+finish download 6674
+finish download 6689
+Stock 6691 ot of price range: 310.0
+finish download 6695
+finish download 6698
+Stock 6706 is unsafe to buy in 60m, 30m, 15m: K9 too high in 60 min
+finish download 6706
+finish download 6715
+finish download 6719
+finish download 6742
+finish download 6743
+finish download 6753
+finish download 6754
+finish download 6756
+finish download 6768
+finish download 6770
+finish download 6776
+Stock 6781 ot of price range: 493.0
+finish download 6782
+finish download 6789
+finish download 6790
+finish download 6792
+finish download 6796
+finish download 6799
+No data returned for the given 6805.TW with interval day
+day_df is None
+finish download 6806
+finish download 6807
+finish download 6830
+finish download 6834
+finish download 6835
+No data returned for the given 6838.TW with interval day
+day_df is None
+finish download 6861
+No data returned for the given 6863.TW with interval week
+Something wrong when fetch data for stock 6863
+finish download 6869
+No data returned for the given 6890.TW with interval day
+day_df is None
+No data returned for the given 6901.TW with interval week
+Something wrong when fetch data for stock 6901
+No data returned for the given 6906.TW with interval day
+day_df is None
+No data returned for the given 6914.TW with interval day
+day_df is None
+No data returned for the given 6916.TW with interval day
+day_df is None
+No data returned for the given 6928.TW with interval day
+day_df is None
+No data returned for the given 6933.TW with interval day
+day_df is None
+No data returned for the given 6937.TW with interval week
+Something wrong when fetch data for stock 6937
+No data returned for the given 6952.TW with interval week
+Something wrong when fetch data for stock 6952
+No data returned for the given 6957.TW with interval day
+day_df is None
+No data returned for the given 6958.TW with interval week
+Something wrong when fetch data for stock 6958
+finish download 8011
+finish download 8016
+finish download 8021
+finish download 8028
+finish download 8033
+finish download 8039
+finish download 8046
+finish download 8070
+finish download 8072
+finish download 8081
+sum latest 5 volume < 800
+finish download 8103
+finish download 8104
+finish download 8105
+finish download 8110
+finish download 8112
+finish download 8114
+finish download 8131
+finish download 8150
+finish download 8163
+Stock 8201 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 8201
+finish download 8210
+finish download 8213
+finish download 8215
+Stock 8222 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 8222
+finish download 8249
+finish download 8261
+finish download 8271
+finish download 8341
+finish download 8367
+finish download 8374
+Stock 8404 is unsafe to buy in 60m, 30m, 15m: K9 too high in 60 min
+finish download 8404
+finish download 8411
+finish download 8422
+finish download 8429
+finish download 8438
+Stock 8442 is unsafe to buy in 60m, 30m, 15m: K9 too high in 30 min
+finish download 8442
+finish download 8443
+Stock 8454 ot of price range: 390.0
+finish download 8462
+finish download 8463
+Stock 8464 ot of price range: 510.0
+finish download 8466
+finish download 8467
+finish download 8473
+finish download 8476
+finish download 8478
+finish download 8481
+finish download 8482
+finish download 8488
+finish download 8499
+finish download 8926
+finish download 8940
+Stock 8996 ot of price range: 405.0
+finish download 9802
+finish download 9902
+Stock 9904 is unsafe to buy in 60m, 30m, 15m: K9 too high in 15 min
+finish download 9904
+finish download 9905
+finish download 9906
+finish download 9907
+finish download 9908
+finish download 9910
+finish download 9911
+finish download 9912
+finish download 9914
+finish download 9917
+finish download 9918
+finish download 9919
+finish download 9921
+finish download 9924
+finish download 9925
+finish download 9926
+finish download 9927
+finish download 9928
+finish download 9929
+finish download 9930
+finish download 9931
+finish download 9933
+finish download 9934
+finish download 9935
+finish download 9937
+finish download 9938
+finish download 9939
+finish download 9940
+Stock 9941 is unsafe to buy in day, week, month: K9 too high in day
+finish download 9942
+Stock 9943 is unsafe to buy in day, week, month: K9 too high in day
+finish download 9944
+finish download 9945
+finish download 9946
+finish download 9955
+finish download 9958
+Done!

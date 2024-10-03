@@ -1,17 +1,17 @@
 
-let globalDayChart = ''
-let globalMonthChart = ''
-let globalWeekChart = ''
-let global60mChart = ''
-let global30mChart = ''
-let global15mChart = ''
+let globalDayChart = null
+let globalMonthChart = null
+let globalWeekChart = null
+let global60mChart = null
+let global30mChart = null
+let global15mChart = null
 
 function loadChartWithDayData(stockCode) {
-  if (globalDayChart != '') {
+  if (globalDayChart) {
     globalChart.dispose(); // Dispose of the previous chart instance if it exists
   }
 
-  let fileData = `./stock_data/${stockCode}/${stockCode}_days.csv`;
+  let fileData = `./stock_data/${stockCode}/${stockCode}_day.csv`;
   let stockName = stockCode + " .TW" + "(DAY)"
   loadChart(fileData, stockName, "container_day")
 
@@ -19,11 +19,11 @@ function loadChartWithDayData(stockCode) {
 }
 
 function loadChartWithWeekData(stockCode) {
-  if (globalWeekChart != '') {
+  if (globalWeekChart) {
     globalWeekChart.dispose(); // Dispose of the previous chart instance if it exists
   }
 
-  let fileData = `./stock_data/${stockCode}/${stockCode}_weeks.csv`;
+  let fileData = `./stock_data/${stockCode}/${stockCode}_week.csv`;
   let stockName = stockCode + " .TW" + "(WEEK)"
   loadChart(fileData, stockName, "container_week")
 
@@ -31,11 +31,11 @@ function loadChartWithWeekData(stockCode) {
 }
 
 function loadChartWithMonthData(stockCode) {
-  if (globalMonthChart != '') {
+  if (globalMonthChart) {
     globalMonthChart.dispose(); // Dispose of the previous chart instance if it exists
   }
 
-  let fileData = `./stock_data/${stockCode}/${stockCode}_months.csv`;
+  let fileData = `./stock_data/${stockCode}/${stockCode}_month.csv`;
   let stockName = stockCode + " .TW" + "(MONTH)"
   loadChart(fileData, stockName, "container_month")
 
@@ -43,7 +43,7 @@ function loadChartWithMonthData(stockCode) {
 }
 
 function loadChartWith60MinuteData(stockCode) {
-  if (global60mChart != '') {
+  if (global60mChart) {
     global60mChart.dispose(); // Dispose of the previous chart instance if it exists
   }
 
@@ -55,7 +55,7 @@ function loadChartWith60MinuteData(stockCode) {
 }
 
 function loadChartWith30MinuteData(stockCode) {
-  if (global30mChart != '') {
+  if (global30mChart) {
     global30mChart.dispose(); // Dispose of the previous chart instance if it exists
   }
 
@@ -67,7 +67,7 @@ function loadChartWith30MinuteData(stockCode) {
 }
 
 function loadChartWith15MinuteData(stockCode) {
-  if (global15mChart != '') {
+  if (global15mChart) {
     global15mChart.dispose(); // Dispose of the previous chart instance if it exists
   }
 
