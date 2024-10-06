@@ -4,13 +4,13 @@
 # Usage: strategy for filter out stock buy point
 #
 
+import warnings
+from typing import Optional
 import pandas as _pd
 import numpy as _np
-import matplotlib.pyplot as _plt
 from typing import List
 from scipy.signal import find_peaks, butter, filtfilt
 from fastdtw import fastdtw
-import warnings
 from numpy.exceptions import RankWarning
 import twstockanalyzer.scrapers.const as constd
 
@@ -40,88 +40,181 @@ class Strategy:
 
         # if max_index > 5 and max_index < df["Volume"].dropna().count():
 
-    def check_ma(self, df: _pd.DataFrame) -> tuple:
+    def check_ma(self, df: _pd.DataFrame) -> tuple[bool, str]:
         if not self.check_statistic_column(df):
-            return False, f"Error: Missing columns when check_uptrend_macd"
+            return False, f"Error: Missing columns when check_macd_trend"
+
+        is_closing, desc, res = self.trend_closer_to_golden_cross(
+            df["MA40"].dropna().to_numpy(), df["MA138"].dropna().to_numpy()
+        )
+        if is_closing:
+            _, _, ma40_gradient = self.smooth_to_line(
+                df=df, column_name="MA40", window=60
+            )
+            _, _, ma138_gradient = self.smooth_to_line(
+                df=df, column_name="MA138", window=60
+            )
+            if df["MA40"].iloc[-1] >= df["MA138"].iloc[-1]:
+                if ma40_gradient[-1] >= 0:
+                    return True, constd.MA40_ABOVE_MA138
+                else:
+                    return True, ""
 
     #  MACD 呈上升趨勢
-    def check_uptrend_macd(self, df: _pd.DataFrame) -> tuple[bool, str]:
-        if not self.check_statistic_column(df):
-            return False, f"Error: Missing columns when check_uptrend_macd"
+    def check_macd_trend(self, df: _pd.DataFrame) -> tuple[bool, Optional[set[str]]]:
+        if not self.check_columns_exist(
+            df,
+            [
+                "MACD",
+                "OSC",
+            ],
+        ):
+            print("Error: missing column in check_macd_trend.")
+            return False, None
 
-        # convert line to curve
+        # convert macd curve to line
         x_index, y_macd_line, gradient = self.smooth_to_line(df, "MACD", 0.4)
 
         # check return res
         if x_index is None or y_macd_line is None or gradient is None:
-            return (
-                False,
-                f"One of the returned variables is None when convert macd curve to line.",
+            print(
+                "Error: One of the returned variables is None when convert macd curve to line."
             )
+            return False, None
         elif (
             (isinstance(x_index, _np.ndarray) and x_index.size == 0)
             or (isinstance(y_macd_line, _np.ndarray) and y_macd_line.size == 0)
             or gradient.size < 1
         ):
-            return (
-                False,
-                f"One of the res arrays is empty when convert macd curve to line.",
+            print(
+                "Error: One of the res arrays is empty when convert macd curve to line."
             )
+            return False, None
 
-        desc_set = set()
-        # 檢查 MACD 柱狀圖(OSC)
+        macd_trend_set = set()
+        is_up_trend = False
+
         # 檢查 MACD 靠近軸線
         latest_macd_data = df["MACD"].dropna().to_numpy()
         if len(latest_macd_data) <= 3:
-            return False, f"not enough macd data: {len(latest_macd_data)}"
+            print(f"Error: not enough macd data: {len(latest_macd_data)}")
+            return False, None
 
-        zeros_array = _np.zeros(df["MACD"].dropna().count())
+        middle_array = _np.zeros(df["MACD"].dropna().count())
         if len(latest_macd_data) > 60:
             latest_macd_data = latest_macd_data[-60:]
-            zeros_array = zeros_array[-60:]
-        is_closing, reason = self.trend_closer_to_golden_cross(
-            latest_macd_data, zeros_array
+            middle_array = middle_array[-60:]
+
+        is_closing_middle, closing_middle_trend_desc, _ = (
+            self.trend_closer_to_golden_cross(
+                latest_macd_data, middle_array, window=len(latest_macd_data)
+            )
         )
-        print(is_closing, reason)
-        if is_closing and df["MACD"].iloc[-1] < 0:
-            desc_set.add(constd.MACD_CLOSING_MIDDLE_FROM_BOTTOM)
-        elif is_closing and df["MACD"].iloc[-1] > 0:
-            desc_set.add(constd.MACD_CLOSING_MIDDLE_FROM_ABOVE)
+
+        # 檢查 MACD 柱狀圖(OSC)
+        osc_trend_set = self.check_osc_stick_heigh(df)
+        if osc_trend_set is None:
+            print("Error: failed to check_osc_stick_heigh.")
+            return False, None
+
+        # do not touch condition
+        # OSC 強綠柱 + OSC 綠柱範圍長 + macd零軸下 範圍長 + MACD 下降趨勢
+        fit_count = 0
+        osc_cond_to_check = [constd.OSC_GREEN_STRONG, constd.OSC_GREEN_RANGE_LONG]
+        for value in osc_cond_to_check:
+            if value in osc_trend_set:
+                fit_count += 1
+        macd_line_cond_to_check = [
+            constd.LINE_TREND_DOWNWARD,
+            constd.LINE_TREND_STRONG_LEAVING,
+        ]
+        for value in closing_middle_trend_desc:
+            if value in macd_line_cond_to_check:
+                fit_count += 1
+
+        last_five_values = df["MACD"].tail(5)
+        if fit_count == 4 and gradient[-1] < 0 and (last_five_values < 0).all():
+            macd_trend_set.add(constd.MACD_DO_NOT_TOUCH)
+            return False, macd_trend_set
+
+        # MACD 零軸上/下
+        if (last_five_values > 0).all():
+            macd_trend_set.add(constd.MACD_ABOVE_MIDDLE)
+        if (last_five_values < 0).all():
+            macd_trend_set.add(constd.MACD_BELOW_MIDDLE)
+
+        # 從上方/下方靠近軸線
+        if is_closing_middle and constd.LINE_TREND_UPWARD in closing_middle_trend_desc:
+            macd_trend_set.add(constd.MACD_CLOSING_MIDDLE_FROM_BOTTOM)
+            is_up_trend = True
+        if (
+            is_closing_middle
+            and constd.LINE_TREND_DOWNWARD in closing_middle_trend_desc
+        ):
+            macd_trend_set.add(constd.MACD_CLOSING_MIDDLE_FROM_ABOVE)
 
         # 檢查 MACD 趨勢
-        if gradient.size == 1:
-            if gradient[-1] > 0:
-                desc_set.add(constd.MACD_SHOW_UP_TREND)
-            else:
-                desc_set.add(constd.MACD_SHOW_DOWN_TREND)
+        validate_ratio = 1.2
+        if gradient[-1] > gradient[-2] and gradient[-2] > 0:
+            macd_trend_set.add(constd.MACD_SHOW_UP_UP_TREND)
+            is_up_trend = True
+        if gradient[-1] < gradient[-2] and gradient[-2] < 0:
+            macd_trend_set.add(constd.MACD_SHOW_DOWN_DOWN_TREND)
+        elif (
+            gradient[-1] < 0
+            and gradient[-2] > 0
+            and (
+                abs(y_macd_line[-1] - y_macd_line[-2]) * validate_ratio
+                < abs(y_macd_line[-2] - y_macd_line[-3])
+                or (x_index[-1] - x_index[-2]) * validate_ratio
+                < (x_index[-2] - x_index[-3])
+            )
+        ):
+            macd_trend_set.add(constd.MACD_BACKTEST_IN_UP_TREND)
+            is_up_trend = True
+        elif (
+            gradient[-1] > 0
+            and gradient[-2] < 0
+            and (
+                abs(y_macd_line[-1] - y_macd_line[-2]) * validate_ratio
+                < abs(y_macd_line[-2] - y_macd_line[-3])
+                or (x_index[-1] - x_index[-2]) * validate_ratio
+                < (x_index[-2] - x_index[-3])
+            )
+        ):
+            macd_trend_set.add(constd.MACD_BACKTEST_IN_DOWN_TREND)
         else:
-            if gradient[-1] > 0:
-                if x_index[-1] - x_index[-2] >= 5:
-                    desc_set.add(constd.MACD_SHOW_UP_TREND)
-                elif gradient[-1] > gradient[-2]:
-                    # 下降趨勢趨緩
-                    pass
-            elif (
-                gradient[-1] < 0
-                and gradient[-2] > 0
-                and x_index[-1] - x_index[-2] > x_index[-2] - x_index[-3]
-            ):
-                pass
-                return True, "MACD 呈上升趨勢中回測"
-            else:
-                pass
-                return False, "MACD 趨勢不明"
+            if gradient[-1] > 0 and x_index[-1] - x_index[-2] >= 5:
+                macd_trend_set.add(constd.MACD_SHOW_UP_TREND)
+                is_up_trend = True
+            elif gradient[-1] < 0 and x_index[-1] - x_index[-2] >= 5:
+                macd_trend_set.add(constd.MACD_SHOW_DOWN_TREND)
 
-        return False, print(desc_set)
-        # uptrend_macd_cross_middle_line_with_N
-        # uptrend_macd_cross_middle_line
+        # if (gradient[-1] < 0 and x_index[-1]-x_index[-2] >= 5) or (gradient[-2] < 0 and (x_index[-2]-x_index[-3]) > (x_index[-1]-x_index[-2])*2):
+        #     res_set.add(constd.LINE_TREND_DOWNWARD)
+        # if (gradient[-1] > 0 and x_index[-1]-x_index[-2] >= 5) or (gradient[-2] > 0 and (x_index[-2]-x_index[-3]) > (x_index[-1]-x_index[-2])*2):
+        #     res_set.add(constd.LINE_TREND_UPWARD)
+
+        if len(macd_trend_set) == 0:
+            macd_trend_set.add(constd.MACD_UNKNOWN)
+
+        return is_up_trend, macd_trend_set
 
     # 檢查 MACD 柱狀圖(OSC) 強勢、弱勢、盤整
-    def check_osc_stick_heigh(self, df: _pd.DataFrame) -> str:
+    def check_osc_stick_heigh(
+        self, df: _pd.DataFrame, threshold: int = 2
+    ) -> Optional[set[str]]:
+        if df["OSC"].dropna().size < 3:
+            print("not enough OSC data in check_osc_stick_heigh")
+            return None
+
         local_abs_max = df["OSC"].iloc[-1]
         local_abs_max_previous = 0
         cur = 0
+        cur_count = 0
         switch = 0
+        local_range_count = 0
+        res_set = set()
 
         # loop through the OSC column backward
         for i in range(
@@ -129,16 +222,19 @@ class Strategy:
         ):  # Start from the last index to the first
             current_value = df["OSC"].iloc[i]
             previous_value = df["OSC"].iloc[i - 1]
+            cur_count += 1
             # check for sign change
             if (previous_value > 0 and current_value < 0) or (
                 previous_value < 0 and current_value > 0
             ):
                 if switch == 0:
                     local_abs_max = cur
+                    local_range_count = cur_count
                     switch = switch + 1
                     cur = 0
+                    cur_count = 0
                     continue
-                if switch == 1:
+                elif switch == 1:
                     local_abs_max_previous = cur
                     switch = switch + 1
                     cur = 0
@@ -148,21 +244,29 @@ class Strategy:
             else:
                 if abs(cur) < abs(previous_value):
                     cur = previous_value
+            # incase only one pivot exist
+            if switch == 1:
+                local_abs_max_previous = cur
 
         if local_abs_max < 0:
-            if abs(local_abs_max) <= abs(local_abs_max_previous) / 4:
-                return constd.OSC_GREEN_WEEK
-            elif abs(local_abs_max) >= abs(local_abs_max_previous) * 4:
-                return constd.OSC_GREEN_STRONG
+            if abs(local_abs_max) <= abs(local_abs_max_previous) / threshold:
+                res_set.add(constd.OSC_GREEN_WEEK)
+            elif abs(local_abs_max) >= abs(local_abs_max_previous) * threshold:
+                res_set.add(constd.OSC_GREEN_STRONG)
             else:
-                return constd.OSC_GREEN_CONSOLIDATION
+                res_set.add(constd.OSC_GREEN_CONSOLIDATION)
+            if local_range_count > 20:
+                res_set.add(constd.OSC_GREEN_RANGE_LONG)
         elif local_abs_max > 0:
-            if abs(local_abs_max) <= abs(local_abs_max_previous) / 4:
-                return constd.OSC_RED_WEEK
-            elif abs(local_abs_max) >= abs(local_abs_max_previous) * 4:
-                return constd.OSC_RED_STRONG
+            if abs(local_abs_max) <= abs(local_abs_max_previous) / threshold:
+                res_set.add(constd.OSC_RED_WEEK)
+            elif abs(local_abs_max) >= abs(local_abs_max_previous) * threshold:
+                res_set.add(constd.OSC_RED_STRONG)
             else:
-                return constd.OSC_RED_CONSOLIDATION
+                res_set.add(constd.OSC_RED_CONSOLIDATION)
+            if local_range_count > 20:
+                res_set.add(constd.OSC_RED_RANGE_LONG)
+        return res_set
 
     # 強勢股拉回(日)：MACD 紅柱＋零軸上
     def is_pullback_in_a_uptrend_stock_day(self, df: _pd.DataFrame):
@@ -211,6 +315,7 @@ class Strategy:
             if (
                 prev_peak > first_valley
                 and prev_peak > peak
+                and (prev_peak - peak) > threshold * peak
                 and abs(first_valley - second_valley)
                 <= threshold * abs(peak - first_valley)
                 and peak > first_valley
@@ -240,26 +345,32 @@ class Strategy:
         src_array: _np.ndarray,
         target_array: _np.ndarray,
         window: int = 40,
-    ) -> tuple[bool, str]:
+    ) -> tuple[bool, Optional[set[str]], Optional[dict]]:
         min_len = min(len(src_array), len(target_array))
-        if min_len <= window:
-            return False, f"input data less than window {window}: {min_len}"
+        if min_len < window:
+            print(f"input data less than window {window}: {min_len}")
+            return False, None, None
 
         src_array, target_array = src_array[-window:], target_array[-window:]
 
         # https://stackoverflow.com/questions/77277096/error-in-calculating-dynamic-time-warping
         # do not use scipy.euclidean to avoid: ValueError: Input vector should be 1-D.
         dist = 2
+        res_set = set()
+        is_closing = False
 
         # compare DTW distance for all window and half segments
-        initial_distance, _ = fastdtw(src_array, target_array, dist=dist)
+        dist_all, _ = fastdtw(src_array, target_array, dist=dist)
+        dist_all /= min_len
         midpoint = window // 2
-        first_half_distance, _ = fastdtw(
+        dist_first_half, _ = fastdtw(
             src_array[:midpoint], target_array[:midpoint], dist=dist
         )
-        second_half_distance, _ = fastdtw(
+        dist_first_half /= midpoint
+        dist_last_half, _ = fastdtw(
             src_array[midpoint:], target_array[midpoint:], dist=dist
         )
+        dist_last_half /= min_len - midpoint
 
         # Calculate DTW distance for last 1/3 and last 2/3 segments
         seg_2_3 = window * 2 // 3
@@ -273,45 +384,91 @@ class Strategy:
         dist_last_2_3, _ = fastdtw(
             src_array[-seg_2_3:], target_array[-seg_2_3:], dist=dist
         )
+        dist_last_2_3 /= seg_2_3
         dist_last_1_3, _ = fastdtw(
             src_array[-seg_1_3:], target_array[-seg_1_3:], dist=dist
         )
+        dist_last_1_3 /= seg_1_3
 
         dist_last_2_4, _ = fastdtw(
             src_array[-seg_2_4:], target_array[-seg_2_4:], dist=dist
         )
+        dist_last_2_4 /= seg_2_4
         dist_last_1_4, _ = fastdtw(
             src_array[-seg_1_4:], target_array[-seg_1_4:], dist=dist
         )
+        dist_last_1_4 /= seg_1_4
 
-        print(
-            "trend_closer_to_golden_cross compute res: ",
-            initial_distance,
-            first_half_distance,
-            second_half_distance,
-            dist_last_2_3,
-            dist_last_1_3,
-            dist_last_2_4,
-            dist_last_1_4,
-        )
+        res_dist = {
+            "dist_all": round(float(dist_all), 5),
+            "dist_first_half": round(float(dist_first_half), 5),
+            "dist_last_half": round(float(dist_last_half), 5),
+            "dist_last_2_3": round(float(dist_last_2_3), 5),
+            "dist_last_1_3": round(float(dist_last_1_3), 5),
+            "dist_last_2_4": round(float(dist_last_2_4), 5),
+            "dist_last_2_4": round(float(dist_last_1_4), 5),
+        }
 
         # TODO: refine condition
         # Return True if both conditions are satisfied, indicating closing intent
         if (
-            first_half_distance > second_half_distance
-            and second_half_distance < initial_distance
+            dist_first_half >= dist_last_half
+            and dist_all >= dist_last_half
             # Check if the last 1/3 is closer than the last 2/3
-            and dist_last_1_3 < dist_last_2_3
+            and dist_last_1_3 <= dist_last_2_3
             # Check if the last 1/4 is closer than the last 2/4
-            and dist_last_1_4 < dist_last_2_4
+            and dist_last_1_4 <= dist_last_2_4
         ):
-            return True, "strong closing"
+            res_set.add(constd.LINE_TREND_STRONG_CLOSING_TO_CROSS)
+            is_closing = True
+        elif dist_first_half >= dist_last_half and dist_last_half <= dist_all:
+            res_set.add(constd.LINE_TREND_WEEK_CLOSING_TO_CROSS)
+            is_closing = True
         elif (
-            first_half_distance > second_half_distance
-            and second_half_distance < initial_distance
+            dist_first_half <= dist_last_half
+            and dist_all <= dist_last_half
+            # Check if the last 1/3 is closer than the last 2/3
+            and dist_last_1_3 >= dist_last_2_3
+            # Check if the last 1/4 is closer than the last 2/4
+            and dist_last_1_4 >= dist_last_2_4
         ):
-            return True, "week closing"
-        return False, ""
+            res_set.add(constd.LINE_TREND_STRONG_LEAVING)
+        elif dist_first_half <= dist_last_half and dist_last_half >= dist_all:
+            res_set.add(constd.LINE_TREND_WEEK_LEAVING)
+        else:
+            res_set.add(constd.LINE_TREND_TREAD_UNKNOWN)
+
+        src_df = _pd.DataFrame(src_array, columns=["src"])
+        _, _, gradient = self.smooth_to_line(src_df, "src", window=20)
+        if len(gradient) == 1:
+            if gradient[-1] < 0:
+                res_set.add(constd.LINE_TREND_DOWNWARD)
+                if src_array[0] > target_array[0] and src_array[-1:] < target_array[-1]:
+                    res_set.add(constd.LINE_TREND_CROSS_OVER_DOWNWARD)
+            elif gradient[-1] > 0:
+                res_set.add(constd.LINE_TREND_UPWARD)
+                if src_array[0] < target_array[0] and src_array[-1:] > target_array[-1]:
+                    res_set.add(constd.LINE_TREND_CROSS_OVER_UPWARD)
+        elif len(gradient) == 2:
+            if gradient[0] > 0 and gradient[-1:] < 0:
+                res_set.add(constd.LINE_TREND_NEGATIVE_V)
+            elif gradient[0] < 0 and gradient[-1:] > 0:
+                res_set.add(constd.LINE_TREND_POSITIVE_V)
+            elif gradient[0] > 0 and gradient[1] > 0:
+                res_set.add(constd.LINE_TREND_UPWARD)
+                if gradient[-1:] > gradient[0]:
+                    res_set.add(constd.LINE_TREND_UPWARD_UP)
+            elif gradient[0] < 0 and gradient[1] < 0:
+                res_set.add(constd.LINE_TREND_DOWNWARD)
+                if gradient[-1:] < gradient[0]:
+                    res_set.add(constd.LINE_TREND_DOWNWARD_DOWN)
+            elif gradient[-1] > 0:
+                res_set.add(constd.LINE_TREND_UPWARD)
+            elif gradient[-1] < 0:
+                res_set.add(constd.LINE_TREND_UPWARD)
+            # TODO: 穿越回測, 打Ｎ
+
+        return is_closing, res_set, res_dist
 
     # 旗型，三角收斂，雙底，平台塗破
     def pattern_matcher(self, df: _pd.DataFrame):
@@ -332,9 +489,14 @@ class Strategy:
         return y_filtered
 
     def smooth_to_line(
-        self, df: _pd.DataFrame, column_name: str, tolerance: int = 0.4
+        self, df: _pd.DataFrame, column_name: str, tolerance: int = 0.4, window: int = 0
     ) -> tuple[_np.ndarray, _np.ndarray, _np.ndarray]:
-        x, y = df.index, df[column_name]
+        x, y = _np.ndarray, _np.ndarray
+        if window != 0:
+            df_window = df.tail(window)
+            x, y = df_window.index.to_numpy(), df_window[column_name].to_numpy()
+        else:
+            x, y = df.index, df[column_name]
 
         # Step 1: Apply smoothing method (e.g., moving average)
         # y_smooth = _np.convolve(y, _np.ones(3) / 3, mode='same')
@@ -369,8 +531,9 @@ class Strategy:
         line_y.append(y[-1])
         # Compute the gradient (slope) for each line segment
         gradients = _np.diff(line_y) / _np.diff(line_x)
+        gradients_rounded = _np.round(gradients, 6)
 
-        return _np.array(line_x), _np.array(line_y), gradients
+        return _np.array(line_x), _np.array(line_y), gradients_rounded
 
     def smooth_with_polyfit(
         self,
@@ -429,8 +592,9 @@ class Strategy:
 
         # Step 6: Compute the gradient (slope) for each line segment
         gradients = _np.diff(line_y) / _np.diff(line_x)
+        gradients_rounded = _np.round(gradients, 6)
 
-        return _np.array(line_x), _np.array(line_y), gradients
+        return _np.array(line_x), _np.array(line_y), gradients_rounded
 
     def check_statistic_column(self, df: _pd.DataFrame) -> bool:
         if not self.check_columns_exist(
@@ -443,7 +607,7 @@ class Strategy:
                 "MA138",
                 "DIF",
                 "MACD",
-                "OSI",
+                "OSC",
                 "RSV",
                 "K9",
                 "D9",

@@ -246,3 +246,37 @@ python -m unittest tests.test_strategy
 python -m twstockanalyzer -A d
 python -m twstockanalyzer -A tm
 python -m twstockanalyzer -A tp
+
+
+```py
+        # loop through the OSC column backward
+        for i in range(
+            len(df["OSC"]) - 1, 0, -1
+        ):  # Start from the last index to the first
+            current_value = df["OSC"].iloc[i]
+            previous_value = df["OSC"].iloc[i - 1]
+            cur_count += 1
+
+            # check for sign change
+            if (previous_value > 0 and current_value < 0) or (
+                previous_value < 0 and current_value > 0
+            ):
+                if switch == 0:
+                    local_abs_max = cur
+                    local_range_count = cur_count
+                    switch = switch + 1
+                    cur = 0
+                    cur_count = 0
+                    continue
+                elif switch == 1:
+                    local_abs_max_previous = cur
+                    switch = switch + 1
+                    cur = 0
+                    continue
+                else:
+                    break
+            else:
+                if abs(cur) < abs(previous_value):
+                    cur = previous_value
+
+```

@@ -2,6 +2,19 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Python: Unittest",
+      "type": "debugpy",
+      "request": "launch",
+      "justMyCode": false, // Set to false if you want to debug external libraries too
+      "console": "integratedTerminal",
+      "module": "unittest",
+      "args": [
+          "discover",
+          "-s",
+          "tests" // Change to your tests directory
+      ]
+    },
+    {
       "name": "update stock code (twstockanalyzer -U)",
       "type": "debugpy",
       "request": "launch",
@@ -55,18 +68,5 @@
       "console": "integratedTerminal",
       "justMyCode": true
     },
-    {
-      "name": "Python: Unittest",
-      "type": "debugpy",
-      "request": "launch",
-      "justMyCode": false, // Set to false if you want to debug external libraries too
-      "console": "integratedTerminal",
-      "module": "unittest",
-      "args": [
-          "discover",
-          "-s",
-          "tests" // Change to your tests directory
-      ]
-    }
   ]
 }

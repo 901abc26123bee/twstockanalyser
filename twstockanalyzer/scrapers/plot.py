@@ -25,7 +25,7 @@ class StrategyPlot(Strategy):
         # print(line_x_1)
         # print(line_y_1)
         # print(gradients_1)
-        is_closing, reason = self.check_uptrend_macd(df)
+        is_closing, reason = self.check_macd_trend(df)
         print(is_closing, reason)
 
         # angles_deg = _np.degrees(_np.arctan(gradients))
@@ -114,10 +114,10 @@ class StrategyPlot(Strategy):
             _plt.plot(df.index, df[column], label=column)
 
         # compute line trend cross
-        res = self.trend_closer_to_golden_cross(
+        is_closing, desc, res = self.trend_closer_to_golden_cross(
             df["MA40"].dropna().to_numpy(), df["MA138"].dropna().to_numpy()
         )
-        print(res)
+        print(is_closing, desc, res)
 
         # Customize the plot
         _plt.title("Multi-Column Plot")

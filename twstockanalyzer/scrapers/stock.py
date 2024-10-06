@@ -117,11 +117,20 @@ class Stock:
             last_k9 = df["K9"].iloc[-1]
             if last_k9 > 90:
                 return False, f"K9 too high in {period}: {last_k9}"
+
+        # step3: filter out macd strong download
+        self.strategy.check_osc_stick_heigh()
+
+        # day
+        # osc柱狀圖 < 0（比之前紅著還要長） 且 macd 下降趨勢（長） 且 價格底底低 ，沒有 w底 ，或是(kd > 90)
+        # 且 (上一級osc柱狀圖<0 且 且 沒收腳 macd < 0 且 macd 下降趨勢（長）) ，或是(kd > 90)
+        # 且 (上一級osc柱狀圖<0 且 沒收腳 且 macd < 0 且 macd 下降趨勢（長）) ，或是(kd > 90)
+
+        # step4: tag stocks with buy point
+
         return True, ""
 
-        # step3: tag stocks with buy point
-
-    def check_minute_exist_buy_point(
+    def check_minute_safe_to_buy(
         self, m15_df: _pd.DataFrame, m30_df: _pd.DataFrame, m60_df: _pd.DataFrame
     ) -> tuple[bool, str]:
         # filter out stocks with excessively high KDs
@@ -136,6 +145,12 @@ class Stock:
             if last_k9 > 90:
                 return False, f"K9 too high in {period}: {last_k9}"
         return True, ""
+
+    def check_day_exist_buy_point():
+        pass
+
+    def check_minute_exist_buy_point():
+        pass
 
     def _test_macd(self, period: str):
         # day_df = self.fetcher.fetch_day_max()
@@ -161,3 +176,9 @@ class Stock:
 
     def is_in_price_range(self, value: int, top: int = 300, bottom: int = 10) -> bool:
         return bottom <= value < top
+
+    # minute(do not touch condition)
+    # macd臨軸下且綠柱,且(macd沒有上升趨勢 or 價格底底低 or 沒有 w底)，或是(kd > 90)
+    # 且 (上一級osc柱狀圖<0且macd < 0) or (40 ma < 138 ma and 40 ma 扣高)
+    # macd臨軸上且綠柱且下降趨勢，綠柱,或是(kd > 90)，
+    # 且 (上一級osc柱狀圖<0 且 macd < 0 且 macd 下降趨勢（長）) or (40 ma < 138 ma and 40 ma 扣高)

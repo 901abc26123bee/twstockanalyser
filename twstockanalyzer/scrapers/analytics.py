@@ -42,10 +42,10 @@ class Analysis:
 
         df["DIF"] = df["EMA_SHORT"] - df["EMA_LONG"]
         df["MACD"] = df["DIF"].ewm(span=signal_window, adjust=False).mean()
-        df["OSI"] = df["MACD"] - df["DIF"]
+        df["OSC"] = df["MACD"] - df["DIF"]
 
         # # returns a view (or a slice) of the same underlying DataFrame with only the specified columns
-        # return df[['DIF', 'MACD', 'OSI']]
+        # return df[['DIF', 'MACD', 'OSC']]
 
     def stochastic(
         self, df: _pd.DataFrame, window: int = 9, k_period: int = 9, d_period: int = 3
