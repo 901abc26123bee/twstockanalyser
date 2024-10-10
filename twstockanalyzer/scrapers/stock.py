@@ -4,12 +4,14 @@
 # Usage:
 #
 
+import pandas as _pd
 from twstockanalyzer.scrapers.history import PriceHistoryFetcher
 from twstockanalyzer.scrapers.history import PriceHistoryLoader
 from twstockanalyzer.scrapers.analytics import Analysis
-from twstockanalyzer.scrapers.strategy import Strategy
-from twstockanalyzer.scrapers.plot import StrategyPlot
-import pandas as _pd
+from twstockanalyzer.strategy.ma import MovingAverageStrategy
+from twstockanalyzer.strategy.macd import MACDIndicatorStrategy
+from twstockanalyzer.strategy.plot import StrategyPlot
+import twstockanalyzer.strategy.const as constd
 
 
 class Stock:
@@ -17,7 +19,8 @@ class Stock:
         self.code = code
         self.fetcher = PriceHistoryFetcher(code, suffix)
         self.analysis = Analysis()
-        self.strategy = Strategy()
+        self.ma_strategy = MovingAverageStrategy()
+        self.macd_strategy = MACDIndicatorStrategy()
         self._strategy_plot = StrategyPlot()
 
     def cal_statistic(self, df: _pd.DataFrame):
@@ -75,7 +78,7 @@ class Stock:
         self.cal_statistic(m60_df)
         self.cal_statistic(m30_df)
         self.cal_statistic(m15_df)
-        is_safe_2, reason2 = self.check_minute_exist_buy_point(
+        is_safe_2, reason2 = self.check_minute_safe_to_buy(
             m15_df=m15_df, m30_df=m30_df, m60_df=m60_df
         )
         if not is_safe_2:
@@ -96,9 +99,9 @@ class Stock:
         self, day_df: _pd.DataFrame, week_df: _pd.DataFrame, month_df: _pd.DataFrame
     ) -> tuple[bool, str]:
         # step1: filter out stocks with down trend prices(日週月日落)
-        n1, reason_day = self.strategy.do_not_touch(day_df)
-        n2, reason_week = self.strategy.do_not_touch(week_df)
-        n3, reason_month = self.strategy.do_not_touch(month_df)
+        n1, reason_day = self.ma_strategy.do_not_touch(day_df)
+        n2, reason_week = self.ma_strategy.do_not_touch(week_df)
+        n3, reason_month = self.ma_strategy.do_not_touch(month_df)
         if n1 and n2 and n3:
             return False, (
                 f"do_not_touch: day{reason_day}, "
@@ -115,20 +118,49 @@ class Stock:
             return False, "not enough data to check_minute_exist_buy_point"
         for period, df in zip(["month", "week", "day"], [month_df, week_df, day_df]):
             last_k9 = df["K9"].iloc[-1]
-            if last_k9 > 90:
-                return False, f"K9 too high in {period}: {last_k9}"
+            last_D9 = df["D9"].iloc[-1]
+            if last_k9 > 88 or last_D9 > 89:
+                return (
+                    False,
+                    f"K9, D9 too high in {period}: K9: {last_k9}, D9: {last_D9}",
+                )
 
         # step3: filter out macd strong download
-        self.strategy.check_osc_stick_heigh()
+        week_macd_up, week_macd_res = self.macd_strategy.check_macd_trend(week_df)
+        day_macd_up, day_macd_res = self.macd_strategy.check_macd_trend(day_df)
+        unsafe_macd_cond = [
+            constd.MACD_BELOW_MIDDLE,
+            constd.MACD_SHOW_DOWN_DOWN_TREND,
+        ]
 
-        # day
+        if constd.MACD_DO_NOT_TOUCH in week_macd_res:
+            return False, f"failed macd check for week_df: {week_macd_res}"
+        elif set(unsafe_macd_cond).issubset(week_macd_res) and set(
+            unsafe_macd_cond
+        ).issubset(day_macd_res):
+            return False, f"failed macd check for week_df: {week_macd_res}"
+
+        # if constd.MACD_DO_NOT_TOUCH in day_macd_res:
+        #     return False, f"failed macd check for day_macd_res: {day_df}"
+        # elif (
+        #     constd.MACD_SHOW_DOWN_TREND in day_macd_res
+        #     and constd.MACD_SHOW_DOWN_TREND in day_macd_res
+        # ):
+        #     return (
+        #         False,
+        #         f"failed macd check for day_macd_res: {constd.MACD_SHOW_DOWN_TREND} in both day and week",
+        #     )
+
+        # step4: check ma
         # osc柱狀圖 < 0（比之前紅著還要長） 且 macd 下降趨勢（長） 且 價格底底低 ，沒有 w底 ，或是(kd > 90)
         # 且 (上一級osc柱狀圖<0 且 且 沒收腳 macd < 0 且 macd 下降趨勢（長）) ，或是(kd > 90)
         # 且 (上一級osc柱狀圖<0 且 沒收腳 且 macd < 0 且 macd 下降趨勢（長）) ，或是(kd > 90)
 
-        # step4: tag stocks with buy point
+        # step5: tag stocks with buy point
 
-        return True, ""
+        return (
+            week_macd_up and day_macd_up
+        ), f"day: {day_macd_res}, week: {week_macd_res}"
 
     def check_minute_safe_to_buy(
         self, m15_df: _pd.DataFrame, m30_df: _pd.DataFrame, m60_df: _pd.DataFrame
@@ -142,15 +174,63 @@ class Stock:
             return False, "not enough data to check_minute_exist_buy_point"
         for period, df in zip(["60m", "30m", "15m"], [m60_df, m30_df, m15_df]):
             last_k9 = df["K9"].iloc[-1]
-            if last_k9 > 90:
-                return False, f"K9 too high in {period}: {last_k9}"
-        return True, ""
+            last_D9 = df["D9"].iloc[-1]
+            if last_k9 > 88 or last_D9 > 88:
+                return (
+                    False,
+                    f"K9, D9 too high in {period}: K9: {last_k9}, D9: {last_D9}",
+                )
 
-    def check_day_exist_buy_point():
-        pass
+        safe_to_buy = False
+        # step3: filter out macd strong download
+        m60_macd_up, m60_macd_res = self.macd_strategy.check_macd_trend(m60_df)
+        m30_macd_up, m30_macd_res = self.macd_strategy.check_macd_trend(m30_df)
+        bad_cond_1 = [
+            constd.MACD_BELOW_MIDDLE,
+            constd.MACD_SHOW_DOWN_DOWN_TREND,
+        ]
+        bad_cond_2 = [
+            constd.MACD_SHOW_DOWN_TREND,
+            constd.MACD_BELOW_MIDDLE,
+        ]
+        if constd.MACD_DO_NOT_TOUCH in m60_macd_res:
+            return False, f"failed macd check for 60 min: {m60_macd_res}"
+        elif set(bad_cond_1).issubset(m60_macd_res):
+            return False, f"failed macd check for 60 min: {m60_macd_res}"
 
-    def check_minute_exist_buy_point():
-        pass
+        if constd.MACD_DO_NOT_TOUCH in m30_macd_res:
+            return False, f"failed macd check for 30 min: {m30_macd_res}"
+        elif set(bad_cond_2).issubset(m30_macd_res) and set(bad_cond_2).issubset(
+            m60_macd_res
+        ):
+            return (
+                False,
+                f"failed macd check for 30 min: {constd.MACD_SHOW_DOWN_TREND} in 60 min and 30 min",
+            )
+
+        # check ma
+        m60_ma_set = self.ma_strategy.check_ma(m60_df)
+        m30_ma_set = self.ma_strategy.check_ma(m30_df)
+        if (
+            constd.MA40_ABOVE_MA138 in m60_ma_set
+            # or constd.MA40_ABOVE_LEAVING_MA138 in m60_ma_set
+            # or constd.MA40_CROSS_OVER_MA138_UPWARD in m60_ma_set
+            or constd.MA40_ABOVE_MA138 in m30_ma_set
+            # or constd.MA40_ABOVE_LEAVING_MA138 in m30_ma_set
+            # or constd.MA40_CROSS_OVER_MA138_UPWARD in m30_ma_set
+        ):
+            safe_to_buy = True
+
+        return (
+            (safe_to_buy and m60_macd_up and m30_macd_up),
+            f"60min macd: {m60_macd_res}, 30min macd: {m30_macd_res}, 60min 40ma: {m60_ma_set}, 30min 40ma {m30_ma_set}",
+        )
+
+    # def check_day_exist_buy_point():
+    #     pass
+
+    # def check_minute_exist_buy_point():
+    #     pass
 
     def _test_macd(self, period: str):
         # day_df = self.fetcher.fetch_day_max()

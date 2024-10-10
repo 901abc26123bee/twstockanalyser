@@ -4,7 +4,7 @@
 # Usage: Download all stock information related to stockholders
 #
 
-import twstockanalyzer.scrapers.const as scraperConst
+import twstockanalyzer.strategy.const as scraperConst
 
 
 class StockHolderFetcher:

@@ -5,8 +5,6 @@
 #
 
 import pandas as _pd
-import numpy as _np
-import matplotlib.pyplot as plt
 
 
 class Analysis:

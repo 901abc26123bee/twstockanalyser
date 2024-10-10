@@ -10,7 +10,7 @@ import yfinance as _yf
 import pandas as _pd
 from typing import Optional
 from collections import namedtuple as _namedtuple
-from twstockanalyzer.scrapers.const import (
+from twstockanalyzer.strategy.const import (
     STOCK_DATA_FOLDER,
     CSV_EXTENSION,
 )
@@ -102,6 +102,7 @@ class PriceHistoryFetcher:
         if data.empty:
             print(f"No data returned for the given {self._symbol} with interval 60 min")
             return None
+        self._purify(data)
         return _pd.DataFrame(data)
 
     def fetch_30_min_series_max(self) -> Optional[_pd.DataFrame]:
@@ -111,6 +112,7 @@ class PriceHistoryFetcher:
         if data.empty:
             print(f"No data returned for the given {self._symbol} with interval 30 min")
             return None
+        self._purify(data)
         return _pd.DataFrame(data)
 
     def fetch_15_min_series_max(self) -> Optional[_pd.DataFrame]:
@@ -120,6 +122,7 @@ class PriceHistoryFetcher:
         if data.empty:
             print(f"No data returned for the given {self._symbol} with interval 15 min")
             return None
+        self._purify(data)
         return _pd.DataFrame(data)
 
     def download_csv(
@@ -217,10 +220,13 @@ class PriceHistoryFetcher:
 
     def _purify(self, df: _pd.DataFrame):
         if df.index.name == "Date":
+            # Set an auto-incrementing index to avoid number compute error due to index with datetime
             df.reset_index(inplace=True)
             df.rename(columns={"Date": "Datetime"}, inplace=True)
-            df.set_index("Datetime", inplace=True)
+            # df.set_index("Datetime", inplace=True)
         else:
+            # Set an auto-incrementing index to avoid number compute error due to index with datetime
+            df.reset_index(inplace=True)
             df.rename(columns={"Date": "Datetime"}, inplace=True)
 
 
@@ -249,6 +255,8 @@ class PriceHistoryLoader:
                         usecols=["Datetime", "Open", "High", "Low", "Close", "Volume"],
                     )
 
+                    # Set an auto-incrementing index to avoid number compute error due to index with datetime
+                    df.reset_index(drop=True, inplace=True)
                     # use the filename (without path and extension) as the key for the dictionary
                     key = os.path.splitext(os.path.basename(csv_file))[0]
                     dataframes[key] = df

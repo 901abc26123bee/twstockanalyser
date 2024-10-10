@@ -11,7 +11,7 @@
       "args": [
           "discover",
           "-s",
-          "tests" // Change to your tests directory
+          "tests/strategy" // Change to your tests directory
       ]
     },
     {
@@ -46,7 +46,7 @@
       "type": "debugpy",
       "request": "launch",
       "module": "twstockanalyzer",
-      "args": ["-A", "td"],
+      "args": ["-A", "tm"],
       "console": "integratedTerminal",
       "justMyCode": true
     },
@@ -60,11 +60,11 @@
       "justMyCode": true
     },
     {
-      "name": "stock holders (twstockanalyzer -H)",
+      "name": "apply_strategy (python -m twstockanalyzer -A apply_strategy)",
       "type": "debugpy",
       "request": "launch",
       "module": "twstockanalyzer",
-      "args": ["-H"],
+      "args": ["-A", "apply_strategy"],
       "console": "integratedTerminal",
       "justMyCode": true
     },

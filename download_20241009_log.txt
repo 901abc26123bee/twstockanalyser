@@ -1,0 +1,28 @@
+Start to fetch stock prices history
+Start to fetch stock prices history
+Start to fetch stock prices history
+failed to check_ma due to empty data
+finish download 1240
+Stock 1259 is unsafe to buy in day, week, month: day: {'MACD 上升趨勢', 'MACD 下降趨勢的回測', 'macd零軸下'}, week: {'MACD 下降趨勢', 'macd零軸下'}
+Stock 1264 ot of price range: 317.0
+Stock 1268 is unsafe to buy in day, week, month: day: {'MACD 上升趨勢', 'MACD 下降趨勢的回測', 'macd零軸下'}, week: {'MACD 下降趨勢'}
+Stock 1336 is unsafe to buy in 60m, 30m, 15m: failed macd check for 30 min: MACD 下降趨勢 in 60 min and 30 min
+finish download 1336
+Stock 1565 is unsafe to buy in day, week, month: day: {'MACD 上升趨勢', 'macd零軸上'}, week: {'MACD 下降趨勢的回測', 'macd零軸下'}
+Stock 1569 is unsafe to buy in 60m, 30m, 15m: 60min macd: {'MACD 上升趨勢', 'MACD 下降趨勢', 'macd零軸上', 'MACD 上升趨勢的回測'}, 30min macd: {'MACD 下降趨勢', 'macd零軸上'}, 60min 40ma: {'40 均線在 138 均線上'}, 30min 40ma {'40 均線在 138 均線上'}
+finish download 1569
+Stock 1570 is unsafe to buy in 60m, 30m, 15m: 60min macd: {'MACD 上升趨勢', 'MACD 下降趨勢', 'MACD 上升趨勢的回測', 'macd零軸下'}, 30min macd: {'MACD 下降趨勢', 'MACD 上升趨勢的回測'}, 60min 40ma: {'40 均線在 138 均線下'}, 30min 40ma {'40 均線在 138 均線下'}
+finish download 1570
+Stock 1580 is unsafe to buy in day, week, month: day: {'MACD 上升趨勢', 'MACD 下降趨勢', 'MACD 下降趨勢的回測', 'macd零軸下'}, week: {'MACD 下降趨勢'}
+Stock 1584 is unsafe to buy in day, week, month: day: {'MACD 下降趨勢', 'macd零軸上'}, week: {'MACD 上升趨勢', 'macd零軸上'}
+Stock 1586 is unsafe to buy in 60m, 30m, 15m: 60min macd: {'MACD 下降趨勢', 'macd零軸下'}, 30min macd: {'MACD 上升趨勢', 'MACD 上升趨勢的回測', 'macd零軸下'}, 60min 40ma: {'40 均線在 138 均線上'}, 30min 40ma {'40 均線在 138 均線下'}
+finish download 1586
+Stock 1591 is unsafe to buy in day, week, month: do_not_touch: day向下趨勢股票[MA5向下 + 最高價<MA5 + 黑k], week向下趨勢股票[MA5向下 + 最高價<MA5 + 黑k], month向下趨勢股票[MA5向下 + 最高價<MA5 + 黑k]
+failed to check_ma due to empty data
+Stock 1593 is unsafe to buy in 60m, 30m, 15m: 60min macd: {'MACD 下降趨勢', 'macd零軸下'}, 30min macd: {'MACD 上升趨勢', 'MACD 下降趨勢的回測', 'macd零軸下'}, 60min 40ma: {'40 均線在 138 均線上'}, 30min 40ma set()
+finish download 1593
+Stock 1595 is unsafe to buy in 60m, 30m, 15m: K9, D9 too high in 15m: K9: 99.64444444444445, D9: 97.73472222222222
+finish download 1595
+Stock 1599 is unsafe to buy in 60m, 30m, 15m: failed macd check for 30 min: MACD 下降趨勢 in 60 min and 30 min
+finish download 1599
+Stock 1742 is unsafe to buy in day, week, month: day: {'MACD 上升趨勢', 'macd零軸上'}, week: {'MACD 下降趨勢的回測', 'MACD 下降趨勢', 'macd零軸上'}

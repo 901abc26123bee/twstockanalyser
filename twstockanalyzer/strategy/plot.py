@@ -8,24 +8,29 @@ import pandas as _pd
 import numpy as _np
 import matplotlib.pyplot as _plt
 
-from twstockanalyzer.scrapers.strategy import Strategy
+from twstockanalyzer.strategy.ma import MovingAverageStrategy
+from twstockanalyzer.strategy.macd import MACDIndicatorStrategy
+
+# for child can access parent method
+from twstockanalyzer.strategy.base import *
 
 
 class StrategyPlot(Strategy):
     def __init__(self):
-        pass
+        self.macd_strategy = MACDIndicatorStrategy
+        self.ma_strategy = MovingAverageStrategy
 
     def _draw_macd_curve_to_line(self, df: _pd.DataFrame, column_name: str):
         x, y = df.index, df[column_name]
         #  Convert the curve to line with a certain tolerance and get gradients
-        line_x, line_y, gradients = self.smooth_to_line(df, "MACD", tolerance=0.4)
+        line_x, line_y, gradients = self.smooth_to_line(df=df, column_name="MACD")
         line_x_1, line_y_1, gradients_1 = self.smooth_with_polyfit(
             df, "MACD", degree=120, tolerance=0.2
         )
         # print(line_x_1)
         # print(line_y_1)
         # print(gradients_1)
-        is_closing, reason = self.check_macd_trend(df)
+        is_closing, reason = self.macd_strategy.check_macd_trend(df)
         print(is_closing, reason)
 
         # angles_deg = _np.degrees(_np.arctan(gradients))

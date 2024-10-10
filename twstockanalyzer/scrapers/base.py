@@ -5,9 +5,10 @@
 #
 
 import time
+import pandas as _pd
 from twstockanalyzer.scrapers.stock import Stock
 from twstockanalyzer.scrapers.history import PriceHistoryLoader
-from twstockanalyzer.scrapers.const import TWSE_STOCK_SUFFIX_TW, TPEX_STOCK_SUFFIX_TWO
+from twstockanalyzer.strategy.const import TWSE_STOCK_SUFFIX_TW, TPEX_STOCK_SUFFIX_TWO
 
 try:
     from twstockanalyzer.codes import tpex, twse
@@ -96,6 +97,14 @@ class BaseFetcher:
         sorted_numbers = sorted(number_set)
 
         # apply strategy for all collected stock and apply strategy
+        period_dfs = {
+            "day": _pd.DataFrame(),
+            "week": _pd.DataFrame(),
+            "month": _pd.DataFrame(),
+            "60m": _pd.DataFrame(),
+            "30m": _pd.DataFrame(),
+            "15m": _pd.DataFrame(),
+        }
         for code in sorted_numbers:
             suffix_type = TWSE_STOCK_SUFFIX_TW
             if code in self._tpex_code_set:
@@ -106,19 +115,45 @@ class BaseFetcher:
             print("------------------------------")
             for period in period_set:
                 file_name = f"{code}_{period}"
-                period_prices = stock_prices_dict[file_name]
-                stock.cal_statistic(period_prices)
-                # macd
-                b, reason = stock.strategy.check_macd_trend(period_prices)
-                osc_desc = stock.strategy.check_osc_stick_heigh(period_prices)
+                period_df = stock_prices_dict[file_name]
+                stock.cal_statistic(period_df)
+                period_dfs[period] = period_df
 
-                # print(f"{file_name}: {b}, {reason}")
-                stock.strategy.check_ma(period_prices)
-                if period == "day" or period == "week" or period == "month":
-                    if b or period_prices["OSC"].iloc[-1] > 0:
-                        print(f"{file_name}: {b}, {reason}, {osc_desc}")
-                if period == "60m" or period == "30m" or period == "15m":
-                    if period_prices["MA40"].iloc[-1] > period_prices["MA138"].iloc[-1]:
-                        print(f"{file_name}: ma40 > ma138")
-                    if b:
-                        print(f"{file_name}: {b}, {reason}, {osc_desc}")
+            safe_to_buy_day, reason_day = stock.check_day_week_month_safe_to_buy(
+                day_df=period_dfs["day"],
+                week_df=period_dfs["week"],
+                month_df=period_dfs["month"],
+            )
+            if not safe_to_buy_day:
+                print(f"Unsafe to buy in day, week, month: {code} : {reason_day}")
+
+            safe_to_buy_minute, reason_minute = stock.check_minute_safe_to_buy(
+                m15_df=period_dfs["15m"],
+                m30_df=period_dfs["30m"],
+                m60_df=period_dfs["60m"],
+            )
+            if not safe_to_buy_minute:
+                print(f"Unsafe to buy in minute: {code}: {reason_minute}")
+
+            if safe_to_buy_day and safe_to_buy_minute:
+                dd9 = period_dfs["day"]["D9"].iloc[-1]
+                wd9 = period_dfs["week"]["D9"].iloc[-1]
+                if dd9 < 82 and wd9 < 82:
+                    print(
+                        f"$$$ Safe to buy {file_name}: day: {reason_day}, minute: {reason_minute}, dd9: {dd9}, wd9: {wd9}"
+                    )
+
+            # macd
+            # b, reason = stock.strategy.check_macd_trend(period_prices)
+            # osc_desc = stock.strategy.check_osc_stick_heigh(period_prices)
+
+            # # print(f"{file_name}: {b}, {reason}")
+            # stock.strategy.check_ma(period_prices)
+            # if period == "day" or period == "week" or period == "month":
+            #     if b or period_prices["OSC"].iloc[-1] > 0:
+            #         print(f"{file_name}: {b}, {reason}, {osc_desc}")
+            # if period == "60m" or period == "30m" or period == "15m":
+            #     if period_prices["MA40"].iloc[-1] > period_prices["MA138"].iloc[-1]:
+            #         print(f"{file_name}: ma40 > ma138")
+            #     if b:
+            #         print(f"{file_name}: {b}, {reason}, {osc_desc}")

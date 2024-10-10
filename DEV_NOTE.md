@@ -205,6 +205,10 @@ git reset --hard origin/master: This forcefully resets your local master branch 
 [Error in calculating Dynamic Time Warping](https://stackoverflow.com/questions/77277096/error-in-calculating-dynamic-time-warping)
 
 
+### py object orient
+[Python Child cannot use a Module the Parent Imported](https://stackoverflow.com/questions/8957859/python-child-cannot-use-a-module-the-parent-imported)
+
+
 ### unit test
 [Python Unit test module throws "ModuleNotFoundError: No module named 'tests.test_file'"](https://stackoverflow.com/questions/56780892/python-unit-test-module-throws-modulenotfounderror-no-module-named-tests-test)
 
@@ -239,6 +243,13 @@ python -m unittest discover -s tests
 
 # directly run the test file
 python -m unittest tests.test_strategy
+
+
+# directly run the test folder
+python -m unittest discover -s tests/strategy
+
+
+# pytest tests/
 ```
 
 ### command
@@ -248,35 +259,5 @@ python -m twstockanalyzer -A tm
 python -m twstockanalyzer -A tp
 
 
-```py
-        # loop through the OSC column backward
-        for i in range(
-            len(df["OSC"]) - 1, 0, -1
-        ):  # Start from the last index to the first
-            current_value = df["OSC"].iloc[i]
-            previous_value = df["OSC"].iloc[i - 1]
-            cur_count += 1
 
-            # check for sign change
-            if (previous_value > 0 and current_value < 0) or (
-                previous_value < 0 and current_value > 0
-            ):
-                if switch == 0:
-                    local_abs_max = cur
-                    local_range_count = cur_count
-                    switch = switch + 1
-                    cur = 0
-                    cur_count = 0
-                    continue
-                elif switch == 1:
-                    local_abs_max_previous = cur
-                    switch = switch + 1
-                    cur = 0
-                    continue
-                else:
-                    break
-            else:
-                if abs(cur) < abs(previous_value):
-                    cur = previous_value
-
-```
+'MACD 上升趨勢的回測' 誤判
