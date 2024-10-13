@@ -237,6 +237,10 @@ class PriceHistoryLoader:
     def load_from_downloaded_csv(
         self, root_dir: str = STOCK_DATA_FOLDER
     ) -> dict[str, _pd.DataFrame]:
+        """
+        load_from_downloaded_csv load all csv file a folder
+        and return a dataFrame dict with file name as key
+        """
         # create an empty dictionary to store DataFrames
         dataframes = {}
 

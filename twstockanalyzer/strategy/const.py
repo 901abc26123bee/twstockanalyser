@@ -23,16 +23,21 @@ LINE_SRC_CROSSOVER_TARGET_DOWNWARD = "死亡交叉(src < target)"
 LINE_CLOSER_TREAD_UNKNOWN = "unknown"
 
 
-LINE_TREND_UPWARD = "向上線型"
-LINE_TREND_DOWNWARD = "向下線型"
-LINE_TREND_UPWARD_UP = "向上開花(向上開花角度變大)"
-LINE_TREND_DOWNWARD_DOWN = "向下開花(向下開花角度變大)"
+# find_line_pattern_and_trend
+LINE_TREND_LATEST_UPWARD = "向上線型"
+LINE_TREND_LATEST_DOWNWARD = "向下線型"
+LINE_TREND_UPWARD_AGGRESSIVE = "向上開花(向上開花角度變大)"
+LINE_TREND_DOWNWARD_AGGRESSIVE = "向下開花(向下開花角度變大)"
+LINE_TREND_UPWARD_SLOWDOWN = "向上趨勢放緩(斜率為正)"
+LINE_TREND_DOWNWARD_SLOWDOWN = "向下趨勢放緩(斜率為負)"
 
-LINE_TREND_POSITIVE_V = "正Ｖ向上反轉"
-LINE_TREND_NEGATIVE_V = "反Ｖ向下反轉"
+LINE_TREND_DECREASING_BOTTOM = "多重底，底底低(2-3)"
+LINE_TREND_INCREASING_BOTTOM = "多重底，底底高(2-3)"
+# LINE_TREND_PATTERN_BOTTOM_W = "W底(中間高點小於前面高點)"
+# LINE_TREND_PATTERN_N_UP = "N底的(中間部分走平，或是弱向下趨勢)"
 
-# 價格型態
-PATTERN_BOTTOM_W = "W底"
+LINE_TREND_UPWARD_BACKTEST = "向上趨勢的回測(向下線型長度或高度小於前一個向上線型)"
+LINE_TREND_DOWNWARD_BACKTEST = "向下趨勢的回測(向下線型長度或高度大於於前一個向上線型)"
 
 
 # ---------------------------- macd.py ----------------------------
@@ -51,18 +56,18 @@ OSC_GREEN_RANGE_LONG = "OSC 綠柱範圍長"
 
 # check_osc_stick_heigh_in_multi_period
 
-# check_macd_trend
+# check_macd_trend(for day, 60m)
 MACD_DO_NOT_TOUCH = "OSC 強綠柱 + OSC 綠柱範圍長 + macd零軸下 範圍長 + MACD 下降趨勢"
 
 MACD_ABOVE_MIDDLE = "macd零軸上"
 MACD_BELOW_MIDDLE = "macd零軸下"
 
-MACD_SHOW_UP_TREND = "MACD 上升趨勢"
-MACD_SHOW_DOWN_TREND = "MACD 下降趨勢"
-MACD_SHOW_UP_UP_TREND = "MACD 上升加劇趨勢"
-MACD_SHOW_DOWN_DOWN_TREND = "MACD 下降加劇趨勢"
-MACD_BACKTEST_IN_UP_TREND = "MACD 上升趨勢的回測"
-MACD_BACKTEST_IN_DOWN_TREND = "MACD 下降趨勢的回測"
+MACD_LATEST_UPTREND = "MACD 上升趨勢"
+MACD_LATEST_DOWNTREND = "MACD 下降趨勢"
+MACD_UPTREND_AGGRESSIVE = "MACD 上升加劇趨勢"
+MACD_DOWNTREND_AGGRESSIVE = "MACD 下降加劇趨勢"
+MACD_UPTREND_BACKTEST = "MACD 上升趨勢的回測"
+MACD_DOWNTREND_BACKTEST = "MACD 下降趨勢的回測"
 
 MACD_CLOSING_MIDDLE_FROM_BOTTOM = "MACD 從下方靠近軸線"
 MACD_CLOSING_MIDDLE_FROM_ABOVE = "MACD 從上方靠近軸線"

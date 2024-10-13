@@ -135,6 +135,7 @@ class MACDStrategyTest(unittest.TestCase):
         data_do_not_touch = {
             "MACD": data_do_not_touch_array,
             "OSC": data_do_not_touch_array,
+            "DIF": data_do_not_touch_array,
         }
         is_up_trend, result = self.macd_strategy.check_macd_trend(
             _pd.DataFrame(data_do_not_touch)
@@ -146,7 +147,7 @@ class MACDStrategyTest(unittest.TestCase):
     def test_check_uptrend_macd_closing_from_bottom(self):
         pass
 
-    def test_check_uptrend_macd_backtest_in_uptrend(self):
+    def test_check_uptrend_macd_uptrend_backtest(self):
         backtest_in_uptrend_array = [
             -0.071,
             -0.6,
@@ -185,6 +186,7 @@ class MACDStrategyTest(unittest.TestCase):
         data_do_not_touch = {
             "MACD": backtest_in_uptrend_array,
             "OSC": backtest_in_uptrend_array,
+            "DIF": backtest_in_uptrend_array,
         }
         is_up_trend, result = self.macd_strategy.check_macd_trend(
             _pd.DataFrame(data_do_not_touch)
@@ -194,7 +196,11 @@ class MACDStrategyTest(unittest.TestCase):
             result,
             {
                 constd.MACD_CLOSING_MIDDLE_FROM_BOTTOM,
-                constd.MACD_BACKTEST_IN_UP_TREND,
-                constd.MACD_SHOW_DOWN_TREND,
+                constd.MACD_UPTREND_BACKTEST,
+                constd.MACD_LATEST_DOWNTREND,
+                constd.MACD_BELOW_MIDDLE,
             },
         )
+
+    def test_check_uptrend_macd_duck(self):
+        pass

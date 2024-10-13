@@ -2,18 +2,43 @@ import unittest
 import pandas as _pd
 import numpy as _np
 from twstockanalyzer.strategy.base import Strategy
+from twstockanalyzer.strategy.plot import StrategyPlot
+from twstockanalyzer.strategy.macd import MACDIndicatorStrategy
+from twstockanalyzer.scrapers.history import PriceHistoryLoader
+from twstockanalyzer.scrapers.analytics import Analysis
+
 import twstockanalyzer.strategy.const as constd
 
 
 class StrategyTest(unittest.TestCase):
     def setUp(self):
         self.strategy = Strategy()
+        self.plotter = StrategyPlot()
+        self.loader = PriceHistoryLoader()
+        self.analytics = Analysis()
+        self.macdstratrgy = MACDIndicatorStrategy()
+        # run "python -m unittest discover -s tests/strategy" at the root of project twstockanalyzer
+        folder_path = "./tests/strategy/data/周主升段/"
+        df_dict = self.loader.load_from_downloaded_csv(folder_path)
+        self.week_4576 = df_dict["4576_week"]
+        self.analytics.macd(self.week_4576)
+        self.week_1595 = df_dict["1595_week"]
+        self.analytics.macd(self.week_1595)
 
     def test_smooth_to_line_with_empty_data(self):
-        pass
+        empty_df = _pd.DataFrame({"test": []})
+        with self.assertRaises(ValueError) as context:
+            self.strategy.smooth_to_line(empty_df, "test")
+        self.assertEqual(
+            str(context.exception), "Error: empty data for test column in df."
+        )
 
-    def test_smooth_to_line_with_too_few_data(self):
-        pass
+    def test_smooth_to_line_with_few_data(self):
+        few_data_df = _pd.DataFrame({"test": [1, 3, 4, 3, 5, 6]})
+        line_x, line_y, gradient = self.strategy.smooth_to_line(few_data_df, "test")
+        self.assertEqual(line_x.tolist(), [0, 3, 5])
+        self.assertEqual(line_y.tolist(), [1, 3, 6])
+        self.assertEqual(gradient.tolist(), [0.666667, 1.5])
 
     def test_smooth_to_line_with_0_pivot(self):
         pass
@@ -24,22 +49,21 @@ class StrategyTest(unittest.TestCase):
     def test_smooth_to_line_with_4_pivot(self):
         pass
 
-    def test_smooth_to_line_with_7_pivot(self):
-        pass
-
     def test_smooth_with_polyfit_with_empty_data(self):
+        empty_df = _pd.DataFrame({"test": []})
+        with self.assertRaises(ValueError) as context:
+            self.strategy.smooth_with_polyfit(empty_df, "test")
+        self.assertEqual(
+            str(context.exception), "Error: empty data for test column in df."
+        )
+
+    def test_smooth_with_polyfit_with_few_data(self):
         pass
 
-    def test_smooth_with_polyfit_with_too_few_data(self):
+    def test_smooth_with_polyfit_with_2_pivot(self):
         pass
 
-    def test_smooth_with_polyfit_with_0_pivot(self):
-        pass
-
-    def test_smooth_with_polyfit_with_3_pivot(self):
-        pass
-
-    def test_smooth_with_polyfit_with_6_pivot(self):
+    def test_smooth_with_polyfit_with_5_pivot(self):
         pass
 
     # 40均大於138均，開口向上
@@ -306,3 +330,106 @@ class StrategyTest(unittest.TestCase):
         line_y = _np.array([6, 1, 3, -2, 4, 1, 5])
         result = self.strategy.find_latest_w_pattern(line_x, line_y)
         self.assertIsNone(result)
+
+    def test_find_latest_pivots(self):
+        array_1 = _np.array([1, 3, 2, 4, 3, 5, 4, 6, 5])
+
+        array_2 = _np.array([4, 2, 3, 1, 2, -1, 0, -2, -1, 1])
+
+        array_no_pivot = _np.array([1, 2, 3, 4, 5, 6, 7, 8])
+
+        result = self.strategy.find_latest_pivots(array_1, "peak", count=2)
+        expected = (5, 6)  # Last two peaks in (3,4,5,6)
+        self.assertEqual(result, expected)
+
+        result = self.strategy.find_latest_pivots(array_2, "bottom", count=4)
+        expected = (2, 1, -1, -2)  # Last two bottoms
+        self.assertEqual(result, expected)
+
+        result = self.strategy.find_latest_pivots(array_2, "peak", count=10)
+        expected = (3, 2, 0, 1)  # exceed all peaks
+        self.assertEqual(result, expected)
+
+        result = self.strategy.find_latest_pivots(array_no_pivot, "peak", count=10)
+        expected = (
+            8,
+        )  # peak is the latest one, add comma at that to ensure type is tuple
+        self.assertEqual(result, expected)
+
+    def test_find_line_pattern_and_trend_with_upward_and_downward_backtest(self):
+        # upward backtest
+        line_x = [0, 40, 61, 90, 99]
+        line_y = [-3.76937961, -0.545905, -2.86110231, 2.10143704, 1.99982711]
+        gradients = [0.080587, -0.110247, 0.171122, -0.01129]
+        result = self.strategy.find_line_pattern_and_trend(line_x, line_y, gradients)
+        self.assertEqual(
+            result,
+            {
+                constd.LINE_TREND_INCREASING_BOTTOM,
+                constd.LINE_TREND_UPWARD_BACKTEST,
+                constd.LINE_TREND_LATEST_DOWNWARD,
+            },
+        )
+
+        # downward backtest
+        line_x_1 = [0, 18, 30, 47, 58, 80, 108, 131, 151]
+        line_y_1 = [
+            -0.000154955751,
+            0.335040982,
+            -4.23877982,
+            1.04810715,
+            -0.304706691,
+            18.9963800,
+            -5.36329941,
+            -0.6746890,
+        ]
+        gradients_1 = [
+            0.018622,
+            -0.381152,
+            0.310993,
+            -0.122983,
+            0.877322,
+            -0.869989,
+            0.203853,
+        ]
+
+        result = self.strategy.find_line_pattern_and_trend(
+            line_x_1, line_y_1, gradients_1
+        )
+        self.assertEqual(
+            result,
+            {
+                constd.LINE_TREND_DECREASING_BOTTOM,
+                constd.LINE_TREND_DOWNWARD_BACKTEST,
+                constd.LINE_TREND_LATEST_UPWARD,
+            },
+        )
+
+    def test_find_line_pattern_and_trend_with_uptrend_and_downtrend_aggressive(self):
+        pass
+
+    def test_find_line_pattern_and_trend_with_uptrend_and_downtrend_slowdown(self):
+        pass
+
+    def test_find_duck_with_duck_exist_data(self):
+        d9_data = [18.543, 15.931, 17.949, 23.62, 26.858, 31.347]
+        k9_data = [11.917, 10.7, 21.98, 34.96, 33.36, 40.323]
+        data_with_duck = {
+            "K9": k9_data,
+            "D9": d9_data,
+        }
+        res = self.strategy.find_upward_duck(_pd.DataFrame(data_with_duck), "K9", "D9")
+        self.assertEqual(res, True)
+
+    def test_find_duck_with_no_duck_data(self):
+        pass
+
+    # python -m unittest tests.strategy.test_base.StrategyTest.test_plot_macd
+    # def test_plot_macd(self):
+    #     # self.plotter._draw_macd_curve_to_line(self.week_4576, "MACD")
+    #     # trimmed_df = self.week_4576.tail(100).reset_index(drop=True)
+    #     # self.plotter._draw_macd_curve_to_line(trimmed_df, "MACD")
+
+    #     # self.plotter._draw_macd_curve_to_line(self.week_1595, "MACD")
+    #     trimmed_df = self.week_4576.tail(60).reset_index(drop=True)
+    #     self.plotter._draw_macd_curve_to_line(trimmed_df, "MACD")

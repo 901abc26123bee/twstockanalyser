@@ -8,7 +8,9 @@ import pandas as _pd
 
 
 class Analysis:
-    def moving_average(self, df: _pd.DataFrame, header: str, window: int):
+    def moving_average(
+        self, df: _pd.DataFrame, header: str, window: int, round_off: int = 6
+    ):
         """
         This method computes the moving average of the 'Close' prices over a specified
         window of time and stores the result in a new column within the DataFrame.
@@ -18,7 +20,7 @@ class Analysis:
                         For example, a window of 20 will compute the average over the last
                         20 closing prices.
         """
-        df[header] = df["Close"].rolling(window=window).mean()
+        df[header] = df["Close"].rolling(window=window).mean().round(round_off)
 
     def macd(
         self,
@@ -26,6 +28,7 @@ class Analysis:
         short_window: int = 12,
         long_window: int = 26,
         signal_window: int = 9,
+        round_off: int = 6,
     ):
         """
         Calculate the Moving Average Convergence Divergence (MACD) indicator.
@@ -39,14 +42,21 @@ class Analysis:
         df["EMA_LONG"] = df["Close"].ewm(span=long_window, adjust=False).mean()
 
         df["DIF"] = df["EMA_SHORT"] - df["EMA_LONG"]
+        df["DIF"] = df["DIF"].round(round_off)
         df["MACD"] = df["DIF"].ewm(span=signal_window, adjust=False).mean()
+        df["MACD"] = df["MACD"].round(round_off)
         df["OSC"] = df["MACD"] - df["DIF"]
 
         # # returns a view (or a slice) of the same underlying DataFrame with only the specified columns
         # return df[['DIF', 'MACD', 'OSC']]
 
     def stochastic(
-        self, df: _pd.DataFrame, window: int = 9, k_period: int = 9, d_period: int = 3
+        self,
+        df: _pd.DataFrame,
+        window: int = 9,
+        k_period: int = 9,
+        d_period: int = 3,
+        round_off: int = 6,
     ):
         """
         Calculate the Stochastic Oscillator values (RSV, K9, D9) for a given DataFrame.
@@ -70,6 +80,7 @@ class Analysis:
             * (df["Close"] - df["Lowest Low"])
             / (df["Highest High"] - df["Lowest Low"])
         )
+        df["RSV"] = df["RSV"].round(round_off)
 
         # K9 is the same as RSV (common in some definitions)
         df["K9"] = df["RSV"].rolling(window=k_period).mean()
@@ -77,7 +88,13 @@ class Analysis:
         # D9 is the 3-period moving average of K9
         df["D9"] = df["K9"].rolling(window=d_period).mean()
 
-    def bbands(self, df: _pd.DataFrame, window: int = 16, num_std_dev: int = 2):
+    def bbands(
+        self,
+        df: _pd.DataFrame,
+        window: int = 16,
+        num_std_dev: int = 2,
+        round_off: int = 6,
+    ):
         """
         This method calculate Bollinger Bands.
         df : DataFrame
@@ -89,6 +106,7 @@ class Analysis:
         self.moving_average(df, "BB_Middle", window)
 
         df["BB_StdDev"] = df["Close"].rolling(window=window).std()
+        df["BB_StdDev"] = df["BB_StdDev"].round(round_off)
         df["BB_Upper"] = df["BB_Middle"] + (df["BB_StdDev"] * num_std_dev)
         df["BB_Lower"] = df["BB_Middle"] - (df["BB_StdDev"] * num_std_dev)
 

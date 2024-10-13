@@ -82,7 +82,7 @@ class MovingAverageStrategy(Strategy):
             )
 
         if ma40_is_closing:
-            if constd.LINE_TREND_UPWARD in ma40_res_set:
+            if constd.LINE_TREND_LATEST_UPWARD in ma40_res_set:
                 if (
                     constd.LINE_SRC_TREND_STRONG_CLOSING_TO_CROSSOVER in ma40_res_set
                     or constd.LINE_SRC_TREND_WEEK_CLOSING_TO_CROSSOVER in ma40_res_set
@@ -92,7 +92,7 @@ class MovingAverageStrategy(Strategy):
                     else:
                         res_set.add(constd.MA40_CLOSING_TO_MA138_FROM_BOTTOM)
         else:
-            if constd.LINE_TREND_UPWARD in ma40_res_set:
+            if constd.LINE_TREND_LATEST_UPWARD in ma40_res_set:
                 res_set.add(constd.MA40_ABOVE_LEAVING_MA138)
 
         # # check 5ma and 138 ma

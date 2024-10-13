@@ -130,7 +130,7 @@ class Stock:
         day_macd_up, day_macd_res = self.macd_strategy.check_macd_trend(day_df)
         unsafe_macd_cond = [
             constd.MACD_BELOW_MIDDLE,
-            constd.MACD_SHOW_DOWN_DOWN_TREND,
+            constd.MACD_DOWNTREND_AGGRESSIVE,
         ]
 
         if constd.MACD_DO_NOT_TOUCH in week_macd_res:
@@ -143,12 +143,12 @@ class Stock:
         # if constd.MACD_DO_NOT_TOUCH in day_macd_res:
         #     return False, f"failed macd check for day_macd_res: {day_df}"
         # elif (
-        #     constd.MACD_SHOW_DOWN_TREND in day_macd_res
-        #     and constd.MACD_SHOW_DOWN_TREND in day_macd_res
+        #     constd.MACD_LATEST_DOWNTREND in day_macd_res
+        #     and constd.MACD_LATEST_DOWNTREND in day_macd_res
         # ):
         #     return (
         #         False,
-        #         f"failed macd check for day_macd_res: {constd.MACD_SHOW_DOWN_TREND} in both day and week",
+        #         f"failed macd check for day_macd_res: {constd.MACD_LATEST_DOWNTREND} in both day and week",
         #     )
 
         # step4: check ma
@@ -187,10 +187,10 @@ class Stock:
         m30_macd_up, m30_macd_res = self.macd_strategy.check_macd_trend(m30_df)
         bad_cond_1 = [
             constd.MACD_BELOW_MIDDLE,
-            constd.MACD_SHOW_DOWN_DOWN_TREND,
+            constd.MACD_DOWNTREND_AGGRESSIVE,
         ]
         bad_cond_2 = [
-            constd.MACD_SHOW_DOWN_TREND,
+            constd.MACD_LATEST_DOWNTREND,
             constd.MACD_BELOW_MIDDLE,
         ]
         if constd.MACD_DO_NOT_TOUCH in m60_macd_res:
@@ -205,7 +205,7 @@ class Stock:
         ):
             return (
                 False,
-                f"failed macd check for 30 min: {constd.MACD_SHOW_DOWN_TREND} in 60 min and 30 min",
+                f"failed macd check for 30 min: {constd.MACD_LATEST_DOWNTREND} in 60 min and 30 min",
             )
 
         # check ma

@@ -209,6 +209,12 @@ git reset --hard origin/master: This forcefully resets your local master branch 
 [Python Child cannot use a Module the Parent Imported](https://stackoverflow.com/questions/8957859/python-child-cannot-use-a-module-the-parent-imported)
 
 
+### tuple and single value wrapped in parentheses
+Yes, (8) and (8,) are different.
+
+(8) is just a single integer wrapped in parentheses, which is interpreted as an integer.
+(8,) is a tuple with one element. The comma is what makes it a tuple.
+
 ### unit test
 [Python Unit test module throws "ModuleNotFoundError: No module named 'tests.test_file'"](https://stackoverflow.com/questions/56780892/python-unit-test-module-throws-modulenotfounderror-no-module-named-tests-test)
 
@@ -248,7 +254,8 @@ python -m unittest tests.test_strategy
 # directly run the test folder
 python -m unittest discover -s tests/strategy
 
-
+# run specific test file func
+python -m unittest tests.strategy.test_base.StrategyTest.test_plot_macd
 # pytest tests/
 ```
 

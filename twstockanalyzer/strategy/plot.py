@@ -23,15 +23,13 @@ class StrategyPlot(Strategy):
     def _draw_macd_curve_to_line(self, df: _pd.DataFrame, column_name: str):
         x, y = df.index, df[column_name]
         #  Convert the curve to line with a certain tolerance and get gradients
+        # ------------------ smooth_to_line ------------------
         line_x, line_y, gradients = self.smooth_to_line(df=df, column_name="MACD")
-        line_x_1, line_y_1, gradients_1 = self.smooth_with_polyfit(
-            df, "MACD", degree=120, tolerance=0.2
-        )
-        # print(line_x_1)
-        # print(line_y_1)
-        # print(gradients_1)
-        is_closing, reason = self.macd_strategy.check_macd_trend(df)
-        print(is_closing, reason)
+        print(line_x)
+        print(line_y)
+        print(gradients)
+        # is_closing, reason = self.macd_strategy.check_macd_trend(df)
+        # print(is_closing, reason)
 
         # angles_deg = _np.degrees(_np.arctan(gradients))
         # print(angles_deg)
@@ -39,7 +37,6 @@ class StrategyPlot(Strategy):
         # Plot the original curve and the simplified line
         _plt.plot(x, y, label="Original Curve")
         _plt.plot(line_x, line_y, label="Simplified Line curve to line", marker="o")
-        _plt.plot(line_x_1, line_y_1, label="Simplified Line with polyfit", marker="o")
 
         # Annotate the plot with the gradient for each line segment
         for i in range(len(gradients)):
@@ -48,7 +45,7 @@ class StrategyPlot(Strategy):
             _plt.text(mid_x, mid_y, f"{gradients[i]:.2f}", color="red", fontsize=10)
 
         # Find the latest W pattern according to curve to line
-        w_pattern = self.find_latest_w_pattern(line_x_1, line_y_1, threshold=0.2)
+        w_pattern = self.find_latest_w_pattern(line_x, line_y, threshold=0.2)
         if w_pattern is not None:
             if len(w_pattern) > 0:
                 pattern_last_pos_before = w_pattern[-1]
@@ -68,6 +65,29 @@ class StrategyPlot(Strategy):
                     fontweight="bold",
                 )
 
+        # Display the datetime values on the x-axis(replace x)
+        # Set x-ticks to use the index, but use `df["Datetime"]` for labels
+        x_ticks = _np.arange(
+            0, len(df), max(1, len(df) // 15)
+        )  # Adjust frequency of ticks
+        _plt.xticks(
+            ticks=x_ticks,
+            labels=df["Datetime"].iloc[x_ticks].dt.strftime("%Y-%m-%d"),
+            rotation=45,
+            ha="right",
+        )
+
+        # Draw a horizontal line at y = 0 (black)
+        _plt.axhline(y=0, color="k", linestyle="--", label="y = 0")
+
+        # ------------------ smooth_with_polyfit ------------------
+        line_x_1, line_y_1, gradients_1 = self.smooth_with_polyfit(
+            df, "MACD", degree=120, tolerance=0.2
+        )
+        # print(line_x_1)
+        # print(line_y_1)
+        # print(gradients_1)
+        _plt.plot(line_x_1, line_y_1, label="Simplified Line with polyfit", marker="o")
         # Find the latest W pattern according to curve to line with polyfit
         w_pattern_1 = self.find_latest_w_pattern(line_x_1, line_y_1, threshold=0.2)
         if w_pattern_1 is not None:
@@ -88,21 +108,7 @@ class StrategyPlot(Strategy):
                     fontsize=12,
                     fontweight="bold",
                 )
-
-        # Display the datetime values on the x-axis(replace x)
-        # Set x-ticks to use the index, but use `df["Datetime"]` for labels
-        x_ticks = _np.arange(
-            0, len(df), max(1, len(df) // 15)
-        )  # Adjust frequency of ticks
-        _plt.xticks(
-            ticks=x_ticks,
-            labels=df["Datetime"].iloc[x_ticks].dt.strftime("%Y-%m-%d"),
-            rotation=45,
-            ha="right",
-        )
-
-        # Draw a horizontal line at y = 0 (black)
-        _plt.axhline(y=0, color="k", linestyle="--", label="y = 0")
+        # ------------------ smooth_to_line ------------------
 
         _plt.legend()
         _plt.xlabel("Index")  # Set x-axis label to show that it's using index values

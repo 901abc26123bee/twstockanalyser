@@ -15,6 +15,17 @@
       ]
     },
     {
+      "name": "Python: python -m unittest tests.strategy.test_base.StrategyTest.test_plot_macd",
+      "type": "debugpy",
+      "request": "launch",
+      "justMyCode": false, // Set to false if you want to debug external libraries too
+      "console": "integratedTerminal",
+      "module": "unittest",
+      "args": [
+          "tests.strategy.test_base.StrategyTest.test_plot_macd"
+      ]
+    },
+    {
       "name": "update stock code (twstockanalyzer -U)",
       "type": "debugpy",
       "request": "launch",

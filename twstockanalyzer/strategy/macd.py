@@ -21,23 +21,30 @@ class MACDIndicatorStrategy(Strategy):
     def check_macd_trend(self, df: _pd.DataFrame) -> tuple[bool, Optional[set[str]]]:
         if not self.check_columns_exist(
             df,
-            [
-                "MACD",
-                "OSC",
-            ],
+            ["MACD", "OSC", "DIF"],
         ):
-            print("Error: missing column in check_macd_trend.")
-            return False, None
+            raise ValueError("Error: missing column in check_macd_trend.")
+        elif df["MACD"].dropna().count() <= 3:
+            print("Error: macd data less then 3")
+            return None
 
         # convert macd curve to line
-        x_index, y_macd_line, gradient = self.smooth_to_line(df=df, column_name="MACD")
+        x_index, y_macd_line, gradient = _np.ndarray, _np.ndarray, _np.ndarray
+        if df["MACD"].dropna().count() < 100:
+            x_index, y_macd_line, gradient = self.smooth_with_polyfit(
+                df=df, column_name="MACD"
+            )
+        else:
+            x_index, y_macd_line, gradient = self.smooth_to_line(
+                df=df, column_name="MACD"
+            )
 
         # check return res
         if x_index is None or y_macd_line is None or gradient is None:
             print(
                 "Error: One of the returned variables is None when convert macd curve to line."
             )
-            return False, None
+            return None
         elif (
             (isinstance(x_index, _np.ndarray) and x_index.size == 0)
             or (isinstance(y_macd_line, _np.ndarray) and y_macd_line.size == 0)
@@ -46,41 +53,43 @@ class MACDIndicatorStrategy(Strategy):
             print(
                 "Error: One of the res arrays is empty when convert macd curve to line."
             )
-            return False, None
+            return None
 
         macd_trend_set = set()
         is_up_trend = False
 
         # 檢查 MACD 靠近軸線
         latest_macd_data = df["MACD"].dropna().to_numpy()
-        if len(latest_macd_data) <= 3:
-            print(f"Error: not enough macd data: {len(latest_macd_data)}")
-            return False, None
-
         middle_array = _np.zeros(df["MACD"].dropna().count())
+
         if len(latest_macd_data) > 60:
             latest_macd_data = latest_macd_data[-60:]
             middle_array = middle_array[-60:]
 
-        trend_data_count = len(latest_macd_data)
-        if trend_data_count >= 40:
-            trend_data_count = 40
-        is_closing_middle, closing_middle_trend_desc, _ = (
+        is_closing_middle, closing_middle_trend_set, _ = (
             self.trend_closer_to_golden_cross(
                 latest_macd_data, middle_array, window=len(latest_macd_data)
             )
         )
-        if closing_middle_trend_desc is None:
+        if closing_middle_trend_set is None:
             print(
                 "Error: failed to trend_closer_to_golden_cross between macd and middle line."
             )
-            return False, None
+            return None
 
         # 檢查 MACD 柱狀圖(OSC)
         osc_trend_set = self.check_osc_stick_heigh(df)
         if osc_trend_set is None:
             print("Error: failed to check_osc_stick_heigh.")
-            return False, None
+            return None
+
+        # 檢查 MACD 線型趨勢
+        line_trend_set = self.find_line_pattern_and_trend(
+            x_index, y_macd_line, gradient
+        )
+        if line_trend_set is None:
+            print("Error: failed to find_line_pattern_and_trend.")
+            return None
 
         # do not touch condition
         # OSC 強綠柱 + OSC 綠柱範圍長 + macd零軸下 範圍長 + MACD 下降趨勢
@@ -89,90 +98,58 @@ class MACDIndicatorStrategy(Strategy):
         for value in osc_cond_to_check:
             if value in osc_trend_set:
                 fit_count += 1
-        macd_line_cond_to_check = [
-            constd.LINE_TREND_DOWNWARD,
-            constd.LINE_SRC_TREND_STRONG_LEAVING_FROM_TARGET,
-        ]
-        for value in closing_middle_trend_desc:
-            if value in macd_line_cond_to_check:
+        crossover_cond_check = [constd.LINE_SRC_TREND_STRONG_LEAVING_FROM_TARGET]
+        for value in closing_middle_trend_set:
+            if value in crossover_cond_check:
                 fit_count += 1
+        line_trend_check = [
+            constd.LINE_TREND_LATEST_DOWNWARD,
+            constd.LINE_TREND_DECREASING_BOTTOM,
+        ]
+        if any(item in line_trend_set for item in line_trend_check):
+            fit_count += 1
 
         last_five_values = df["MACD"].tail(5)
-        if fit_count == 4 and gradient[-1] < 0 and (last_five_values < 0).all():
+        if fit_count == 4 and (last_five_values < 0).all():
             macd_trend_set.add(constd.MACD_DO_NOT_TOUCH)
             return False, macd_trend_set
 
         # MACD 零軸上/下
-        if (last_five_values > 0).all():
+        if df["MACD"].iloc[-1] >= 0:
             macd_trend_set.add(constd.MACD_ABOVE_MIDDLE)
-        if (last_five_values < 0).all():
+        elif df["MACD"].iloc[-1] < 0:
             macd_trend_set.add(constd.MACD_BELOW_MIDDLE)
 
         # 從上方/下方靠近軸線
-        if is_closing_middle and constd.LINE_TREND_UPWARD in closing_middle_trend_desc:
+        if is_closing_middle and df["MACD"].iloc[-1] <= 0:
             macd_trend_set.add(constd.MACD_CLOSING_MIDDLE_FROM_BOTTOM)
-            is_up_trend = True
-        if (
-            is_closing_middle
-            and constd.LINE_TREND_DOWNWARD in closing_middle_trend_desc
-        ):
+        if is_closing_middle and df["MACD"].iloc[-1] > 0:
             macd_trend_set.add(constd.MACD_CLOSING_MIDDLE_FROM_ABOVE)
 
         # 檢查 MACD 趨勢
-        validate_ratio = 1.2
-        if len(gradient) <= 1:
-            macd_trend_set.add(constd.MACD_UNKNOWN)
-            return is_up_trend, macd_trend_set
-
+        if constd.LINE_TREND_LATEST_UPWARD in line_trend_set:
+            macd_trend_set.add(constd.MACD_LATEST_UPTREND)
+            is_up_trend = True
+        elif constd.LINE_TREND_LATEST_DOWNWARD in line_trend_set:
+            macd_trend_set.add(constd.MACD_LATEST_DOWNTREND)
         # gradient increase/decease
-        if gradient[-1] > gradient[-2] and gradient[-2] > 0:
-            macd_trend_set.add(constd.MACD_SHOW_UP_UP_TREND)
+        if constd.LINE_TREND_UPWARD_AGGRESSIVE in line_trend_set:
+            macd_trend_set.add(constd.MACD_UPTREND_AGGRESSIVE)
             is_up_trend = True
-        if gradient[-1] < gradient[-2] and gradient[-2] < 0:
-            macd_trend_set.add(constd.MACD_SHOW_DOWN_DOWN_TREND)
-
+        if constd.LINE_TREND_DOWNWARD_AGGRESSIVE in line_trend_set:
+            macd_trend_set.add(constd.MACD_DOWNTREND_AGGRESSIVE)
         # backtest
-        if (
-            gradient[-1] < 0
-            and gradient[-2] > 0
-            and (
-                abs(y_macd_line[-1] - y_macd_line[-2]) * validate_ratio
-                < abs(y_macd_line[-2] - y_macd_line[-3])
-                or (x_index[-1] - x_index[-2]) * validate_ratio
-                < (x_index[-2] - x_index[-3])
-            )
-        ):
-            macd_trend_set.add(constd.MACD_BACKTEST_IN_UP_TREND)
+        if constd.LINE_TREND_UPWARD_BACKTEST in line_trend_set:
+            macd_trend_set.add(constd.MACD_UPTREND_BACKTEST)
             is_up_trend = True
-        elif (
-            gradient[-1] > 0
-            and gradient[-2] < 0
-            and (
-                abs(y_macd_line[-1] - y_macd_line[-2]) * validate_ratio
-                < abs(y_macd_line[-2] - y_macd_line[-3])
-                or (x_index[-1] - x_index[-2]) * validate_ratio
-                < (x_index[-2] - x_index[-3])
-            )
-        ):
-            macd_trend_set.add(constd.MACD_BACKTEST_IN_DOWN_TREND)
+        elif constd.LINE_TREND_DOWNWARD_BACKTEST in line_trend_set:
+            macd_trend_set.add(constd.MACD_DOWNTREND_BACKTEST)
 
-        if gradient[-1] > 0 and x_index[-1] - x_index[-2] >= 5:
-            macd_trend_set.add(constd.MACD_SHOW_UP_TREND)
-            is_up_trend = True
-        elif gradient[-1] < 0 and x_index[-1] - x_index[-2] >= 5:
-            macd_trend_set.add(constd.MACD_SHOW_DOWN_TREND)
-        if len(gradient) >= 3:
-            if (gradient[-1] < 0 and x_index[-1] - x_index[-2] >= 5) or (
-                gradient[-2] < 0
-                and (x_index[-2] - x_index[-3]) > (x_index[-1] - x_index[-2]) * 2
-            ):
-                macd_trend_set.add(constd.MACD_SHOW_DOWN_TREND)
-            if (gradient[-1] > 0 and x_index[-1] - x_index[-2] >= 5) or (
-                gradient[-2] > 0
-                and (x_index[-2] - x_index[-3]) > (x_index[-1] - x_index[-2]) * 2
-            ):
-                macd_trend_set.add(constd.MACD_SHOW_UP_TREND)
+        # find duck
+        if self.find_upward_duck(df, "DIF", "MACD"):
+            macd_trend_set.add(constd.MACD_DUCK_UP_TREND)
 
+        # unknown
         if len(macd_trend_set) == 0:
             macd_trend_set.add(constd.MACD_UNKNOWN)
 
@@ -183,7 +160,6 @@ class MACDIndicatorStrategy(Strategy):
         self, df: _pd.DataFrame, threshold: int = 2
     ) -> Optional[set[str]]:
         if df["OSC"].dropna().size < 3:
-            print("not enough OSC data in check_osc_stick_heigh")
             return None
 
         local_abs_max = df["OSC"].iloc[-1]
