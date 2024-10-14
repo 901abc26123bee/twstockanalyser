@@ -27,24 +27,24 @@ class BaseFetcher:
         # for c in twse:
         #     self._twse_code_set.add(c)
 
-    def download_stocks_prices_history_csv(self, interval: int = 10, wait: int = 0.5):
-        count = 0
+    def download_stocks_prices_history_csv(self):
         for code in tpex:
-            # if int(code) > 6016:
-            count += 1
-            if count % interval == 0:
-                time.sleep(wait)
+            # if int(code) == 1336:
             stock = Stock(code, TPEX_STOCK_SUFFIX_TWO)
-            stock.download_prices_history_csv(filter_on=True, download_csv=True)
+            err = stock.download_prices_history_csv(filter_on=True, download_csv=True)
+            if err == "":
+                print(f"finish download {code}")
+            else:
+                print(f"failed to download {code}, err: {err}")
 
-        count = 0
         for code in twse:
             # if 1000 <= int(code) <= 1200:
-            count += 1
-            if count % interval == 0:
-                time.sleep(wait)
             stock = Stock(code, TWSE_STOCK_SUFFIX_TW)
             stock.download_prices_history_csv(filter_on=True, download_csv=True)
+            if err == "":
+                print(f"finish download {code}")
+            else:
+                print(f"failed to download {code}, err: {err}")
 
     def _test_macd(self, code: str, period: str):
         suffix_type = TWSE_STOCK_SUFFIX_TW
@@ -119,41 +119,14 @@ class BaseFetcher:
                 stock.cal_statistic(period_df)
                 period_dfs[period] = period_df
 
-            safe_to_buy_day, reason_day = stock.check_day_week_month_safe_to_buy(
+            res_dict = stock.check_exist_buy_point(
                 day_df=period_dfs["day"],
                 week_df=period_dfs["week"],
                 month_df=period_dfs["month"],
-            )
-            if not safe_to_buy_day:
-                print(f"Unsafe to buy in day, week, month: {code} : {reason_day}")
-
-            safe_to_buy_minute, reason_minute = stock.check_minute_safe_to_buy(
-                m15_df=period_dfs["15m"],
-                m30_df=period_dfs["30m"],
                 m60_df=period_dfs["60m"],
+                m30_df=period_dfs["30m"],
+                m15_df=period_dfs["15m"],
             )
-            if not safe_to_buy_minute:
-                print(f"Unsafe to buy in minute: {code}: {reason_minute}")
 
-            if safe_to_buy_day and safe_to_buy_minute:
-                dd9 = period_dfs["day"]["D9"].iloc[-1]
-                wd9 = period_dfs["week"]["D9"].iloc[-1]
-                if dd9 < 82 and wd9 < 82:
-                    print(
-                        f"$$$ Safe to buy {file_name}: day: {reason_day}, minute: {reason_minute}, dd9: {dd9}, wd9: {wd9}"
-                    )
-
-            # macd
-            # b, reason = stock.strategy.check_macd_trend(period_prices)
-            # osc_desc = stock.strategy.check_osc_stick_heigh(period_prices)
-
-            # # print(f"{file_name}: {b}, {reason}")
-            # stock.strategy.check_ma(period_prices)
-            # if period == "day" or period == "week" or period == "month":
-            #     if b or period_prices["OSC"].iloc[-1] > 0:
-            #         print(f"{file_name}: {b}, {reason}, {osc_desc}")
-            # if period == "60m" or period == "30m" or period == "15m":
-            #     if period_prices["MA40"].iloc[-1] > period_prices["MA138"].iloc[-1]:
-            #         print(f"{file_name}: ma40 > ma138")
-            #     if b:
-            #         print(f"{file_name}: {b}, {reason}, {osc_desc}")
+            if all(res_dict.values()):
+                print(f"{code} has buy point: {res_dict}")

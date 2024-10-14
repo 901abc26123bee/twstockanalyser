@@ -20,8 +20,14 @@ class StrategyTest(unittest.TestCase):
         # run "python -m unittest discover -s tests/strategy" at the root of project twstockanalyzer
         folder_path = "./tests/strategy/data/周主升段/"
         df_dict = self.loader.load_from_downloaded_csv(folder_path)
+        # 4576_week
         self.week_4576 = df_dict["4576_week"]
         self.analytics.macd(self.week_4576)
+        self.analytics.moving_average(self.week_4576, "MA5", 5)
+        self.analytics.moving_average(self.week_4576, "MA40", 40)
+        self.analytics.moving_average(self.week_4576, "MA60", 60)
+        self.analytics.moving_average(self.week_4576, "MA138", 138)
+        # 1595_week
         self.week_1595 = df_dict["1595_week"]
         self.analytics.macd(self.week_1595)
 
@@ -424,12 +430,19 @@ class StrategyTest(unittest.TestCase):
     def test_find_duck_with_no_duck_data(self):
         pass
 
-    # python -m unittest tests.strategy.test_base.StrategyTest.test_plot_macd
-    # def test_plot_macd(self):
-    #     # self.plotter._draw_macd_curve_to_line(self.week_4576, "MACD")
-    #     # trimmed_df = self.week_4576.tail(100).reset_index(drop=True)
-    #     # self.plotter._draw_macd_curve_to_line(trimmed_df, "MACD")
 
-    #     # self.plotter._draw_macd_curve_to_line(self.week_1595, "MACD")
-    #     trimmed_df = self.week_4576.tail(60).reset_index(drop=True)
-    #     self.plotter._draw_macd_curve_to_line(trimmed_df, "MACD")
+# python -m unittest tests.strategy.test_base.StrategyTest.test_plot_macd
+# def test_plot_macd(self):
+#     # self.plotter._draw_macd_curve_to_line(self.week_4576, "MACD")
+#     # trimmed_df = self.week_4576.tail(100).reset_index(drop=True)
+#     # self.plotter._draw_macd_curve_to_line(trimmed_df, "MACD")
+
+#     # self.plotter._draw_macd_curve_to_line(self.week_1595, "MACD")
+#     trimmed_df = self.week_4576.tail(60).reset_index(drop=True)
+#     self.plotter._draw_macd_curve_to_line(trimmed_df, "MACD")
+
+# python -m unittest tests.strategy.test_base.StrategyTest.test_plot_ma
+# def test_plot_ma(self):
+#     # self.plotter._draw_macd_curve_to_line(self.week_1595, "MACD")
+#     trimmed_df = self.week_4576.tail(40).reset_index(drop=True)
+#     self.plotter._draw_two_line_closing_to_cross(trimmed_df)

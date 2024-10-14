@@ -121,14 +121,22 @@ class StrategyPlot(Strategy):
         _plt.figure(figsize=(10, 6))  # Set the figure size
 
         # Plot each column
-        for column in ["MA5", "MA10", "MA40", "MA60", "MA138"]:
+        for column in ["MA5", "MA40", "MA60", "MA138"]:
             _plt.plot(df.index, df[column], label=column)
 
         # compute line trend cross
-        is_closing, desc, res = self.trend_closer_to_golden_cross(
+        is_closing, res, _ = self.trend_closer_to_golden_cross(
             df["MA40"].dropna().to_numpy(), df["MA138"].dropna().to_numpy()
         )
-        print(is_closing, desc, res)
+        print(is_closing, res)
+
+        line_x, line_y, gradients = self.smooth_with_polyfit(
+            df=df, column_name="MA5", degree=80, tolerance=0.1
+        )
+        print(line_x)
+        print(line_y)
+        print(gradients)
+        _plt.plot(line_x, line_y, label="Simplified Line curve MA5", marker="o")
 
         # Customize the plot
         _plt.title("Multi-Column Plot")

@@ -6,6 +6,7 @@
 
 from typing import Optional
 import pandas as _pd
+import numpy as _np
 import twstockanalyzer.strategy.const as constd
 
 # for child can access parent method
@@ -27,87 +28,238 @@ class MovingAverageStrategy(Strategy):
 
         # check valid prices trend
         if (
+            # 黑k + high below ma
             df["High"].iloc[-1] < df["MA5"].iloc[-1]
-            and df["MA5"].iloc[-1] < df["MA5"].iloc[-2]
-            and df["Close"].iloc[-1] < df["MA10"].iloc[-1]
+            and df["High"].iloc[-1] < df["MA10"].iloc[-1]
             and df["Close"].iloc[-1] < df["Open"].iloc[-1]
+            # 底底低
             and df["Close"].iloc[-1] < df["Close"].iloc[-2]
+            and df["Close"].iloc[-2] < df["Close"].iloc[-3]
+            and df["Close"].iloc[-3] < df["Close"].iloc[-4]
+            and df["Open"].iloc[-1] < df["Open"].iloc[-2]
+            and df["Open"].iloc[-2] < df["Open"].iloc[-3]
+            and df["Open"].iloc[-3] < df["Open"].iloc[-4]
+            and df["High"].iloc[-1] < df["High"].iloc[-2]
+            and df["High"].iloc[-2] < df["High"].iloc[-3]
+            and df["High"].iloc[-3] < df["High"].iloc[-4]
+            # macd
+            and df["MACD"].iloc[-1] < 0
         ):
-            return True, "向下趨勢股票[MA5向下 + 最高價<MA5 + 黑k]"
+            return True, "向下趨勢股票[MA5向下 + 最高價<MA5 + 黑k + macd < 0]"
 
         return False, ""
 
-    def check_ma(self, df: _pd.DataFrame) -> Optional[set[str]]:
+    def check_ma_relation(self, df: _pd.DataFrame) -> Optional[set[str]]:
         if not self.check_columns_exist(
             df,
             [
                 "MA5",
                 "MA40",
+                "MA60",  # TODO
                 "MA138",
             ],
         ):
-            print(f"Missing column in check_ma")
-            return None
+            raise ValueError(f"Missing column in check_ma_relation")
 
         res_set = set()
 
         # check 40ma and 138 ma
-        ma40_data = df["MA40"].dropna().to_numpy()
         ma138_data = df["MA138"].dropna().to_numpy()
-        min_len = min(len(ma40_data), len(ma138_data))
-        if min_len < 1:
-            print("failed to check_ma due to empty data")
-            return res_set
+        ma40_data = df["MA40"].iloc[-len(ma138_data) :].dropna().to_numpy()
+        ma5_data = df["MA5"].iloc[-len(ma138_data) :].dropna().to_numpy()
 
+        # check relative positive
         if df["MA40"].iloc[-1] >= df["MA138"].iloc[-1]:
             res_set.add(constd.MA40_ABOVE_MA138)
         else:
             res_set.add(constd.MA40_BELOW_MA138)
+        if df["MA5"].iloc[-1] >= df["MA138"].iloc[-1]:
+            res_set.add(constd.MA5_ABOVE_MA138)
+        else:
+            res_set.add(constd.MA5_BELOW_MA138)
+        if df["MA5"].iloc[-1] >= df["MA40"].iloc[-1]:
+            res_set.add(constd.MA5_ABOVE_MA40)
+        else:
+            res_set.add(constd.MA5_BELOW_MA40)
 
+        # check ma line trend
+        ma5_ma138_res = self.check_ma5_to_ma138_cross(ma5_data, ma138_data)
+        ma5_ma40_res = self.check_ma5_to_ma40_cross(ma5_data, ma40_data)
+        ma40_ma138_res = self.check_ma40_to_ma138_cross(ma40_data, ma138_data)
+
+        # add elements to res_set
+        res_set.update(ma5_ma138_res)
+        res_set.update(ma5_ma40_res)
+        res_set.update(ma40_ma138_res)
         return res_set
 
-        ma40_is_closing, ma40_res_set, cal_res = False, set(), dict()
-        if min_len < 40:
-            ma40_is_closing, ma40_res_set, cal_res = self.trend_closer_to_golden_cross(
-                src_array=ma40_data, target_array=ma138_data, window=min_len
-            )
-        else:
-            ma40_is_closing, ma40_res_set, cal_res = self.trend_closer_to_golden_cross(
-                src_array=ma40_data, target_array=ma138_data, window=40
-            )
+    def check_ma5_to_ma138_cross(
+        self, ma5_data: _np.ndarray, ma138_data: _np.ndarray
+    ) -> Optional[set[str]]:
+        min_len = min(len(ma5_data), len(ma138_data))
+        if min_len <= 3:
+            print("failed to check_ma5_to_ma138_cross due too less data")
+            return set()
 
-        if ma40_res_set is None:
+        valid_closing_from_bottom = [
+            constd.LINE_SRC_TREND_STRONG_CLOSING_TO_CROSSOVER,
+            constd.LINE_SRC_TREND_WEEK_CLOSING_TO_CROSSOVER,
+        ]
+        valid_leaving_from_above = [
+            constd.LINE_SRC_TREND_STRONG_LEAVING_FROM_TARGET,
+            constd.LINE_SRC_TREND_WEEK_LEAVING_FROM_TARGET,
+        ]
+
+        window = min_len
+        if window >= 40:
+            window = 40
+        is_closing, closing_set, _ = self.trend_closer_to_golden_cross(
+            src_array=ma5_data, target_array=ma138_data, window=window
+        )
+        if closing_set is None:
             print(
-                f"empty res when calculate trend_closer_to_golden_cross between 40ma and 138ma in check_ma: {ma40_is_closing, ma40_res_set, cal_res}"
+                f"empty res when calculate trend_closer_to_golden_cross between 5ma and 138ma in check_ma_relation"
             )
+            return None
 
-        if ma40_is_closing:
-            if constd.LINE_TREND_LATEST_UPWARD in ma40_res_set:
-                if (
-                    constd.LINE_SRC_TREND_STRONG_CLOSING_TO_CROSSOVER in ma40_res_set
-                    or constd.LINE_SRC_TREND_WEEK_CLOSING_TO_CROSSOVER in ma40_res_set
-                ):
-                    if constd.LINE_SRC_CROSSOVER_TARGET_UPWARD in ma40_res_set:
-                        res_set.add(constd.MA40_CROSS_OVER_MA138_UPWARD)
-                    else:
-                        res_set.add(constd.MA40_CLOSING_TO_MA138_FROM_BOTTOM)
+        res_set = set()
+
+        difference = ma5_data[-window:] - ma138_data[-window:]
+        positive_count = _np.sum(difference > 0)
+        negative_count = _np.sum(difference < 0)
+        if is_closing:
+            if any(item in closing_set for item in valid_closing_from_bottom):
+                if positive_count == len(difference):
+                    res_set.add(constd.MA5_CLOSING_TO_MA138_FROM_ABOVE)
+                elif negative_count == len(difference):
+                    res_set.add(constd.MA5_CLOSING_TO_MA138_FROM_BOTTOM)
+            if constd.LINE_SRC_CROSSOVER_TARGET_UPWARD in closing_set:
+                res_set.add(constd.MA5_CROSS_OVER_MA138_UPWARD)
+            elif constd.LINE_SRC_CROSSOVER_TARGET_DOWNWARD in closing_set:
+                res_set.add(constd.MA5_CROSS_OVER_MA138_DOWNWARD)
         else:
-            if constd.LINE_TREND_LATEST_UPWARD in ma40_res_set:
-                res_set.add(constd.MA40_ABOVE_LEAVING_MA138)
-
-        # # check 5ma and 138 ma
-        # if df["MA5"].iloc[-1] >= df["MA138"].iloc[-1]:
-        #     res_set.add(constd.MA5_ABOVE_MA138)
-        # else:
-        #     res_set.add(constd.MA5_BELOW_MA138)
-
-        # is_closing, res_set, _ = self.trend_closer_to_golden_cross(
-        #     df["MA5"].dropna().to_numpy(), df["MA138"].dropna().to_numpy()
-        # )
-        # if is_closing:
-        #     pass
+            if any(item in closing_set for item in valid_leaving_from_above):
+                if positive_count == len(difference):
+                    res_set.add(constd.MA5_ABOVE_LEAVING_MA138)
+                elif negative_count == len(difference):
+                    res_set.add(constd.MA5_BELOW_LEAVING_MA138)
 
         return res_set
+
+    def check_ma5_to_ma40_cross(self, ma5_data: _np.ndarray, ma40_data: _np.ndarray):
+        min_len = min(len(ma5_data), len(ma40_data))
+        if min_len <= 3:
+            print("failed to check_ma5_to_ma138_cross due too less data")
+            return set()
+
+        valid_closing_from_bottom = [
+            constd.LINE_SRC_TREND_STRONG_CLOSING_TO_CROSSOVER,
+            constd.LINE_SRC_TREND_WEEK_CLOSING_TO_CROSSOVER,
+        ]
+        valid_leaving_from_above = [
+            constd.LINE_SRC_TREND_STRONG_LEAVING_FROM_TARGET,
+            constd.LINE_SRC_TREND_WEEK_LEAVING_FROM_TARGET,
+        ]
+
+        window = min_len
+        if window >= 40:
+            window = 40
+        is_closing, closing_set, _ = self.trend_closer_to_golden_cross(
+            src_array=ma5_data, target_array=ma40_data, window=window
+        )
+        if closing_set is None:
+            print(
+                f"empty res when calculate trend_closer_to_golden_cross between 5ma and 40ma in check_ma_relation"
+            )
+            return None
+
+        res_set = set()
+        difference = ma5_data[-window:] - ma40_data[-window:]
+        positive_count = _np.sum(difference > 0)
+        negative_count = _np.sum(difference < 0)
+        if is_closing:
+            if any(item in closing_set for item in valid_closing_from_bottom):
+                if positive_count == len(difference):
+                    res_set.add(constd.MA5_CLOSING_TO_MA40_FROM_ABOVE)
+                elif negative_count == len(difference):
+                    res_set.add(constd.MA5_CLOSING_TO_MA40_FROM_BOTTOM)
+            if constd.LINE_SRC_CROSSOVER_TARGET_UPWARD in closing_set:
+                res_set.add(constd.MA5_CROSS_OVER_MA40_UPWARD)
+            elif constd.LINE_SRC_CROSSOVER_TARGET_DOWNWARD in closing_set:
+                res_set.add(constd.MA5_CROSS_OVER_MA40_DOWNWARD)
+        else:
+            if any(item in closing_set for item in valid_leaving_from_above):
+                if positive_count == len(difference):
+                    res_set.add(constd.MA5_ABOVE_LEAVING_MA40)
+                elif negative_count == len(difference):
+                    res_set.add(constd.MA5_BELOW_LEAVING_MA40)
+
+        return res_set
+
+    def check_ma40_to_ma138_cross(
+        self, ma40_data: _np.ndarray, ma138_data: _np.ndarray
+    ) -> Optional[set[str]]:
+        min_len = min(len(ma40_data), len(ma138_data))
+        if min_len <= 3:
+            print("failed to check_ma40_to_ma138_cross due too less data")
+            return set()
+
+        valid_closing_from_bottom = [
+            constd.LINE_SRC_TREND_STRONG_CLOSING_TO_CROSSOVER,
+            constd.LINE_SRC_TREND_WEEK_CLOSING_TO_CROSSOVER,
+        ]
+        valid_leaving_from_above = [
+            constd.LINE_SRC_TREND_STRONG_LEAVING_FROM_TARGET,
+            constd.LINE_SRC_TREND_WEEK_LEAVING_FROM_TARGET,
+        ]
+
+        window = min_len
+        if window >= 40:
+            window = 40
+        is_closing, closing_set, _ = self.trend_closer_to_golden_cross(
+            src_array=ma40_data, target_array=ma138_data, window=window
+        )
+        if closing_set is None:
+            print(
+                f"empty res when calculate trend_closer_to_golden_cross between 40ma and 138ma in check_ma_relation"
+            )
+            return None
+
+        res_set = set()
+        difference = ma40_data[-window:] - ma138_data[-window:]
+        positive_count = _np.sum(difference > 0)
+        negative_count = _np.sum(difference < 0)
+        if is_closing:
+            if any(item in closing_set for item in valid_closing_from_bottom):
+                if positive_count == len(difference):
+                    res_set.add(constd.MA40_CLOSING_TO_MA138_FROM_ABOVE)
+                elif negative_count == len(difference):
+                    res_set.add(constd.MA40_CLOSING_TO_MA138_FROM_BOTTOM)
+            if constd.LINE_SRC_CROSSOVER_TARGET_UPWARD in closing_set:
+                res_set.add(constd.MA40_CROSS_OVER_MA138_UPWARD)
+            elif constd.LINE_SRC_CROSSOVER_TARGET_DOWNWARD in closing_set:
+                res_set.add(constd.MA40_CROSS_OVER_MA138_DOWNWARD)
+        else:
+            if any(item in closing_set for item in valid_leaving_from_above):
+                if positive_count == len(difference):
+                    res_set.add(constd.MA40_ABOVE_LEAVING_MA138)
+                elif negative_count == len(difference):
+                    res_set.add(constd.MA40_BELOW_LEAVING_MA138)
+
+        return res_set
+
+    def check_ma_trend(self, df: _pd.DataFrame):
+        if not self.check_columns_exist(
+            df,
+            [
+                "MA5",
+                "MA40",
+                "MA60",  # TODO
+                "MA138",
+            ],
+        ):
+            raise ValueError(f"Missing column in check_ma_relation")
+        pass
 
     # Ｎ均線扣抵值向上(未來均線向下), Ｎ均線扣抵值向下(未來均線向上彎)
     def find_last_n_pivot_in_previous(self, df: _pd.DataFrame, n_peek: int = 3):

@@ -1,0 +1,1192 @@
+Start to fetch stock prices history
+------------------------------
+1231 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+1338 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+1416 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+1432 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+1464 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+1504 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+1533 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+1565 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+1569 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+------------------------------
+------------------------------
+1598 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+1616 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+1626 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+1702 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+1707 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+1736 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+1742 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+1802 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+1907 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+1909 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2002 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2006 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2007 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+2010 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2014 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2015 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2017 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2020 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2022 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2023 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+2028 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2029 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2030 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2031 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2032 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+2034 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2038 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2049 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+2101 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2102 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2103 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2201 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+2208 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+2230 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+2236 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2312 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+2316 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2317 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+2324 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+2340 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+2347 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2348 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+2352 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+2362 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2363 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+2374 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2376 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+2382 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2385 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+2388 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+2393 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+2399 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+2402 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+2419 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2420 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2421 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2423 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2424 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2425 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2426 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2427 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+2436 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+2449 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2451 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+2467 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+2472 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+2486 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+------------------------------
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+------------------------------
+------------------------------
+2493 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+2497 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2498 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2606 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+2612 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+2617 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+2637 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+2723 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2727 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+2748 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+2850 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2851 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+2882 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2883 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+2885 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+2891 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+2929 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+3005 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+3013 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+3025 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3027 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+3033 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+3040 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3041 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3042 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+3048 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3049 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+3060 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+3088 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+------------------------------
+3094 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+3141 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+3149 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3162 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3163 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3167 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3188 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+3209 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+3219 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+3230 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3231 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3234 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3257 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+3265 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3284 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3289 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+3296 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3297 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+3306 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3312 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+3339 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3346 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+3356 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3357 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+3362 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3363 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+3374 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+3379 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3380 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+3430 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+3438 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3447 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3450 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3455 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3466 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3498 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3499 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3508 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3511 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+3526 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3530 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+3537 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+3545 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+3551 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+3564 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+3587 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3588 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3591 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+3596 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3597 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+3615 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+3622 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+3694 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+3706 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+------------------------------
+3710 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+3714 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+4123 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+4137 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+4161 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+4162 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+4164 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+4167 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+------------------------------
+4303 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+4306 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+4402 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+4417 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+4527 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+4532 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+4541 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+4542 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+4545 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+4551 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+4552 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+4557 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+------------------------------
+------------------------------
+------------------------------
+4563 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+------------------------------
+------------------------------
+------------------------------
+4760 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+4807 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+4903 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+4908 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+4915 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+4916 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+4927 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+4930 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+4935 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+4945 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+------------------------------
+4952 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+4956 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+4958 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+4961 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+4968 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+4971 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+4977 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+4979 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+------------------------------
+------------------------------
+------------------------------
+5014 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+5202 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+5210 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+5211 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+5230 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+5234 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+5236 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+5243 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+5258 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+5272 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+5284 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+5288 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+5292 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+5309 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+5315 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+5324 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+5328 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+5344 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+5347 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+5381 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+5386 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+5434 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+5443 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+5452 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+5457 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+5474 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+5508 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+5519 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+5521 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+5522 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+5531 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+5603 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+5871 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+5907 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6005 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+6104 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+6109 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+6117 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6118 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+6127 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6128 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+6134 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6136 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6138 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6139 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6142 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+6151 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+6155 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6156 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+6167 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6168 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+6173 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6174 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+6177 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6179 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+6202 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+6206 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6207 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+6217 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6218 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6219 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6220 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6224 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+6237 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+6241 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6243 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+6246 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+6257 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+6275 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+6284 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+6290 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+------------------------------
+6405 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6411 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+6425 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6426 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+6438 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6441 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+6457 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+6469 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6470 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+6486 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+6509 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+6525 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6530 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+------------------------------
+------------------------------
+------------------------------
+6598 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+6625 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+6692 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6693 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+6706 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6719 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+6732 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+6742 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+6761 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+6768 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+6788 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+6807 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6821 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+------------------------------
+------------------------------
+6830 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6834 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+------------------------------
+------------------------------
+6875 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+6877 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+8011 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+8016 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+8028 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+8032 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+------------------------------
+------------------------------
+8040 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+8059 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+8068 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+8074 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+8096 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+8097 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+8099 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+8104 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+8111 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+8114 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+8176 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+8183 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+8201 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+8210 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+8213 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+8215 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+8240 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+8383 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+8411 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+8429 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+8432 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+8437 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+8926 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+8927 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+8930 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+8932 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+8937 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+9904 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+9906 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+9907 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+9924 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+9935 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+------------------------------
+failed to check_ma5_to_ma138_cross due too less data
+failed to check_ma40_to_ma138_cross due too less data
+------------------------------
+9938 has buy point: {'week_close_can_buy': True, 'kd_can_buy': True, 'macd_not_all_below_middle': True, 'macd_long_protect_short_can_buy': True, 'ma60_can_buy': True, 'ma30_can_buy': True}
+Done!

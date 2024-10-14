@@ -57,7 +57,7 @@ OSC_GREEN_RANGE_LONG = "OSC 綠柱範圍長"
 # check_osc_stick_heigh_in_multi_period
 
 # check_macd_trend(for day, 60m)
-MACD_DO_NOT_TOUCH = "OSC 強綠柱 + OSC 綠柱範圍長 + macd零軸下 範圍長 + MACD 下降趨勢"
+MACD_DO_NOT_TOUCH = "OSC 強綠柱 + OSC 綠柱範圍長 + macd零軸下 範圍長 + MACD下降趨勢 + 多重底，底底低(2-3)"
 
 MACD_ABOVE_MIDDLE = "macd零軸上"
 MACD_BELOW_MIDDLE = "macd零軸下"
@@ -88,6 +88,7 @@ MACD_UNKNOWN = "macd trend unknown"
 MA40_ABOVE_MA138 = "40 均線在 138 均線上"
 MA40_BELOW_MA138 = "40 均線在 138 均線下"
 MA40_ABOVE_LEAVING_MA138 = "40 均線在138均線上，開花向上"
+MA40_BELOW_LEAVING_MA138 = "40 均線在138均線下，開花向下"
 MA40_CLOSING_TO_MA138_FROM_BOTTOM = "40 均線向上靠近 138 均線(未穿過)"
 MA40_CLOSING_TO_MA138_FROM_ABOVE = "40 均線向下靠近 138 均線(未穿過)"
 MA40_CROSS_OVER_MA138_UPWARD = "40 均線向上穿過 138 均線(黃金交叉)"
@@ -96,6 +97,8 @@ MA40_CROSS_OVER_MA138_DOWNWARD = "40 均線向下穿過 138 均線(死亡交叉)
 # 5ma and 138ma
 MA5_ABOVE_MA138 = "5 均線在 138 均線上"
 MA5_BELOW_MA138 = "5 均線在 138 均線下"
+MA5_ABOVE_LEAVING_MA138 = "5 均線在138均線上，開花向上"
+MA5_BELOW_LEAVING_MA138 = "5 均線在138均線下，開花向下"
 MA5_CLOSING_TO_MA138_FROM_BOTTOM = "5 均線向上靠近 138 均線(未穿過)"
 MA5_CLOSING_TO_MA138_FROM_ABOVE = "5 均線向下靠近 138 均線(未穿過)"
 MA5_CROSS_OVER_MA138_UPWARD = "5 均線向上穿過 138 均線(黃金交叉)"
@@ -104,7 +107,8 @@ MA5_CROSS_OVER_MA138_DOWNWARD = "5 均線向下穿過 138 均線(死亡交叉)"
 # 5ma and 40ma
 MA5_ABOVE_MA40 = "5 均線在 40 均線上"
 MA5_BELOW_MA40 = "5 均線在 40 均線下"
-MA5_ABOVE_LEAVING_MA40 = "40均線在40均線上，開花向上"
+MA5_ABOVE_LEAVING_MA40 = "40均線在138均線上，開花向上"
+MA5_BELOW_LEAVING_MA40 = "40均線在138均線下，開花向下"
 MA5_CLOSING_TO_MA40_FROM_BOTTOM = "5 均線向上靠近 40 均線(未穿過)"
 MA5_CLOSING_TO_MA40_FROM_ABOVE = "5 均線向下靠近 40 均線(未穿過)"
 MA5_CROSS_OVER_MA40_UPWARD = "5 均線向上穿過 40 均線(黃金交叉)"

@@ -215,9 +215,21 @@ Yes, (8) and (8,) are different.
 (8) is just a single integer wrapped in parentheses, which is interpreted as an integer.
 (8,) is a tuple with one element. The comma is what makes it a tuple.
 
+### ndarray
+[What is the difference between ndarray and array in NumPy?](https://stackoverflow.com/questions/15879315/what-is-the-difference-between-ndarray-and-array-in-numpy)
+
+numpy.array is just a convenience function to create an ndarray; it is not a class itself.
+
+You can also create an array using numpy.ndarray, but it is not the recommended way. From the docstring of numpy.ndarray:
+
+> Arrays should be constructed using array, zeros or empty ... The parameters given here refer to a low-level method (ndarray(...)) for instantiating an array.
+
+### pandas DataFrame
+[区别 |python-pandas库set_index、reset_index用法区别](https://www.cnblogs.com/zwt20120701/p/11299595.html)
+
 ### unit test
 [Python Unit test module throws "ModuleNotFoundError: No module named 'tests.test_file'"](https://stackoverflow.com/questions/56780892/python-unit-test-module-throws-modulenotfounderror-no-module-named-tests-test)
-
+[Running a single test from unittest.TestCase via the command line](https://stackoverflow.com/questions/15971735/running-a-single-test-from-unittest-testcase-via-the-command-line)
 
 ```sh
 
@@ -256,6 +268,7 @@ python -m unittest discover -s tests/strategy
 
 # run specific test file func
 python -m unittest tests.strategy.test_base.StrategyTest.test_plot_macd
+python -m unittest tests.strategy.test_base.StrategyTest.test_plot_ma
 # pytest tests/
 ```
 

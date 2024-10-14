@@ -156,6 +156,7 @@ class MACDIndicatorStrategy(Strategy):
         return is_up_trend, macd_trend_set
 
     # 檢查 MACD 柱狀圖(OSC) 強勢、弱勢、盤整
+    # TODO: OSC_RED_CONSOLIDATION, OSC_GREEN_CONSOLIDATION, 如果罪latest綠柱和紅柱部分無法區別強弱，向前找或是根據macd/dif趨勢斜率來判斷
     def check_osc_stick_heigh(
         self, df: _pd.DataFrame, threshold: int = 2
     ) -> Optional[set[str]]:

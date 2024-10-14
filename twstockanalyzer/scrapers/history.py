@@ -72,8 +72,8 @@ class PriceHistoryFetcher:
         if data.empty:
             print(f"No data returned for the given {self._symbol} with interval month")
             return None
-        self._purify(data)
-        return _pd.DataFrame(data)
+        new_df = self._purify(data)
+        return new_df
 
     def fetch_week_max(self) -> Optional[_pd.DataFrame]:
         data = _yf.download(
@@ -82,8 +82,8 @@ class PriceHistoryFetcher:
         if data.empty:
             print(f"No data returned for the given {self._symbol} with interval week")
             return None
-        self._purify(data)
-        return _pd.DataFrame(data)
+        new_df = self._purify(data)
+        return new_df
 
     def fetch_day_max(self) -> Optional[_pd.DataFrame]:
         data = _yf.download(
@@ -92,8 +92,8 @@ class PriceHistoryFetcher:
         if data.empty:
             print(f"No data returned for the given {self._symbol} with interval day")
             return None
-        self._purify(data)
-        return _pd.DataFrame(data)
+        new_df = self._purify(data)
+        return new_df
 
     def fetch_60_min_series_max(self) -> Optional[_pd.DataFrame]:
         data = _yf.download(
@@ -102,8 +102,8 @@ class PriceHistoryFetcher:
         if data.empty:
             print(f"No data returned for the given {self._symbol} with interval 60 min")
             return None
-        self._purify(data)
-        return _pd.DataFrame(data)
+        new_df = self._purify(data)
+        return new_df
 
     def fetch_30_min_series_max(self) -> Optional[_pd.DataFrame]:
         data = _yf.download(
@@ -112,8 +112,8 @@ class PriceHistoryFetcher:
         if data.empty:
             print(f"No data returned for the given {self._symbol} with interval 30 min")
             return None
-        self._purify(data)
-        return _pd.DataFrame(data)
+        new_df = self._purify(data)
+        return new_df
 
     def fetch_15_min_series_max(self) -> Optional[_pd.DataFrame]:
         data = _yf.download(
@@ -122,8 +122,8 @@ class PriceHistoryFetcher:
         if data.empty:
             print(f"No data returned for the given {self._symbol} with interval 15 min")
             return None
-        self._purify(data)
-        return _pd.DataFrame(data)
+        new_df = self._purify(data)
+        return new_df
 
     def download_csv(
         self,
@@ -206,7 +206,7 @@ class PriceHistoryFetcher:
             _pd.DataFrame(data)
             .apply(
                 lambda row: DATA_TUPLE(
-                    Datetime=row.name,
+                    Datetime=row["Datetime"],
                     Open=row["Open"],
                     High=row["High"],
                     Low=row["Low"],
@@ -218,16 +218,15 @@ class PriceHistoryFetcher:
             .tolist()
         )
 
-    def _purify(self, df: _pd.DataFrame):
-        if df.index.name == "Date":
-            # Set an auto-incrementing index to avoid number compute error due to index with datetime
-            df.reset_index(inplace=True)
-            df.rename(columns={"Date": "Datetime"}, inplace=True)
-            # df.set_index("Datetime", inplace=True)
-        else:
-            # Set an auto-incrementing index to avoid number compute error due to index with datetime
-            df.reset_index(inplace=True)
-            df.rename(columns={"Date": "Datetime"}, inplace=True)
+    def _purify(self, df: _pd.DataFrame) -> _pd.DataFrame:
+        df["Volume"] = df["Volume"].apply(lambda x: x / 1000 if x != 0 else x)
+        new_df = df.reset_index(drop=False)  # 索引列會被還原為普通列
+
+        new_df = new_df.assign(
+            Datetime=df.index.values
+        )  # Copy original Date/DateTime index value
+        # new_df.set_index(_pd.Index(range(len(new_df))), inplace=True) # set auto increase number as index
+        return new_df
 
 
 class PriceHistoryLoader:
