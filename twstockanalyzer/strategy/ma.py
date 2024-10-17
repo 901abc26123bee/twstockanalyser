@@ -70,17 +70,17 @@ class MovingAverageStrategy(Strategy):
 
         # check relative positive
         if df["MA40"].iloc[-1] >= df["MA138"].iloc[-1]:
-            res_set.add(constd.MA40_ABOVE_MA138)
+            res_set.add(constd.MATrendEnum.MA40_ABOVE_MA138)
         else:
-            res_set.add(constd.MA40_BELOW_MA138)
+            res_set.add(constd.MATrendEnum.MA40_BELOW_MA138)
         if df["MA5"].iloc[-1] >= df["MA138"].iloc[-1]:
-            res_set.add(constd.MA5_ABOVE_MA138)
+            res_set.add(constd.MATrendEnum.MA5_ABOVE_MA138)
         else:
-            res_set.add(constd.MA5_BELOW_MA138)
+            res_set.add(constd.MATrendEnum.MA5_BELOW_MA138)
         if df["MA5"].iloc[-1] >= df["MA40"].iloc[-1]:
-            res_set.add(constd.MA5_ABOVE_MA40)
+            res_set.add(constd.MATrendEnum.MA5_ABOVE_MA40)
         else:
-            res_set.add(constd.MA5_BELOW_MA40)
+            res_set.add(constd.MATrendEnum.MA5_BELOW_MA40)
 
         # check ma line trend
         ma5_ma138_res = self.check_ma5_to_ma138_cross(ma5_data, ma138_data)
@@ -102,12 +102,12 @@ class MovingAverageStrategy(Strategy):
             return set()
 
         valid_closing_from_bottom = [
-            constd.LINE_SRC_TREND_STRONG_CLOSING_TO_CROSSOVER,
-            constd.LINE_SRC_TREND_WEEK_CLOSING_TO_CROSSOVER,
+            constd.LineCrossOverTrendEnum.SRC_STRONG_CLOSING_TARGET,
+            constd.LineCrossOverTrendEnum.SRC_WEEK_CLOSING_TO_TARGET,
         ]
         valid_leaving_from_above = [
-            constd.LINE_SRC_TREND_STRONG_LEAVING_FROM_TARGET,
-            constd.LINE_SRC_TREND_WEEK_LEAVING_FROM_TARGET,
+            constd.LineCrossOverTrendEnum.SRC_STRONG_LEAVING_FROM_TARGET,
+            constd.LineCrossOverTrendEnum.SRC_WEEK_LEAVING_FROM_TARGET,
         ]
 
         window = min_len
@@ -130,19 +130,19 @@ class MovingAverageStrategy(Strategy):
         if is_closing:
             if any(item in closing_set for item in valid_closing_from_bottom):
                 if positive_count == len(difference):
-                    res_set.add(constd.MA5_CLOSING_TO_MA138_FROM_ABOVE)
+                    res_set.add(constd.MATrendEnum.MA5_CLOSING_TO_MA138_FROM_ABOVE)
                 elif negative_count == len(difference):
-                    res_set.add(constd.MA5_CLOSING_TO_MA138_FROM_BOTTOM)
-            if constd.LINE_SRC_CROSSOVER_TARGET_UPWARD in closing_set:
-                res_set.add(constd.MA5_CROSS_OVER_MA138_UPWARD)
-            elif constd.LINE_SRC_CROSSOVER_TARGET_DOWNWARD in closing_set:
-                res_set.add(constd.MA5_CROSS_OVER_MA138_DOWNWARD)
+                    res_set.add(constd.MATrendEnum.MA5_CLOSING_TO_MA138_FROM_BELOW)
+            if constd.LineCrossOverTrendEnum.SRC_CROSS_TARGET_UPWARD in closing_set:
+                res_set.add(constd.MATrendEnum.MA5_CROSS_OVER_MA138_UPWARD)
+            elif constd.LineCrossOverTrendEnum.SRC_CROSS_TARGET_DOWNWARD in closing_set:
+                res_set.add(constd.MATrendEnum.MA5_CROSS_OVER_MA138_DOWNWARD)
         else:
             if any(item in closing_set for item in valid_leaving_from_above):
                 if positive_count == len(difference):
-                    res_set.add(constd.MA5_ABOVE_LEAVING_MA138)
+                    res_set.add(constd.MATrendEnum.MA5_ABOVE_LEAVING_MA138)
                 elif negative_count == len(difference):
-                    res_set.add(constd.MA5_BELOW_LEAVING_MA138)
+                    res_set.add(constd.MATrendEnum.MA5_BELOW_LEAVING_MA138)
 
         return res_set
 
@@ -153,12 +153,12 @@ class MovingAverageStrategy(Strategy):
             return set()
 
         valid_closing_from_bottom = [
-            constd.LINE_SRC_TREND_STRONG_CLOSING_TO_CROSSOVER,
-            constd.LINE_SRC_TREND_WEEK_CLOSING_TO_CROSSOVER,
+            constd.LineCrossOverTrendEnum.SRC_STRONG_CLOSING_TARGET,
+            constd.LineCrossOverTrendEnum.SRC_WEEK_CLOSING_TO_TARGET,
         ]
         valid_leaving_from_above = [
-            constd.LINE_SRC_TREND_STRONG_LEAVING_FROM_TARGET,
-            constd.LINE_SRC_TREND_WEEK_LEAVING_FROM_TARGET,
+            constd.LineCrossOverTrendEnum.SRC_STRONG_LEAVING_FROM_TARGET,
+            constd.LineCrossOverTrendEnum.SRC_WEEK_LEAVING_FROM_TARGET,
         ]
 
         window = min_len
@@ -180,19 +180,19 @@ class MovingAverageStrategy(Strategy):
         if is_closing:
             if any(item in closing_set for item in valid_closing_from_bottom):
                 if positive_count == len(difference):
-                    res_set.add(constd.MA5_CLOSING_TO_MA40_FROM_ABOVE)
+                    res_set.add(constd.MATrendEnum.MA5_CLOSING_TO_MA40_FROM_ABOVE)
                 elif negative_count == len(difference):
-                    res_set.add(constd.MA5_CLOSING_TO_MA40_FROM_BOTTOM)
-            if constd.LINE_SRC_CROSSOVER_TARGET_UPWARD in closing_set:
-                res_set.add(constd.MA5_CROSS_OVER_MA40_UPWARD)
-            elif constd.LINE_SRC_CROSSOVER_TARGET_DOWNWARD in closing_set:
-                res_set.add(constd.MA5_CROSS_OVER_MA40_DOWNWARD)
+                    res_set.add(constd.MATrendEnum.MA5_CLOSING_TO_MA40_FROM_BELOW)
+            if constd.LineCrossOverTrendEnum.SRC_CROSS_TARGET_UPWARD in closing_set:
+                res_set.add(constd.MATrendEnum.MA5_CROSS_OVER_MA40_UPWARD)
+            elif constd.LineCrossOverTrendEnum.SRC_CROSS_TARGET_DOWNWARD in closing_set:
+                res_set.add(constd.MATrendEnum.MA5_CROSS_OVER_MA40_DOWNWARD)
         else:
             if any(item in closing_set for item in valid_leaving_from_above):
                 if positive_count == len(difference):
-                    res_set.add(constd.MA5_ABOVE_LEAVING_MA40)
+                    res_set.add(constd.MATrendEnum.MA5_ABOVE_LEAVING_MA40)
                 elif negative_count == len(difference):
-                    res_set.add(constd.MA5_BELOW_LEAVING_MA40)
+                    res_set.add(constd.MATrendEnum.MA5_BELOW_LEAVING_MA40)
 
         return res_set
 
@@ -205,12 +205,12 @@ class MovingAverageStrategy(Strategy):
             return set()
 
         valid_closing_from_bottom = [
-            constd.LINE_SRC_TREND_STRONG_CLOSING_TO_CROSSOVER,
-            constd.LINE_SRC_TREND_WEEK_CLOSING_TO_CROSSOVER,
+            constd.LineCrossOverTrendEnum.SRC_STRONG_CLOSING_TARGET,
+            constd.LineCrossOverTrendEnum.SRC_WEEK_CLOSING_TO_TARGET,
         ]
         valid_leaving_from_above = [
-            constd.LINE_SRC_TREND_STRONG_LEAVING_FROM_TARGET,
-            constd.LINE_SRC_TREND_WEEK_LEAVING_FROM_TARGET,
+            constd.LineCrossOverTrendEnum.SRC_STRONG_LEAVING_FROM_TARGET,
+            constd.LineCrossOverTrendEnum.SRC_WEEK_LEAVING_FROM_TARGET,
         ]
 
         window = min_len
@@ -232,19 +232,19 @@ class MovingAverageStrategy(Strategy):
         if is_closing:
             if any(item in closing_set for item in valid_closing_from_bottom):
                 if positive_count == len(difference):
-                    res_set.add(constd.MA40_CLOSING_TO_MA138_FROM_ABOVE)
+                    res_set.add(constd.MATrendEnum.MA40_CLOSING_TO_MA138_FROM_ABOVE)
                 elif negative_count == len(difference):
-                    res_set.add(constd.MA40_CLOSING_TO_MA138_FROM_BOTTOM)
-            if constd.LINE_SRC_CROSSOVER_TARGET_UPWARD in closing_set:
-                res_set.add(constd.MA40_CROSS_OVER_MA138_UPWARD)
-            elif constd.LINE_SRC_CROSSOVER_TARGET_DOWNWARD in closing_set:
-                res_set.add(constd.MA40_CROSS_OVER_MA138_DOWNWARD)
+                    res_set.add(constd.MATrendEnum.MA40_CLOSING_TO_MA138_FROM_BELOW)
+            if constd.LineCrossOverTrendEnum.SRC_CROSS_TARGET_UPWARD in closing_set:
+                res_set.add(constd.MATrendEnum.MA40_CROSS_OVER_MA138_UPWARD)
+            elif constd.LineCrossOverTrendEnum.SRC_CROSS_TARGET_DOWNWARD in closing_set:
+                res_set.add(constd.MATrendEnum.MA40_CROSS_OVER_MA138_DOWNWARD)
         else:
             if any(item in closing_set for item in valid_leaving_from_above):
                 if positive_count == len(difference):
-                    res_set.add(constd.MA40_ABOVE_LEAVING_MA138)
+                    res_set.add(constd.MATrendEnum.MA40_ABOVE_LEAVING_MA138)
                 elif negative_count == len(difference):
-                    res_set.add(constd.MA40_BELOW_LEAVING_MA138)
+                    res_set.add(constd.MATrendEnum.MA40_BELOW_LEAVING_MA138)
 
         return res_set
 

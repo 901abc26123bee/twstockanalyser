@@ -125,9 +125,9 @@ class Stock:
         day_macd_up, day_macd_res = self.macd_strategy.check_macd_trend(day_df)
         m60_macd_up, m60_macd_res = self.macd_strategy.check_macd_trend(m60_df)
         if (
-            constd.MACD_BELOW_MIDDLE in month_macd_res
-            and constd.MACD_BELOW_MIDDLE in week_macd_res
-            and constd.MACD_BELOW_MIDDLE in day_macd_res
+            constd.MACDTrendEnum.MACD_BELOW_MIDDLE in month_macd_res
+            and constd.MACDTrendEnum.MACD_BELOW_MIDDLE in week_macd_res
+            and constd.MACDTrendEnum.MACD_BELOW_MIDDLE in day_macd_res
         ):
             return (
                 False,
@@ -135,20 +135,20 @@ class Stock:
             )
 
         unsafe_macd_cond = [
-            constd.MACD_BELOW_MIDDLE,
-            constd.MACD_DOWNTREND_AGGRESSIVE,
+            constd.MACDTrendEnum.MACD_BELOW_MIDDLE,
+            constd.MACDTrendEnum.MACD_DOWNTREND_AGGRESSIVE,
         ]
         if (
-            constd.MACD_DO_NOT_TOUCH in week_macd_res
-            and constd.MACD_DO_NOT_TOUCH in day_macd_res
+            constd.MACDTrendEnum.DO_NOT_TOUCH in week_macd_res
+            and constd.MACDTrendEnum.DO_NOT_TOUCH in day_macd_res
         ):
             return (
                 False,
                 f"Unsafe in week_macd_res and day_macd_res: week: {week_macd_res},  day: {day_macd_res}.",
             )
         elif (
-            constd.MACD_DO_NOT_TOUCH in day_macd_res
-            and constd.MACD_DO_NOT_TOUCH in m60_macd_res
+            constd.MACDTrendEnum.DO_NOT_TOUCH in day_macd_res
+            and constd.MACDTrendEnum.DO_NOT_TOUCH in m60_macd_res
         ):
             return (
                 False,
@@ -169,12 +169,12 @@ class Stock:
         day_ma_relation = self.ma_strategy.check_ma_relation(day_df)
         m60_ma_relation = self.ma_strategy.check_ma_relation(m60_df)
         ma_unsafe_cond = [
-            constd.MA40_BELOW_MA138,
-            constd.MA5_BELOW_MA138,
-            constd.MA5_BELOW_MA40,
-            constd.MA5_BELOW_LEAVING_MA138,
-            constd.MA5_BELOW_LEAVING_MA40,
-            constd.MA40_BELOW_LEAVING_MA138,
+            constd.MATrendEnum.MA40_BELOW_MA138,
+            constd.MATrendEnum.MA5_BELOW_MA138,
+            constd.MATrendEnum.MA5_BELOW_MA40,
+            constd.MATrendEnum.MA5_BELOW_LEAVING_MA138,
+            constd.MATrendEnum.MA5_BELOW_LEAVING_MA40,
+            constd.MATrendEnum.MA40_BELOW_LEAVING_MA138,
         ]
         if set(ma_unsafe_cond).issubset(week_ma_relation):
             return False, f"Unsafe to buy due to week_ma_relation: {week_ma_relation}."
@@ -233,22 +233,22 @@ class Stock:
         m60_macd_up, m60_macd_set = self.macd_strategy.check_macd_trend(m60_df)
         m30_macd_up, m30_macd_set = self.macd_strategy.check_macd_trend(m30_df)
         if (
-            constd.MACD_BELOW_MIDDLE in month_macd_set
-            and constd.MACD_BELOW_MIDDLE in week_macd_set
-            and constd.MACD_BELOW_MIDDLE in day_macd_set
+            constd.MACDTrendEnum.MACD_BELOW_MIDDLE in month_macd_set
+            and constd.MACDTrendEnum.MACD_BELOW_MIDDLE in week_macd_set
+            and constd.MACDTrendEnum.MACD_BELOW_MIDDLE in day_macd_set
         ):
             macd_not_all_below_middle = False
         res_dict["macd_not_all_below_middle"] = macd_not_all_below_middle
 
         macd_can_buy_if_any_match = [
-            constd.MACD_ABOVE_MIDDLE,
-            constd.MACD_LATEST_UPTREND,
-            constd.MACD_UPTREND_BACKTEST,
-            constd.MACD_CLOSING_MIDDLE_FROM_BOTTOM,
+            constd.MACDTrendEnum.MACD_ABOVE_MIDDLE,
+            constd.MACDTrendEnum.MACD_LATEST_UPTREND,
+            constd.MACDTrendEnum.MACD_BACKTEST_IN_UPTREND,
+            constd.MACDTrendEnum.MACD_CLOSING_MIDDLE_FROM_BELOW,
         ]
         if (
-            constd.MACD_ABOVE_MIDDLE in week_macd_set
-            or constd.MACD_ABOVE_MIDDLE in day_macd_set
+            constd.MACDTrendEnum.MACD_ABOVE_MIDDLE in week_macd_set
+            or constd.MACDTrendEnum.MACD_ABOVE_MIDDLE in day_macd_set
         ) and (
             any(item in m60_macd_set for item in macd_can_buy_if_any_match)
             or any(item in m30_macd_set for item in macd_can_buy_if_any_match)
@@ -265,20 +265,20 @@ class Stock:
         m30_ma_set = self.ma_strategy.check_ma_relation(m30_df)
         ma_valid_condition = [
             # closing from buttom
-            constd.MA40_CLOSING_TO_MA138_FROM_BOTTOM,
-            constd.MA5_CLOSING_TO_MA138_FROM_BOTTOM,
-            constd.MA5_CLOSING_TO_MA40_FROM_BOTTOM,
+            constd.MATrendEnum.MATrendEnum.MA40_CLOSING_TO_MA138_FROM_BELOW,
+            constd.MATrendEnum.MA5_CLOSING_TO_MA138_FROM_BELOW,
+            constd.MATrendEnum.MA5_CLOSING_TO_MA40_FROM_BELOW,
             # golden cross
-            constd.MA40_CROSS_OVER_MA138_UPWARD,
-            constd.MA5_CROSS_OVER_MA138_UPWARD,
-            constd.MA5_CROSS_OVER_MA40_UPWARD,
+            constd.MATrendEnum.MA40_CROSS_OVER_MA138_UPWARD,
+            constd.MATrendEnum.MA5_CROSS_OVER_MA138_UPWARD,
+            constd.MATrendEnum.MA5_CROSS_OVER_MA40_UPWARD,
             # closing from above
-            constd.MA40_CLOSING_TO_MA138_FROM_ABOVE,
-            constd.MA5_CLOSING_TO_MA138_FROM_ABOVE,
-            constd.MA5_CLOSING_TO_MA40_FROM_ABOVE,
+            constd.MATrendEnum.MA40_CLOSING_TO_MA138_FROM_ABOVE,
+            constd.MATrendEnum.MA5_CLOSING_TO_MA138_FROM_ABOVE,
+            constd.MATrendEnum.MA5_CLOSING_TO_MA40_FROM_ABOVE,
             # above
-            constd.MA5_ABOVE_MA138,
-            constd.MA40_ABOVE_MA138,
+            constd.MATrendEnum.MA5_ABOVE_MA138,
+            constd.MATrendEnum.MA40_ABOVE_MA138,
         ]
         if any(item in m60_ma_set for item in ma_valid_condition):
             ma60_can_buy = True

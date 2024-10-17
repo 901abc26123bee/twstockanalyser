@@ -97,10 +97,10 @@ class Strategy:
             # Check if the last 1/4 is closer than the last 2/4
             and dist_last_1_4 <= dist_last_2_4
         ):
-            res_set.add(constd.LINE_SRC_TREND_STRONG_CLOSING_TO_CROSSOVER)
+            res_set.add(constd.LineCrossOverTrendEnum.SRC_STRONG_CLOSING_TARGET)
             is_closing = True
         elif dist_first_half >= dist_last_half and dist_last_half <= dist_all:
-            res_set.add(constd.LINE_SRC_TREND_WEEK_CLOSING_TO_CROSSOVER)
+            res_set.add(constd.LineCrossOverTrendEnum.SRC_WEEK_CLOSING_TO_TARGET)
             is_closing = True
         elif (
             dist_first_half <= dist_last_half
@@ -110,11 +110,11 @@ class Strategy:
             # Check if the last 1/4 is closer than the last 2/4
             and dist_last_1_4 >= dist_last_2_4
         ):
-            res_set.add(constd.LINE_SRC_TREND_STRONG_LEAVING_FROM_TARGET)
+            res_set.add(constd.LineCrossOverTrendEnum.SRC_STRONG_LEAVING_FROM_TARGET)
         elif dist_first_half <= dist_last_half and dist_last_half >= dist_all:
-            res_set.add(constd.LINE_SRC_TREND_WEEK_LEAVING_FROM_TARGET)
+            res_set.add(constd.LineCrossOverTrendEnum.SRC_WEEK_LEAVING_FROM_TARGET)
         else:
-            res_set.add(constd.LINE_CLOSER_TREAD_UNKNOWN)
+            res_set.add(constd.LineCrossOverTrendEnum.UNKNOWN)
 
         # check cross over exist
         diff = src_array - target_array
@@ -122,11 +122,11 @@ class Strategy:
         golden_cross_indices = _np.where((diff[:-1] < 0) & (diff[1:] > 0))[0] + 1
         death_cross_indices = _np.where((diff[:-1] > 0) & (diff[1:] < 0))[0] + 1
         if len(golden_cross_indices) == 1 and len(death_cross_indices) == 0:
-            res_set.add(constd.LINE_SRC_CROSSOVER_TARGET_UPWARD)
+            res_set.add(constd.LineCrossOverTrendEnum.SRC_CROSS_TARGET_UPWARD)
         elif len(death_cross_indices) == 1 and len(golden_cross_indices) == 0:
-            res_set.add(constd.LINE_SRC_CROSSOVER_TARGET_DOWNWARD)
+            res_set.add(constd.LineCrossOverTrendEnum.SRC_CROSS_TARGET_DOWNWARD)
         elif len(golden_cross_indices) > 1 or len(death_cross_indices):
-            res_set.add(constd.LINE_SRC_CROSSOVER_TARGET)
+            res_set.add(constd.LineCrossOverTrendEnum.SRC_CROSS_TARGET_MULTI)
 
         return is_closing, res_set, res_dist
 
@@ -305,28 +305,28 @@ class Strategy:
         bottom_pivots = self.find_latest_pivots(line_y_for_bottom_pivot, "bottom", 3)
         if len(bottom_pivots) == 2:
             if bottom_pivots[-1] > bottom_pivots[-2]:
-                res_set.add(constd.LINE_TREND_INCREASING_BOTTOM)
+                res_set.add(constd.LineTrendEnum.ASCENDING_BOTTOM_PIVOT)
             elif bottom_pivots[-1] < bottom_pivots[-2]:
-                res_set.add(constd.LINE_TREND_DECREASING_BOTTOM)
+                res_set.add(constd.LineTrendEnum.DESCENDING_BOTTOM_PIVOT)
         elif len(bottom_pivots) > 2:
             if bottom_pivots == tuple(sorted(bottom_pivots)):
-                res_set.add(constd.LINE_TREND_INCREASING_BOTTOM)
+                res_set.add(constd.LineTrendEnum.ASCENDING_BOTTOM_PIVOT)
             elif bottom_pivots == tuple(sorted(bottom_pivots, reverse=True)):
-                res_set.add(constd.LINE_TREND_DECREASING_BOTTOM)
+                res_set.add(constd.LineTrendEnum.DESCENDING_BOTTOM_PIVOT)
 
         if len(gradients) >= 2:
             if gradients[-1] >= 0 and gradients[-2] >= 0:
                 if gradients[-1] > gradients[-2]:
                     # 角度變大
-                    res_set.add(constd.LINE_TREND_UPWARD_AGGRESSIVE)
+                    res_set.add(constd.LineTrendEnum.UPWARD_AGGRESSIVE)
                 elif gradients[-1] < gradients[-2]:
                     # 趨勢放緩
-                    res_set.add(constd.LINE_TREND_UPWARD_SLOWDOWN)
+                    res_set.add(constd.LineTrendEnum.UPWARD_SLOWDOWN)
             elif gradients[-1] < 0 and gradients[-2] < 0:
                 if gradients[-1] < gradients[-2]:
-                    res_set.add(constd.LINE_TREND_DOWNWARD_AGGRESSIVE)
+                    res_set.add(constd.LineTrendEnum.DOWNWARD_AGGRESSIVE)
                 elif gradients[-1] > gradients[-2]:
-                    res_set.add(constd.LINE_TREND_DOWNWARD_SLOWDOWN)
+                    res_set.add(constd.LineTrendEnum.DOWNWARD_SLOWDOWN)
 
         if len(gradients) >= 3 and len(line_y) >= 3:
             if (
@@ -334,16 +334,16 @@ class Strategy:
                 and line_x[-1] - line_x[-2] <= line_x[-2] - line_x[-3]
             ):
                 if gradients[-1] <= 0 and gradients[-2] > 0:
-                    res_set.add(constd.LINE_TREND_UPWARD_BACKTEST)
+                    res_set.add(constd.LineTrendEnum.BACKTEST_IN_UPWARD)
                 if gradients[-1] >= 0 and gradients[-2] < 0:
-                    res_set.add(constd.LINE_TREND_DOWNWARD_BACKTEST)
+                    res_set.add(constd.LineTrendEnum.BACKTEST_IN_DOWNWARD)
 
         # latest line trend if only single line
         if len(gradients) > 0:
             if gradients[-1] >= 0:
-                res_set.add(constd.LINE_TREND_LATEST_UPWARD)
+                res_set.add(constd.LineTrendEnum.LATEST_UPWARD)
             else:
-                res_set.add(constd.LINE_TREND_LATEST_DOWNWARD)
+                res_set.add(constd.LineTrendEnum.LATEST_DOWNWARD)
 
         return res_set
 

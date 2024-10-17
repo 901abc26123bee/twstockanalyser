@@ -16,7 +16,7 @@ class MACDStrategyTest(unittest.TestCase):
         result = self.macd_strategy.check_osc_stick_heigh(
             _pd.DataFrame(data_osc_green_week)
         )
-        self.assertEqual(result, {constd.OSC_GREEN_WEEK})
+        self.assertEqual(result, {constd.MACDTrendEnum.OSC_GREEN_WEEK})
 
         data_osc_green_strong = {
             "OSC": [-3, -1, 4, 5, 2, 3, 1, -3, -9, -20, -11, -2],
@@ -24,7 +24,7 @@ class MACDStrategyTest(unittest.TestCase):
         result = self.macd_strategy.check_osc_stick_heigh(
             _pd.DataFrame(data_osc_green_strong)
         )
-        self.assertEqual(result, {constd.OSC_GREEN_STRONG})
+        self.assertEqual(result, {constd.MACDTrendEnum.OSC_GREEN_STRONG})
 
         data_osc_green_consolidation = {
             "OSC": [-3, -1, 4, 5, 6, 3, 1, -1, -3, -4, -1, -2],
@@ -32,7 +32,7 @@ class MACDStrategyTest(unittest.TestCase):
         result = self.macd_strategy.check_osc_stick_heigh(
             _pd.DataFrame(data_osc_green_consolidation)
         )
-        self.assertEqual(result, {constd.OSC_GREEN_CONSOLIDATION})
+        self.assertEqual(result, {constd.MACDTrendEnum.OSC_GREEN_CONSOLIDATION})
 
         data_osc_red_week = {
             "OSC": [3, 1, -3, -9, -20, -11, -2, 4, 5, 5, 3, 1],
@@ -40,7 +40,7 @@ class MACDStrategyTest(unittest.TestCase):
         result = self.macd_strategy.check_osc_stick_heigh(
             _pd.DataFrame(data_osc_red_week)
         )
-        self.assertEqual(result, {constd.OSC_RED_WEEK})
+        self.assertEqual(result, {constd.MACDTrendEnum.OSC_RED_WEEK})
 
         data_osc_red_strong = {
             "OSC": [3, 1, -0.4, -1, -0.6, -0.5, 4, 5, 6, 3, 1],
@@ -48,7 +48,7 @@ class MACDStrategyTest(unittest.TestCase):
         result = self.macd_strategy.check_osc_stick_heigh(
             _pd.DataFrame(data_osc_red_strong)
         )
-        self.assertEqual(result, {constd.OSC_RED_STRONG})
+        self.assertEqual(result, {constd.MACDTrendEnum.OSC_RED_STRONG})
 
         data_osc_red_consolidation = {
             "OSC": [3, 1, -1, -3, -4, -1, -2, 4, 5, 6, 3, 1],
@@ -56,7 +56,7 @@ class MACDStrategyTest(unittest.TestCase):
         result = self.macd_strategy.check_osc_stick_heigh(
             _pd.DataFrame(data_osc_red_consolidation)
         )
-        self.assertEqual(result, {constd.OSC_RED_CONSOLIDATION})
+        self.assertEqual(result, {constd.MACDTrendEnum.OSC_RED_CONSOLIDATION})
 
         data_osc_red_consolidation = {
             "OSC": [
@@ -94,7 +94,11 @@ class MACDStrategyTest(unittest.TestCase):
             _pd.DataFrame(data_osc_red_consolidation)
         )
         self.assertEqual(
-            result, {constd.OSC_RED_CONSOLIDATION, constd.OSC_RED_RANGE_LONG}
+            result,
+            {
+                constd.MACDTrendEnum.OSC_RED_CONSOLIDATION,
+                constd.MACDTrendEnum.OSC_RED_RANGE_LONG,
+            },
         )
 
     def test_check_uptrend_macd_do_not_touch_data(self):
@@ -142,7 +146,14 @@ class MACDStrategyTest(unittest.TestCase):
         )
         self.assertEqual(len(data_do_not_touch_array), 32)
         self.assertEqual(is_up_trend, False)
-        self.assertEqual(result, {constd.MACD_DO_NOT_TOUCH})
+        self.assertEqual(
+            result,
+            {
+                constd.MACDTrendEnum.DO_NOT_TOUCH,
+                constd.MACDTrendEnum.OSC_GREEN_STRONG,
+                constd.MACDTrendEnum.OSC_GREEN_RANGE_LONG,
+            },
+        )
 
     def test_check_uptrend_macd_closing_from_bottom(self):
         pass
@@ -195,10 +206,11 @@ class MACDStrategyTest(unittest.TestCase):
         self.assertEqual(
             result,
             {
-                constd.MACD_CLOSING_MIDDLE_FROM_BOTTOM,
-                constd.MACD_UPTREND_BACKTEST,
-                constd.MACD_LATEST_DOWNTREND,
-                constd.MACD_BELOW_MIDDLE,
+                constd.MACDTrendEnum.OSC_GREEN_WEEK,
+                constd.MACDTrendEnum.MACD_CLOSING_MIDDLE_FROM_BELOW,
+                constd.MACDTrendEnum.MACD_BACKTEST_IN_UPTREND,
+                constd.MACDTrendEnum.MACD_LATEST_DOWNTREND,
+                constd.MACDTrendEnum.MACD_BELOW_MIDDLE,
             },
         )
 

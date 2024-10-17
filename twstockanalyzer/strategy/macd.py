@@ -19,6 +19,9 @@ class MACDIndicatorStrategy(Strategy):
 
     #  MACD 呈上升趨勢
     def check_macd_trend(self, df: _pd.DataFrame) -> tuple[bool, Optional[set[str]]]:
+        """
+        returned set included macd and osc const
+        """
         if not self.check_columns_exist(
             df,
             ["MACD", "OSC", "DIF"],
@@ -82,6 +85,7 @@ class MACDIndicatorStrategy(Strategy):
         if osc_trend_set is None:
             print("Error: failed to check_osc_stick_heigh.")
             return None
+        macd_trend_set.update(osc_trend_set)
 
         # 檢查 MACD 線型趨勢
         line_trend_set = self.find_line_pattern_and_trend(
@@ -94,69 +98,74 @@ class MACDIndicatorStrategy(Strategy):
         # do not touch condition
         # OSC 強綠柱 + OSC 綠柱範圍長 + macd零軸下 範圍長 + MACD 下降趨勢
         fit_count = 0
-        osc_cond_to_check = [constd.OSC_GREEN_STRONG, constd.OSC_GREEN_RANGE_LONG]
+        osc_cond_to_check = [
+            constd.MACDTrendEnum.OSC_GREEN_STRONG,
+            constd.MACDTrendEnum.OSC_GREEN_RANGE_LONG,
+        ]
         for value in osc_cond_to_check:
             if value in osc_trend_set:
                 fit_count += 1
-        crossover_cond_check = [constd.LINE_SRC_TREND_STRONG_LEAVING_FROM_TARGET]
+        crossover_cond_check = [
+            constd.LineCrossOverTrendEnum.SRC_STRONG_LEAVING_FROM_TARGET
+        ]
         for value in closing_middle_trend_set:
             if value in crossover_cond_check:
                 fit_count += 1
         line_trend_check = [
-            constd.LINE_TREND_LATEST_DOWNWARD,
-            constd.LINE_TREND_DECREASING_BOTTOM,
+            constd.LineTrendEnum.LATEST_DOWNWARD,
+            constd.LineTrendEnum.DESCENDING_BOTTOM_PIVOT,
         ]
         if any(item in line_trend_set for item in line_trend_check):
             fit_count += 1
 
         last_five_values = df["MACD"].tail(5)
         if fit_count == 4 and (last_five_values < 0).all():
-            macd_trend_set.add(constd.MACD_DO_NOT_TOUCH)
+            macd_trend_set.add(constd.MACDTrendEnum.DO_NOT_TOUCH)
             return False, macd_trend_set
 
         # MACD 零軸上/下
         if df["MACD"].iloc[-1] >= 0:
-            macd_trend_set.add(constd.MACD_ABOVE_MIDDLE)
+            macd_trend_set.add(constd.MACDTrendEnum.MACD_ABOVE_MIDDLE)
         elif df["MACD"].iloc[-1] < 0:
-            macd_trend_set.add(constd.MACD_BELOW_MIDDLE)
+            macd_trend_set.add(constd.MACDTrendEnum.MACD_BELOW_MIDDLE)
 
         # 從上方/下方靠近軸線
         if is_closing_middle and df["MACD"].iloc[-1] <= 0:
-            macd_trend_set.add(constd.MACD_CLOSING_MIDDLE_FROM_BOTTOM)
+            macd_trend_set.add(constd.MACDTrendEnum.MACD_CLOSING_MIDDLE_FROM_BELOW)
         if is_closing_middle and df["MACD"].iloc[-1] > 0:
-            macd_trend_set.add(constd.MACD_CLOSING_MIDDLE_FROM_ABOVE)
+            macd_trend_set.add(constd.MACDTrendEnum.MACD_CLOSING_MIDDLE_FROM_ABOVE)
 
         # 檢查 MACD 趨勢
-        if constd.LINE_TREND_LATEST_UPWARD in line_trend_set:
-            macd_trend_set.add(constd.MACD_LATEST_UPTREND)
+        if constd.LineTrendEnum.LATEST_UPWARD in line_trend_set:
+            macd_trend_set.add(constd.MACDTrendEnum.MACD_LATEST_UPTREND)
             is_up_trend = True
-        elif constd.LINE_TREND_LATEST_DOWNWARD in line_trend_set:
-            macd_trend_set.add(constd.MACD_LATEST_DOWNTREND)
+        elif constd.LineTrendEnum.LATEST_DOWNWARD in line_trend_set:
+            macd_trend_set.add(constd.MACDTrendEnum.MACD_LATEST_DOWNTREND)
         # gradient increase/decease
-        if constd.LINE_TREND_UPWARD_AGGRESSIVE in line_trend_set:
-            macd_trend_set.add(constd.MACD_UPTREND_AGGRESSIVE)
+        if constd.LineTrendEnum.UPWARD_AGGRESSIVE in line_trend_set:
+            macd_trend_set.add(constd.MACDTrendEnum.MACD_UPTREND_AGGRESSIVE)
             is_up_trend = True
-        if constd.LINE_TREND_DOWNWARD_AGGRESSIVE in line_trend_set:
-            macd_trend_set.add(constd.MACD_DOWNTREND_AGGRESSIVE)
+        if constd.LineTrendEnum.DOWNWARD_AGGRESSIVE in line_trend_set:
+            macd_trend_set.add(constd.MACDTrendEnum.MACD_DOWNTREND_AGGRESSIVE)
         # backtest
-        if constd.LINE_TREND_UPWARD_BACKTEST in line_trend_set:
-            macd_trend_set.add(constd.MACD_UPTREND_BACKTEST)
+        if constd.LineTrendEnum.BACKTEST_IN_UPWARD in line_trend_set:
+            macd_trend_set.add(constd.MACDTrendEnum.MACD_BACKTEST_IN_UPTREND)
             is_up_trend = True
-        elif constd.LINE_TREND_DOWNWARD_BACKTEST in line_trend_set:
-            macd_trend_set.add(constd.MACD_DOWNTREND_BACKTEST)
+        elif constd.LineTrendEnum.BACKTEST_IN_DOWNWARD in line_trend_set:
+            macd_trend_set.add(constd.MACDTrendEnum.MACD_BACKTEST_IN_DOWNTREND)
 
         # find duck
         if self.find_upward_duck(df, "DIF", "MACD"):
-            macd_trend_set.add(constd.MACD_DUCK_UP_TREND)
+            macd_trend_set.add(constd.MACDTrendEnum.MACD_DUCK_UP_TREND)
 
         # unknown
         if len(macd_trend_set) == 0:
-            macd_trend_set.add(constd.MACD_UNKNOWN)
+            macd_trend_set.add(constd.MACDTrendEnum.UNKNOWN)
 
         return is_up_trend, macd_trend_set
 
     # 檢查 MACD 柱狀圖(OSC) 強勢、弱勢、盤整
-    # TODO: OSC_RED_CONSOLIDATION, OSC_GREEN_CONSOLIDATION, 如果罪latest綠柱和紅柱部分無法區別強弱，向前找或是根據macd/dif趨勢斜率來判斷
+    # TODO: MACDTrendEnum.OSC_RED_CONSOLIDATION, MACDTrendEnum.OSC_GREEN_CONSOLIDATION, 如果罪latest綠柱和紅柱部分無法區別強弱，向前找前一個相同的紅、綠，或是取範圍裡的最高、低絕對值做比較，或是根據macd/dif趨勢斜率來判斷
     def check_osc_stick_heigh(
         self, df: _pd.DataFrame, threshold: int = 2
     ) -> Optional[set[str]]:
@@ -172,12 +181,14 @@ class MACDIndicatorStrategy(Strategy):
         res_set = set()
 
         # loop through the OSC column backward
+        stop_at = len(df["OSC"]) - 1
         for i in range(
             len(df["OSC"]) - 1, 0, -1
         ):  # Start from the last index to the first
             current_value = df["OSC"].iloc[i]
             previous_value = df["OSC"].iloc[i - 1]
             cur_count += 1
+            stop_at = i
             # check for sign change
             if (previous_value > 0 and current_value < 0) or (
                 previous_value < 0 and current_value > 0
@@ -203,22 +214,23 @@ class MACDIndicatorStrategy(Strategy):
             if switch == 1:
                 local_abs_max_previous = cur
 
+        handled_count_from_backward = len(df["OSC"]) - 1 - stop_at
         if local_abs_max < 0:
             if abs(local_abs_max) <= abs(local_abs_max_previous) / threshold:
-                res_set.add(constd.OSC_GREEN_WEEK)
+                res_set.add(constd.MACDTrendEnum.OSC_GREEN_WEEK)
             elif abs(local_abs_max) >= abs(local_abs_max_previous) * threshold:
-                res_set.add(constd.OSC_GREEN_STRONG)
+                res_set.add(constd.MACDTrendEnum.OSC_GREEN_STRONG)
             else:
-                res_set.add(constd.OSC_GREEN_CONSOLIDATION)
+                res_set.add(constd.MACDTrendEnum.OSC_GREEN_CONSOLIDATION)
             if local_range_count > 20:
-                res_set.add(constd.OSC_GREEN_RANGE_LONG)
+                res_set.add(constd.MACDTrendEnum.OSC_GREEN_RANGE_LONG)
         elif local_abs_max > 0:
             if abs(local_abs_max) <= abs(local_abs_max_previous) / threshold:
-                res_set.add(constd.OSC_RED_WEEK)
+                res_set.add(constd.MACDTrendEnum.OSC_RED_WEEK)
             elif abs(local_abs_max) >= abs(local_abs_max_previous) * threshold:
-                res_set.add(constd.OSC_RED_STRONG)
+                res_set.add(constd.MACDTrendEnum.OSC_RED_STRONG)
             else:
-                res_set.add(constd.OSC_RED_CONSOLIDATION)
+                res_set.add(constd.MACDTrendEnum.OSC_RED_CONSOLIDATION)
             if local_range_count > 20:
-                res_set.add(constd.OSC_RED_RANGE_LONG)
+                res_set.add(constd.MACDTrendEnum.OSC_RED_RANGE_LONG)
         return res_set

@@ -139,7 +139,9 @@ class StrategyTest(unittest.TestCase):
             src_array=src_uptrend_40ma, target_array=target_uptrend_138ma, window=20
         )
         self.assertEqual(is_closing, False)
-        self.assertEqual(desc, {constd.LINE_SRC_TREND_STRONG_LEAVING_FROM_TARGET})
+        self.assertEqual(
+            desc, {constd.LineCrossOverTrendEnum.SRC_STRONG_LEAVING_FROM_TARGET}
+        )
         self.assertEqual(res, expected_res)
 
     # 40均大於138均，向下交叉
@@ -221,7 +223,7 @@ class StrategyTest(unittest.TestCase):
         self.assertEqual(is_closing, True)
         self.assertEqual(
             desc,
-            {constd.LINE_SRC_TREND_STRONG_CLOSING_TO_CROSSOVER},
+            {constd.LineCrossOverTrendEnum.SRC_STRONG_CLOSING_TARGET},
         )
         self.assertEqual(res, expected_res)
 
@@ -295,8 +297,8 @@ class StrategyTest(unittest.TestCase):
         self.assertEqual(
             desc,
             {
-                constd.LINE_SRC_TREND_STRONG_CLOSING_TO_CROSSOVER,
-                constd.LINE_SRC_CROSSOVER_TARGET_UPWARD,
+                constd.LineCrossOverTrendEnum.SRC_STRONG_CLOSING_TARGET,
+                constd.LineCrossOverTrendEnum.SRC_CROSS_TARGET_UPWARD,
             },
         )
         self.assertEqual(res, expected_res)
@@ -311,8 +313,8 @@ class StrategyTest(unittest.TestCase):
         self.assertEqual(
             desc,
             {
-                constd.LINE_SRC_TREND_STRONG_CLOSING_TO_CROSSOVER,
-                constd.LINE_SRC_CROSSOVER_TARGET_DOWNWARD,
+                constd.LineCrossOverTrendEnum.SRC_STRONG_CLOSING_TARGET,
+                constd.LineCrossOverTrendEnum.SRC_CROSS_TARGET_DOWNWARD,
             },
         )
 
@@ -371,9 +373,9 @@ class StrategyTest(unittest.TestCase):
         self.assertEqual(
             result,
             {
-                constd.LINE_TREND_INCREASING_BOTTOM,
-                constd.LINE_TREND_UPWARD_BACKTEST,
-                constd.LINE_TREND_LATEST_DOWNWARD,
+                constd.LineTrendEnum.ASCENDING_BOTTOM_PIVOT,
+                constd.LineTrendEnum.BACKTEST_IN_UPWARD,
+                constd.LineTrendEnum.LATEST_DOWNWARD,
             },
         )
 
@@ -405,9 +407,9 @@ class StrategyTest(unittest.TestCase):
         self.assertEqual(
             result,
             {
-                constd.LINE_TREND_DECREASING_BOTTOM,
-                constd.LINE_TREND_DOWNWARD_BACKTEST,
-                constd.LINE_TREND_LATEST_UPWARD,
+                constd.LineTrendEnum.DESCENDING_BOTTOM_PIVOT,
+                constd.LineTrendEnum.BACKTEST_IN_DOWNWARD,
+                constd.LineTrendEnum.LATEST_UPWARD,
             },
         )
 

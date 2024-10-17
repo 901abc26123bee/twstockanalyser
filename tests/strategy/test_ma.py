@@ -56,13 +56,13 @@ class MovingAverageStrategyStrategyTest(unittest.TestCase):
             res_set,
             {
                 # ma5 ma138
-                constd.MA5_ABOVE_MA138,
-                constd.MA5_CROSS_OVER_MA138_UPWARD,
+                constd.MATrendEnum.MA5_ABOVE_MA138,
+                constd.MATrendEnum.MA5_CROSS_OVER_MA138_UPWARD,
                 # ma5 ma40(same array, ignore)
-                constd.MA5_ABOVE_MA40,
+                constd.MATrendEnum.MA5_ABOVE_MA40,
                 # ma40 ma138
-                constd.MA40_ABOVE_MA138,
-                constd.MA40_CROSS_OVER_MA138_UPWARD,
+                constd.MATrendEnum.MA40_ABOVE_MA138,
+                constd.MATrendEnum.MA40_CROSS_OVER_MA138_UPWARD,
             },
         )
 
@@ -105,14 +105,14 @@ class MovingAverageStrategyStrategyTest(unittest.TestCase):
             res_set,
             {
                 # ma5 ma138
-                constd.MA5_BELOW_MA138,
-                constd.MA5_CLOSING_TO_MA138_FROM_BOTTOM,
+                constd.MATrendEnum.MA5_BELOW_MA138,
+                constd.MATrendEnum.MA5_CLOSING_TO_MA138_FROM_BELOW,
                 # ma5 ma40(same array, ignore)
-                constd.MA5_ABOVE_MA40,
-                # constd.MA5_CLOSING_TO_MA138_FROM_BOTTOM,
+                constd.MATrendEnum.MA5_ABOVE_MA40,
+                # constd.MATrendEnum.MA5_CLOSING_TO_MA138_FROM_BELOW,
                 # ma40 ma138
-                constd.MA40_BELOW_MA138,
-                constd.MA40_CLOSING_TO_MA138_FROM_BOTTOM,
+                constd.MATrendEnum.MA40_BELOW_MA138,
+                constd.MATrendEnum.MA40_CLOSING_TO_MA138_FROM_BELOW,
             },
         )
 
@@ -155,13 +155,13 @@ class MovingAverageStrategyStrategyTest(unittest.TestCase):
             res_set,
             {
                 # ma5 ma138
-                constd.MA5_BELOW_MA138,
-                constd.MA5_BELOW_LEAVING_MA138,
+                constd.MATrendEnum.MA5_BELOW_MA138,
+                constd.MATrendEnum.MA5_BELOW_LEAVING_MA138,
                 # ma5 ma40(same array, ignore)
-                constd.MA5_ABOVE_MA40,
+                constd.MATrendEnum.MA5_ABOVE_MA40,
                 # ma40 ma138
-                constd.MA40_BELOW_MA138,
-                constd.MA40_BELOW_LEAVING_MA138,
+                constd.MATrendEnum.MA40_BELOW_MA138,
+                constd.MATrendEnum.MA40_BELOW_LEAVING_MA138,
             },
         )
 
@@ -204,13 +204,13 @@ class MovingAverageStrategyStrategyTest(unittest.TestCase):
             res_set,
             {
                 # ma5 ma138
-                constd.MA5_ABOVE_MA138,
-                constd.MA5_ABOVE_LEAVING_MA138,
+                constd.MATrendEnum.MA5_ABOVE_MA138,
+                constd.MATrendEnum.MA5_ABOVE_LEAVING_MA138,
                 # ma5 ma40(same array, ignore)
-                constd.MA5_ABOVE_MA40,
+                constd.MATrendEnum.MA5_ABOVE_MA40,
                 # ma40 ma138
-                constd.MA40_ABOVE_MA138,
-                constd.MA40_ABOVE_LEAVING_MA138,
+                constd.MATrendEnum.MA40_ABOVE_MA138,
+                constd.MATrendEnum.MA40_ABOVE_LEAVING_MA138,
             },
         )
 
